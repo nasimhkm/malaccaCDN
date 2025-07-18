@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Article Editor - Admin</title>
+    <link rel="icon" href="/asset/logo/logoCompanyFavicon.svg" type="image/svg+xml" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+    <!-- TinyMCE Rich Text Editor -->
+    <script src="https://cdn.tiny.cloud/1/yomppk72k9x4grs0t2m165roluir2l70r3kekb0lvl8qgk0u/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <style>
+        body { font-family: "Montserrat", sans-serif; background-color: #111827; }
+        /* Style for the datetime-local icon to be visible in dark mode */
+        input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+        <h1 class="text-3xl font-bold mb-6">Create New Article</h1>
+
+        <!-- The form action and enctype will be handled by your backend teammate -->
+        <form action="save-article.php" method="POST" enctype="multipart/form-data">
+            <!-- 
+              Your backend teammate can add a hidden input here for the article ID in edit mode.
+              Example: <input type="hidden" name="article_id" value="123"> 
+            -->
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <!-- Title Field -->
+                <div>
+                    <label for="title" class="block mb-2 text-sm font-medium text-gray-300">Title</label>
+                    <input type="text" name="title" id="title" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg block w-full p-2.5" placeholder="Your article title" required>
+                </div>
+                <!-- Author Field -->
+                <div>
+                    <label for="author" class="block mb-2 text-sm font-medium text-gray-300">Author</label>
+                    <input type="text" name="author" id="author" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg block w-full p-2.5" placeholder="Author's name" required>
+                </div>
+                <!-- Category Field -->
+                <div>
+                    <label for="category" class="block mb-2 text-sm font-medium text-gray-300">Category</label>
+                    <input type="text" name="category" id="category" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg block w-full p-2.5" placeholder="e.g., Blog, News" value="Uncategorized" required>
+                </div>
+                <!-- Slug Field -->
+                <div>
+                    <label for="slug" class="block mb-2 text-sm font-medium text-gray-300">Slug (URL)</label>
+                    <input type="text" name="slug" id="slug" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg block w-full p-2.5" placeholder="auto-generated-from-title">
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <!-- Featured Image Upload Field -->
+                <div>
+                    <label for="featured_image" class="block mb-2 text-sm font-medium text-gray-300">Featured Image</label>
+                    <input type="file" name="featured_image" id="featured_image" class="block w-full text-sm text-gray-400 border border-gray-600 rounded-lg cursor-pointer bg-gray-700 focus:outline-none placeholder-gray-400">
+                    <p class="mt-1 text-xs text-gray-500">PNG, JPG, or GIF (MAX. 2MB).</p>
+                </div>
+                <!-- Publish Date Field -->
+                <div>
+                    <label for="published_date" class="block mb-2 text-sm font-medium text-gray-300">Publish Date</label>
+                    <input type="datetime-local" name="published_date" id="published_date" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg block w-full p-2.5" required>
+                </div>
+            </div>
+
+            <!-- Rich Text Editor -->
+            <div class="mb-6">
+                 <label for="content-editor" class="block mb-2 text-sm font-medium text-gray-300">Content</label>
+                <textarea id="content-editor" name="content">
+                    <h2>Start writing your amazing article here!</h2>
+                </textarea>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-4">
+                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5">
+                    Save Article
+                </button>
+                <a href="admin.html#article" class="text-gray-400 hover:text-white">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- JavaScript to initialize TinyMCE and set default date -->
+    <script>
+        // Initialize the TinyMCE Rich Text Editor
+        tinymce.init({
+            selector: 'textarea#content-editor',
+            plugins: 'link image lists code wordcount',
+            toolbar: 'undo redo | blocks | bold italic | bullist numlist | link image | code',
+            skin: 'oxide-dark',
+            content_css: 'dark',
+            height: 500,
+            // Customize the "blocks" dropdown menu
+            block_formats: 'Heading=h1; Paragraph=h2',
+            // Add custom styles to the editor content area
+            content_style: `
+                body { font-family: "Montserrat", sans-serif; color: #fff; }
+                h1 { font-size: 2em; font-weight: bold; margin-bottom: 0.5em; }
+                h2 { font-size: 1em; font-weight: normal; }
+            `
+        });
+
+        // Set the default value of the date scheduler to the current date and time
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInput = document.getElementById('published_date');
+            if (dateInput) {
+                const now = new Date();
+                // Adjust for the local timezone offset to get the correct local time
+                now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+                // Format the date to the 'YYYY-MM-DDTHH:MM' format required by the input
+                dateInput.value = now.toISOString().slice(0, 16);
+            }
+        });
+    </script>
+</body>
+</html>
