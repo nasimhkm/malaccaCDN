@@ -111,13 +111,15 @@
                           <p>{{ $article->title }}</p>
                           <div class="flex items-center space-x-2 text-xs text-gray-400 hidden group-hover:block mt-1">
                               <a href="{{ route('admin.articles.edit', $article->id) }}" class="hover:underline text-blue-500">Edit</a>
-                              <span>|</span>
+                              |
                               <form action="{{ route('admin.articles.destroy', $article->id) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure?');">
                                   @csrf
                                   @method('DELETE')
                                   <button type="submit" class="hover:underline text-red-500">Trash</button>
-                              </form>
-                              {{-- Link View bisa ditambahkan di sini jika ada halaman detail --}}
+                                {{-- Link View bisa ditambahkan di sini jika ada halaman detail --}}
+                              |
+                              <a href="{{ route('articles.show', $article->slug) }}" target="_blank" class="hover:underline text-green-500">View</a>
+                                </form>
                           </div>
                       </div>
                   </th>

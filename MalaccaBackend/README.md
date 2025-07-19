@@ -1,61 +1,183 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Website & Sistem Manajemen Konten Malacca Enterprise
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Malacca Logo](public/asset/logo/logoCompany.svg)
 
-## About Laravel
+**Versi 1.0**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Selamat datang di panduan teknis untuk website Malacca Enterprise. Dokumen ini adalah panduan lengkap yang mencakup semua aspek proyek, mulai dari filosofi desain, arsitektur teknis, hingga cara instalasi, pemeliharaan, dan penjelasan non-teknis untuk stakeholder.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Daftar Isi
+1.  [Filosofi & Arsitektur](#1-filosofi--arsitektur)
+2.  [Stack Teknologi](#2-stack-teknologi)
+3.  [Panduan Instalasi Lokal](#3-panduan-instalasi-lokal)
+4.  [Struktur Proyek & File Penting](#4-struktur-proyek--file-penting)
+5.  [Panduan untuk Developer Frontend](#5-panduan-untuk-developer-frontend)
+6.  [Cara Menggunakan Panel Admin](#6-cara-menggunakan-panel-admin)
+7.  [Lampiran: Penjelasan untuk Stakeholder (Non-Teknis)](#7-lampiran-penjelasan-untuk-stakeholder-non-teknis)
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 1. Filosofi & Arsitektur
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Proyek ini dibangun di atas dua pilar utama: **Efisiensi Frontend** dan **Kekuatan Backend**.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* **Frontend (CDN-First)**: Tampilan website (UI) dirancang agar sangat ringan. Kami sengaja **menghindari penggunaan *build tools* JavaScript** seperti `npm`, `Vite`, atau `Webpack` dalam alur kerja produksi. Semua aset utama dimuat langsung dari **CDN**, membuat frontend sangat cepat dan mudah diedit secara visual.
+* **Backend (Laravel)**: Bertindak sebagai "otak" aplikasi. Laravel mengelola semua data, otentikasi, dan logika bisnis. Tugasnya adalah mengambil data dari database dan "menyuntikkannya" ke dalam file-file template frontend.
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 2. Stack Teknologi
 
-### Premium Partners
+| Kategori | Teknologi |
+| :--- | :--- |
+| **Backend** | PHP 8.1+, Laravel 10+, MariaDB, Composer |
+| **Frontend**| HTML5, Vanilla JavaScript, Tailwind CSS (CDN), Flowbite (CDN) |
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+## 3. Panduan Instalasi Lokal
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Ikuti langkah-langkah ini untuk menjalankan proyek di komputer Anda.
 
-## Code of Conduct
+### 3.1. Prasyarat
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Sebelum memulai, pastikan perangkat lunak berikut sudah terinstal di sistem Anda:
+* PHP 8.1 atau lebih baru
+* Composer
+* Server Database MariaDB
 
-## Security Vulnerabilities
+#### Catatan Instalasi Prasyarat
+* **Untuk Windows (Direkomendasikan):** Cara termudah adalah menginstal lingkungan pengembangan seperti **[Laragon](https://laragon.org/)** atau **XAMPP**. Aplikasi ini sudah mencakup Apache/Nginx, PHP, MariaDB, dan sebuah terminal yang siap pakai.
+* **Untuk Arch Linux:** Anda bisa menginstal semua prasyarat melalui `pacman`:
+    ```bash
+    sudo pacman -S php composer mariadb
+    ```
+    Pastikan layanan MariaDB sudah dijalankan (`sudo systemctl enable --now mariadb.service`).
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 3.2. Langkah-langkah Instalasi Proyek
+Proses ini sama untuk Windows dan Arch Linux, asalkan prasyarat sudah terpenuhi.
 
-## License
+1.  **Unduh Proyek**:
+    * Clone repositori ini atau unduh file ZIP dan ekstrak.
+    * **Untuk pengguna Laragon/XAMPP:** Tempatkan folder proyek di dalam direktori `www` atau `htdocs`.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+2.  **Buka Terminal**: Buka terminal di dalam folder root proyek.
+    * **Untuk pengguna Laragon/XAMPP:** Gunakan tombol "Terminal" yang sudah disediakan di aplikasi.
+
+3.  **Instal Dependensi PHP**:
+    ```bash
+    composer install
+    ```
+
+4.  **Buat File Konfigurasi**: Salin file `.env.example` menjadi file `.env`.
+    ```bash
+    cp .env.example .env
+    ```
+
+5.  **Generate Kunci Aplikasi**:
+    ```bash
+    php artisan key:generate
+    ```
+
+6.  **Konfigurasi Database**:
+    * Buat sebuah database baru di MariaDB (misalnya, `malacca_backend`).
+    * Buka file `.env` dan isi detail koneksi: `DB_DATABASE`, `DB_USERNAME`, dan `DB_PASSWORD`.
+
+7.  **Jalankan Migrasi Database**: Perintah ini akan membuat semua tabel yang diperlukan.
+    ```bash
+    php artisan migrate
+    ```
+
+8.  **Buat Symbolic Link**: Agar gambar yang di-upload bisa diakses publik.
+    ```bash
+    php artisan storage:link
+    ```
+
+9.  **Buat User Admin Pertama**:
+    ```bash
+    php artisan tinker
+    ```
+    Setelah masuk ke Tinker (`>>>`), jalankan perintah ini (ganti password jika perlu):
+    ```php
+    \App\Models\User::create(['name' => 'Admin', 'email' => 'admin@malacca.com', 'password' => bcrypt('password')]);
+    ```
+    Ketik `exit` untuk keluar.
+
+10. **Jalankan Server Lokal**:
+    ```bash
+    php artisan serve
+    ```
+    🎉 Selamat! Proyek Anda sekarang berjalan di `http://127.0.0.1:8000`.
+
+---
+
+## 4. Struktur Proyek & File Penting
+
+Berikut adalah peta file dan folder yang paling relevan untuk diedit:
+
+```
+.
+├── app/
+│   ├── Http/Controllers/ArticleController.php  # Otak di balik semua aksi artikel
+│   └── Models/Article.php              # Representasi tabel 'articles'
+├── public/
+│   ├── asset/                       # LOKASI SEMUA GAMBAR, LOGO, IKON
+│   └── scripts/                     # LOKASI SEMUA FILE JAVASCRIPT KUSTOM
+├── resources/
+│   └── views/                       # LOKASI SEMUA FILE TAMPILAN (FRONTEND)
+│       ├── admin/                   # Halaman khusus Admin
+│       ├── articles/                # Halaman publik terkait artikel
+│       ├── auth/                    # Halaman login
+│       └── index.blade.php          # Halaman utama (Landing Page) publik
+└── routes/
+    └── web.php                      # Peta URL website
+```
+
+---
+
+## 5. Panduan untuk Developer Frontend
+
+Anda akan menghabiskan sebagian besar waktu Anda di folder `resources/views/` dan `public/`.
+
+* **Mengedit Tampilan**: Setiap halaman diwakili oleh sebuah file `.blade.php` di dalam `resources/views/`. Anda bisa langsung mengubah struktur HTML dan kelas Tailwind CSS di file-file ini.
+* **Mengedit Aset Statis**:
+    * Gambar & Ikon: Simpan di folder `public/asset/`. Panggil dengan sintaks `<img src="{{ asset('asset/namafile.svg') }}">`.
+    * JavaScript Kustom: Simpan di `public/scripts/`.
+
+---
+
+## 6. Cara Menggunakan Panel Admin
+
+1.  **Akses Halaman Login**: Buka `http://127.0.0.1:8000/login`.
+2.  **Masukkan Kredensial**: Gunakan email (`admin@malacca.com`) dan password (`password`) yang Anda buat saat instalasi.
+3.  **Masuk ke Dashboard**: Anda akan diarahkan ke Dashboard Admin (`/admin/dashboard`).
+4.  **Manajemen Artikel**: Klik "Article" di sidebar untuk melihat, menambah, mengedit, atau menghapus konten website.
+
+---
+
+## 7. Lampiran: Penjelasan untuk Stakeholder (Non-Teknis)
+
+### Bagaimana Cara Kerja Website Ini? (Analogi Restoran)
+
+Bayangkan website kita adalah sebuah restoran yang canggih.
+
+#### Tampilan Website (Frontend) - Ruang Makan & Menu
+Ini adalah semua yang dilihat oleh pengunjung: desain interior, meja yang tertata rapi, dan buku menu yang indah. Di website kita, ini adalah **desain visual**, layout, dan semua konten yang Anda lihat. Kami sengaja memilih "perabotan" (seperti tombol dan tabel) dari pemasok global terbaik (disebut **CDN**), sehingga restoran kita terlihat modern dan bisa melayani tamu dengan sangat cepat.
+
+
+#### Mesin Website (Backend - Laravel) - Dapur
+Ini adalah **dapur restoran** yang tidak terlihat oleh tamu. Di sinilah semua "masakan" (data) diolah oleh para koki (programmer). Saat pengunjung membuka sebuah halaman, permintaan itu masuk ke dapur, lalu "koki" (sistem Laravel) akan menyiapkan "hidangan" (halaman web yang sudah berisi data).
+
+
+#### Database (Gudang Data) - Gudang Bahan Makanan
+Ini adalah gudang tempat semua "bahan makanan" disimpan: judul artikel, isi tulisan, nama penulis, dan gambar. Semuanya tersimpan rapi dan aman.
+
+#### Panel Admin - Kantor Manajer
+Ini adalah **kantor pribadi manajer restoran**. Hanya orang dengan kunci (password) yang bisa masuk. Dari kantor ini, Anda (sebagai admin) bisa melakukan hal-hal penting:
+* **Menambah Menu Baru**: Sama seperti Anda **membuat artikel baru**.
+* **Mengubah Deskripsi Menu**: Sama seperti Anda **mengedit artikel**.
+* **Menghapus Menu**: Sama seperti Anda **menghapus artikel**.
+
+Setiap perubahan yang Anda buat di kantor manajer akan langsung terlihat di buku menu yang dilihat oleh semua pengunjung. Dengan cara ini, Anda memiliki kontrol penuh untuk mengubah konten kapan saja, sementara pengunjung selalu mendapatkan tampilan website yang cepat dan indah.
