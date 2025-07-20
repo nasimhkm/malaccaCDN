@@ -46,7 +46,7 @@ class ArticleController extends Controller
             'title' => 'required|string|max:255|unique:articles,title',
             'author' => 'required|string|max:255',
             'content' => 'required|string',
-            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
             'published_date' => 'required|date',
             'category' => 'nullable|string',
         ]);
