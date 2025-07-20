@@ -70,7 +70,7 @@
                     Save Article
                 </button>
                 {{-- PERBAIKAN: Link Cancel mengarah ke rute dashboard --}}
-                <a href="{{ route('admin.dashboard') }}" class="text-gray-400 hover:text-white">Cancel</a>
+                <a href="{{ route('admin.dashboard') . '#article' }}" class="text-gray-400 hover:text-white">Cancel</a>
             </div>
         </form>
     </div>

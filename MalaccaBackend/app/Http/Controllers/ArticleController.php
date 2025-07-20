@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str; // Str tidak lagi dibutuhkan untuk slug
+use Illuminate\Support\Str; // Pastikan use statement Str tetap ada
 
 class ArticleController extends Controller
 {
@@ -14,7 +14,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::latest()->paginate(10);
+        $articles = Article::latest('published_at')->paginate(10);
         return view('admin.index', compact('articles'));
     }
 
@@ -26,13 +26,24 @@ class ArticleController extends Controller
         return view('admin.create');
     }
 
+    public function showPublicIndex()
+    {
+        $articles = Article::where('published_at', '<=', now())
+                       ->orderBy('published_at', 'desc') // Menggunakan orderBy desc lebih eksplisit
+                       ->take(4)
+                       ->get();
+
+        return view('index', compact('articles'));
+    }
+
     /**
      * Menyimpan artikel yang baru dibuat ke database.
      */
     public function store(Request $request)
     {
+        // PENYESUAIAN: Menambahkan validasi 'unique' untuk judul
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:255|unique:articles,title',
             'author' => 'required|string|max:255',
             'content' => 'required|string',
             'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -45,9 +56,16 @@ class ArticleController extends Controller
             $imagePath = $request->file('featured_image')->store('articles', 'public');
         }
 
-        // PERUBAHAN: Baris 'slug' dihapus, akan dibuat otomatis oleh Model.
+        // PENYESUAIAN: Membuat slug secara manual dan memastikannya unik
+        $slug = Str::slug($validated['title']);
+        $count = Article::where('slug', 'LIKE', "{$slug}%")->count();
+        if ($count > 0) {
+            $slug = $slug . '-' . ($count + 1);
+        }
+
         Article::create([
             'title' => $validated['title'],
+            'slug' => $slug, // PENYESUAIAN: Menggunakan slug yang baru dibuat
             'author' => $validated['author'],
             'content' => $validated['content'],
             'category' => $validated['category'] ?? 'Uncategorized',
@@ -55,7 +73,7 @@ class ArticleController extends Controller
             'published_at' => $validated['published_date'],
         ]);
 
-        return redirect()->route('admin.dashboard')->with('success', 'Article created successfully!');
+        return redirect(route('admin.dashboard') . '#article')->with('success', 'Article created successfully!');
     }
 
     /**
@@ -79,8 +97,9 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
+        // PENYESUAIAN: Menambahkan validasi 'unique' dan mengabaikan ID saat ini
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:255|unique:articles,title,' . $article->id,
             'author' => 'required|string|max:255',
             'content' => 'required|string',
             'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -95,10 +114,20 @@ class ArticleController extends Controller
             }
             $imagePath = $request->file('featured_image')->store('articles', 'public');
         }
+        
+        // PENYESUAIAN: Membuat ulang slug jika judulnya berubah
+        $slug = $article->slug;
+        if ($article->title !== $validated['title']) {
+            $slug = Str::slug($validated['title']);
+            $count = Article::where('slug', 'LIKE', "{$slug}%")->where('id', '!=', $article->id)->count();
+            if ($count > 0) {
+                $slug = $slug . '-' . ($count + 1);
+            }
+        }
 
-        // PERUBAHAN: Baris 'slug' dihapus, akan diperbarui otomatis jika judul berubah.
         $article->update([
             'title' => $validated['title'],
+            'slug' => $slug, // PENYESUAIAN: Menggunakan slug yang baru
             'author' => $validated['author'],
             'content' => $validated['content'],
             'category' => $validated['category'] ?? 'Uncategorized',

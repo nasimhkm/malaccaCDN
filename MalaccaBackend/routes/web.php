@@ -1,24 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ArticleController;
-use App\Models\Article;
+use App\Http\Controllers\ArticleController; // Hanya butuh ini
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-*/
+// Rute Halaman Utama (Publik) - Panggil fungsi dari controller
+Route::get('/', [ArticleController::class, 'showPublicIndex'])->name('home');
 
-// Rute Halaman Utama (Publik)
-Route::get('/', function () {
-    $articles = Article::where('published_at', '<=', now())
-                       ->latest('published_at')
-                       ->take(4)->get();
-    return view('index', ['articles' => $articles]);
-});
-
-// PENYESUAIAN: Menambahkan rute untuk menampilkan satu artikel (halaman View)
+// Rute untuk menampilkan satu artikel
 Route::get('/articles/{article:slug}', [ArticleController::class, 'show'])->name('articles.show');
 
 
@@ -29,5 +17,5 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 });
 
 
-// Rute untuk otentikasi (login, logout, dll.)
+// Rute untuk otentikasi
 require __DIR__.'/auth.php';
