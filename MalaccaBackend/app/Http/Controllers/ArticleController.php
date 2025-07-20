@@ -106,7 +106,7 @@ class ArticleController extends Controller
             'published_at' => $validated['published_date'],
         ]);
         
-        return redirect()->route('admin.dashboard')->with('success', 'Article updated successfully!');
+        return redirect(route('admin.dashboard') . '#article')->with('success', 'Article updated successfully!');
     }
 
     /**
@@ -120,6 +120,6 @@ class ArticleController extends Controller
 
         $article->delete();
 
-        return redirect()->route('admin.dashboard')->with('success', 'Article deleted successfully!');
+        return redirect(route('admin.dashboard') . '#article')->with('success', 'Article deleted successfully!');
     }
 }
