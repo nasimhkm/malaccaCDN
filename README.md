@@ -1,6 +1,6 @@
 # Website & Sistem Manajemen Konten Malacca Enterprise
 
-![Malacca Logo](public/asset/logo/logoCompany.svg)
+![Malacca Logo](/MalaccaBackend/public/asset/logo/logoCompany.svg)
 
 **Versi 1.0**
 
