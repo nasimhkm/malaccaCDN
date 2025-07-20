@@ -57,7 +57,7 @@
             <div class="mb-6">
                 <label for="featured_image" class="block mb-2 text-sm font-medium text-gray-300">Featured Image</label>
                 <input type="file" name="featured_image" id="featured_image" class="block w-full text-sm text-gray-400 border border-gray-600 rounded-lg cursor-pointer bg-gray-700 focus:outline-none placeholder-gray-400">
-                <p class="mt-1 text-xs text-gray-500">PNG, JPG, or GIF (MAX. 2MB).</p>
+                <p class="mt-1 text-xs text-gray-500">PNG, JPG, or GIF (MAX. 5MB).</p>
             </div>
 
             <div class="mb-6">
@@ -82,7 +82,7 @@
             plugins: 'link image lists code wordcount',
             toolbar: 'undo redo | blocks | bold italic | bullist numlist | link image | code',
             skin: 'oxide-dark', content_css: 'dark', height: 500,
-            block_formats: 'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3;',
+            block_formats: 'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5;',
             content_style: `body { font-family: "Montserrat", sans-serif; color: #fff; }`
         });
 

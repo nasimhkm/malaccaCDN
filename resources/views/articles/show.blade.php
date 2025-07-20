@@ -20,7 +20,7 @@
             {{-- Kolom Gambar --}}
             @if($article->featured_image)
             <div class="md:w-1/3 flex-shrink-0">
-                <img src="{{ asset('storage/' . $article->featured_image) }}" alt="{{ $article->title }}" class="w-full h-auto object-cover bg-red-800">
+                <img src="{{ asset('storage/' . $article->featured_image) }}" alt="{{ $article->title }}" class="md:w-[400px] md:h-[500px] object-cover bg-red-800">
             </div>
             @endif
 
