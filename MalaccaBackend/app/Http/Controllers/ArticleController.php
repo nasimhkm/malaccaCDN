@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
+use Illuminate\Support\Str; // Str tidak lagi dibutuhkan untuk slug
 
 class ArticleController extends Controller
 {
@@ -45,9 +45,9 @@ class ArticleController extends Controller
             $imagePath = $request->file('featured_image')->store('articles', 'public');
         }
 
+        // PERUBAHAN: Baris 'slug' dihapus, akan dibuat otomatis oleh Model.
         Article::create([
             'title' => $validated['title'],
-            'slug' => Str::slug($validated['title']) . '-' . time(),
             'author' => $validated['author'],
             'content' => $validated['content'],
             'category' => $validated['category'] ?? 'Uncategorized',
@@ -96,9 +96,9 @@ class ArticleController extends Controller
             $imagePath = $request->file('featured_image')->store('articles', 'public');
         }
 
+        // PERUBAHAN: Baris 'slug' dihapus, akan diperbarui otomatis jika judul berubah.
         $article->update([
             'title' => $validated['title'],
-            'slug' => Str::slug($validated['title']) . '-' . time(),
             'author' => $validated['author'],
             'content' => $validated['content'],
             'category' => $validated['category'] ?? 'Uncategorized',

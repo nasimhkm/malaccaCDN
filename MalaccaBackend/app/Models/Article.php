@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     /**
-     * PERBAIKAN: Menambahkan properti $fillable.
+     * The attributes that are mass assignable.
      *
-     * Ini adalah daftar "izin" yang memberitahu Laravel kolom mana saja
-     * yang aman untuk diisi melalui metode Article::create().
+     * @var array
      */
     protected $fillable = [
         'title',
@@ -26,7 +26,23 @@ class Article extends Model
     ];
 
     /**
-     * Mengatur agar kolom 'published_at' otomatis di-handle sebagai objek tanggal (Carbon).
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title' // Membuat slug dari kolom 'title'
+            ]
+        ];
+    }
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
      */
     protected $casts = [
         'published_at' => 'datetime',
