@@ -61,7 +61,12 @@
             </div>
 
             <div class="mb-6">
-                 <label for="content-editor" class="block mb-2 text-sm font-medium text-gray-300">Content</label>
+                <label for="description" class="block mb-2 text-sm font-medium text-gray-300">Description / Summary</label>
+                <textarea name="description" id="description" rows="3" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg block w-full p-2.5" placeholder="Write a short and engaging summary for the article...">{{ old('description') }}</textarea>
+                <p class="mt-1 text-xs text-gray-500">This summary will appear next to the featured image.</p>
+            </div>
+            <div class="mb-6">
+                 <label for="content-editor" class="block mb-2 text-sm font-medium text-gray-300">Full Content</label>
                 <textarea id="content-editor" name="content">{{ old('content', '<h2>Start writing your amazing article here!</h2>') }}</textarea>
             </div>
 

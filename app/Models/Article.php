@@ -18,6 +18,9 @@ class Article extends Model
     protected $fillable = [
         'title',
         'slug',
+        // --- PENAMBAHAN DIMULAI ---
+        'description',
+        // --- PENAMBAHAN SELESAI ---
         'author',
         'category',
         'content',

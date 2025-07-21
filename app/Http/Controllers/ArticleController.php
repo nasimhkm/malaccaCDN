@@ -63,9 +63,15 @@ class ArticleController extends Controller
             $slug = $slug . '-' . ($count + 1);
         }
 
+        // --- PENAMBAHAN LOGIKA DESKRIPSI DIMULAI ---
+        $plainTextContent = strip_tags($validated['content']); // Hapus tag HTML dari konten
+        $description = Str::limit($plainTextContent, 300, '...'); // Ambil 300 karakter pertama sebagai deskripsi
+        // --- PENAMBAHAN LOGIKA DESKRIPSI SELESAI ---
+
         Article::create([
             'title' => $validated['title'],
-            'slug' => $slug, // PENYESUAIAN: Menggunakan slug yang baru dibuat
+            'slug' => $slug,
+            'description' => $description, // Tambahkan deskripsi ke data yang disimpan
             'author' => $validated['author'],
             'content' => $validated['content'],
             'category' => $validated['category'] ?? 'Uncategorized',
@@ -125,9 +131,15 @@ class ArticleController extends Controller
             }
         }
 
+        // --- PENAMBAHAN LOGIKA DESKRIPSI DIMULAI ---
+        $plainTextContent = strip_tags($validated['content']); // Hapus tag HTML dari konten
+        $description = Str::limit($plainTextContent, 300, '...'); // Ambil 300 karakter pertama sebagai deskripsi
+        // --- PENAMBAHAN LOGIKA DESKRIPSI SELESAI ---
+
         $article->update([
             'title' => $validated['title'],
-            'slug' => $slug, // PENYESUAIAN: Menggunakan slug yang baru
+            'slug' => $slug,
+            'description' => $description, // Tambahkan deskripsi ke data yang diupdate
             'author' => $validated['author'],
             'content' => $validated['content'],
             'category' => $validated['category'] ?? 'Uncategorized',
