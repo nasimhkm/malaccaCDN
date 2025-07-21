@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $article->title }} - Malacca</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="{{ asset('asset/logo/logoCompanyFavicon.svg') }}" type="image/svg+xml" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
     <style>
         body { font-family: "Montserrat", sans-serif; background-color: #E5E7EB; }
@@ -67,14 +68,19 @@
         </div>
 
         <div class="mt-10 pt-6 border-t">
-            <a href="{{ url('/') }}#showcase" class="text-black hover:underline">&larr; Back to Home</a>
+            <a href="{{ url('/') }}#tulisan" class="text-black hover:underline">&larr; Back to Home</a>
             @auth
             <a href="{{ route('admin.dashboard') }}" class="text-blue-600 hover:underline ml-4">&larr; Back to Admin</a>
             @endauth
-            <a href="https://linktr.ee/malaccaentreprise"></a>
-            <a href="https://wa.link/1x9qk8"></a>
         </div>
-
+        <div class="flex justify-end">
+            <a href="https://wa.link/a2j9ib" class="py-2.5 px-6 text-sm font-medium rounded-full border bg-green-400  text-white border-green-400">
+             hubungi kami
+            </a>
+            <a href="https://linktr.ee/malaccaentreprise" class="z-50 py-2.5 px-6 text-sm font-medium rounded-full border border-blue-400 text-white bg-blue-400">
+             linktree
+            </a>
+        </div>
     </div>
 
      <footer class="bg-black">
