@@ -66,8 +66,8 @@
 
             <div class="mb-6">
                 <label for="description" class="block mb-2 text-sm font-medium text-gray-300">Description / Summary</label>
-                <textarea name="description" id="description" rows="3" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg block w-full p-2.5" placeholder="Write a short and engaging summary for the article...">{{ old('description', $article->description) }}</textarea>
-                <p class="mt-1 text-xs text-gray-500">This summary will appear next to the featured image.</p>
+                <textarea name="description" id="description" rows="3" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg block w-full p-2.5" placeholder="Write a short and engaging summary for the article..." maxlength="600">{{ old('description', $article->description) }}</textarea>
+                <p id="char-count-feedback" class="mt-1 text-xs text-gray-500">Max 600 characters.</p>
             </div>
             <div class="mb-6">
                  <label for="content-editor" class="block mb-2 text-sm font-medium text-gray-300">Full Content</label>
@@ -91,6 +91,30 @@
             skin: 'oxide-dark', content_css: 'dark', height: 500,
             block_formats: 'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3;',
             content_style: `body { font-family: "Montserrat", sans-serif; color: #fff; }`
+        });
+
+        // PENYESUAIAN: Script diubah menjadi penghitung karakter
+        document.addEventListener('DOMContentLoaded', function() {
+            const descriptionTextarea = document.getElementById('description');
+            const charCountFeedback = document.getElementById('char-count-feedback');
+            const maxChars = 600;
+
+            function updateCount() {
+                const currentCharCount = descriptionTextarea.value.length;
+                
+                charCountFeedback.textContent = currentCharCount + ' / ' + maxChars + ' characters';
+                
+                if (currentCharCount >= maxChars) {
+                    charCountFeedback.classList.remove('text-gray-500');
+                    charCountFeedback.classList.add('text-red-500');
+                } else {
+                    charCountFeedback.classList.remove('text-red-500');
+                    charCountFeedback.classList.add('text-gray-500');
+                }
+            }
+            
+            updateCount(); // Panggil saat halaman dimuat
+            descriptionTextarea.addEventListener('input', updateCount); // Panggil setiap kali ada input
         });
     </script>
 </body>

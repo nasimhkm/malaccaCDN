@@ -41,9 +41,10 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        // PENYESUAIAN: Menambahkan validasi 'unique' untuk judul
+        // PENYESUAIAN: Mengubah validasi deskripsi menjadi max karakter
         $validated = $request->validate([
             'title' => 'required|string|max:255|unique:articles,title',
+            'description' => 'required|string|max:600', // <-- PENYESUAIAN DI SINI
             'author' => 'required|string|max:255',
             'content' => 'required|string',
             'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
@@ -63,15 +64,12 @@ class ArticleController extends Controller
             $slug = $slug . '-' . ($count + 1);
         }
 
-        // --- PENAMBAHAN LOGIKA DESKRIPSI DIMULAI ---
-        $plainTextContent = strip_tags($validated['content']); // Hapus tag HTML dari konten
-        $description = Str::limit($plainTextContent, 300, '...'); // Ambil 300 karakter pertama sebagai deskripsi
-        // --- PENAMBAHAN LOGIKA DESKRIPSI SELESAI ---
+        // --- LOGIKA DESKRIPSI OTOMATIS DIHAPUS ---
 
         Article::create([
             'title' => $validated['title'],
             'slug' => $slug,
-            'description' => $description, // Tambahkan deskripsi ke data yang disimpan
+            'description' => $validated['description'], // PENYESUAIAN: Mengambil deskripsi langsung dari form
             'author' => $validated['author'],
             'content' => $validated['content'],
             'category' => $validated['category'] ?? 'Uncategorized',
@@ -103,9 +101,10 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        // PENYESUAIAN: Menambahkan validasi 'unique' dan mengabaikan ID saat ini
+        // PENYESUAIAN: Menambahkan validasi 'unique' dan mengabaikan ID saat ini, serta validasi 'description'
         $validated = $request->validate([
             'title' => 'required|string|max:255|unique:articles,title,' . $article->id,
+            'description' => 'required|string|max:600', // PENYESUAIAN: Validasi deskripsi dengan maksimal 120 kata
             'author' => 'required|string|max:255',
             'content' => 'required|string',
             'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
@@ -131,15 +130,12 @@ class ArticleController extends Controller
             }
         }
 
-        // --- PENAMBAHAN LOGIKA DESKRIPSI DIMULAI ---
-        $plainTextContent = strip_tags($validated['content']); // Hapus tag HTML dari konten
-        $description = Str::limit($plainTextContent, 300, '...'); // Ambil 300 karakter pertama sebagai deskripsi
-        // --- PENAMBAHAN LOGIKA DESKRIPSI SELESAI ---
+        // --- LOGIKA DESKRIPSI OTOMATIS DIHAPUS ---
 
         $article->update([
             'title' => $validated['title'],
             'slug' => $slug,
-            'description' => $description, // Tambahkan deskripsi ke data yang diupdate
+            'description' => $validated['description'], // PENYESUAIAN: Mengambil deskripsi langsung dari form
             'author' => $validated['author'],
             'content' => $validated['content'],
             'category' => $validated['category'] ?? 'Uncategorized',
