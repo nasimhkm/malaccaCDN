@@ -59,7 +59,7 @@
                 <div class="description-box text-justify">
                     <p>{{ $article->description }}</p>
                 </div>
-                </div>
+            </div>
         </div>
 
         {{-- Bagian Bawah: Isi Konten Lanjutan --}}
@@ -67,28 +67,28 @@
            {!! $article->content !!}
         </div>
 
-        <div class="mt-10 pt-6 border-t">
-            <a href="{{ url('/#tulisan') }}" class="text-black hover:underline">← Back to Home</a>
-            
-            @auth
-            <a href="{{ url('/admin/dashboard#article') }}" class="text-blue-600 hover:underline ml-4">← Back to Admin</a>
-            @endauth
-        </div>
-        <div class="flex justify-end">
-            <a href="https://wa.link/a2j9ib" class="py-2.5 px-6 text-sm font-medium rounded-full border bg-green-400  text-white border-green-400">
-             hubungi kami
-            </a>
-            <a href="https://linktr.ee/malaccaentreprise" class="z-50 py-2.5 px-6 text-sm font-medium rounded-full border border-blue-400 text-white bg-blue-400">
-             linktree
-            </a>
+        <div class="mt-10 pt-6 border-t ">
+         <div class="flex justify-between items-center">
+            <div>
+                <a href="{{ url('/#tulisan') }}" class="text-black hover:underline">← Back to Home</a>
+                @auth
+                <a href="{{ url('/admin/dashboard#article') }}" class="text-blue-600 hover:underline ml-4">← Back to Admin</a>
+                @endauth
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://wa.link/a2j9ib" class="flex items-center justify-center py-2.5 px-6 text-sm font-medium rounded-full border bg-green-400  text-white border-green-400 w-[10rem] h-[3rem]">
+                    Hubungi Kami
+                </a>
+            </div>
+         </div>
         </div>
     </div>
 
-     <footer class="bg-black">
-      <section id="kunjungi" class="relative bg-cover bg-center text-white" style="background-image: url('{{ asset('asset/img/kunjungi.png') }}')">
-        <div class="absolute inset-0 bg-black/70"></div>
-        <div class="relative max-w-screen-xl mx-auto px-8 py-20 flex flex-col md:flex-row gap-12 md:gap-8 items-center justify-between">
-          <div class="flex-1 flex flex-col items-center text-justify md:items-start">
+        <footer class="bg-black">
+            <section id="kunjungi" class="relative bg-cover bg-center text-white" style="background-image: url('{{ asset('asset/img/kunjungi.png') }}')">
+             <div class="absolute inset-0 bg-black/70"></div>
+                <div class="relative max-w-screen-xl mx-auto px-8 py-20 flex flex-col md:flex-row gap-12 md:gap-8 items-center justify-between">
+             <div class="flex-1 flex flex-col items-center text-justify md:items-start">
             <img src="{{ asset('asset/logo/logoCompany.svg') }}" alt="Logo Malacca" class="w-24 mb-4" />
             <p class="text-sm text-gray-300 leading-relaxed max-w-xs mb-6">Malacca adalah ruang kopi yang tumbuh dari kolaborasi, riset, dan nilai komunitas, untuk menghadirkan ekosistem F&B yang kreatif dan berkelanjutan.</p>
             <div class="flex items-center gap-4">
@@ -111,11 +111,11 @@
              mari bekerja sama
             </a>
           </div>
-        </div>
-        <div class="relative text-center py-8">
-          <p class="text-xs text-gray-400">© Malacca Entreprise | All Rights Reserved</p>
-        </div>
-      </section>
-    </footer>
+         </div>
+             <div class="relative text-center py-8">
+             <p class="text-xs text-gray-400">© Malacca Entreprise | All Rights Reserved</p>
+            </div>
+            </section>
+        </footer>
 </body>
 </html>
