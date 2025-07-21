@@ -68,9 +68,10 @@
         </div>
 
         <div class="mt-10 pt-6 border-t">
-            <a href="{{ url('/') }}#tulisan" class="text-black hover:underline">&larr; Back to Home</a>
+            <a href="{{ url('/#tulisan') }}" class="text-black hover:underline">← Back to Home</a>
+            
             @auth
-            <a href="{{ route('admin.dashboard') }}" class="text-blue-600 hover:underline ml-4">&larr; Back to Admin</a>
+            <a href="{{ url('/admin/dashboard#article') }}" class="text-blue-600 hover:underline ml-4">← Back to Admin</a>
             @endauth
         </div>
         <div class="flex justify-end">
