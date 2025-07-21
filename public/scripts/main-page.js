@@ -11,24 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (description.scrollHeight > description.clientHeight) {
       // If it overflows, make sure the button is visible
       readMoreBtn.style.display = 'block';
-    } else {
-      // If it doesn't overflow, hide the button
-      readMoreBtn.style.display = 'none';
-    }
-
-    // Add a click listener to the button
-    if (readMoreBtn) {
-      readMoreBtn.addEventListener('click', function() {
-        // Toggle the line-clamp class
-        description.classList.toggle('line-clamp-3');
-
-        // Change the button text
-        if (description.classList.contains('line-clamp-3')) {
-          this.textContent = 'Read More';
-        } else {
-          this.textContent = 'Read Less';
-        }
-      });
     }
   });
 });

@@ -69,10 +69,46 @@
         <div class="mt-10 pt-6 border-t">
             <a href="{{ url('/') }}#showcase" class="text-black hover:underline">&larr; Back to Home</a>
             @auth
-                <a href="{{ route('admin.dashboard') }}" class="text-blue-600 hover:underline ml-4">&larr; Back to Admin</a>
+            <a href="{{ route('admin.dashboard') }}" class="text-blue-600 hover:underline ml-4">&larr; Back to Admin</a>
             @endauth
+            <a href="https://linktr.ee/malaccaentreprise"></a>
+            <a href="https://wa.link/1x9qk8"></a>
         </div>
 
     </div>
+
+     <footer class="bg-black">
+      <section id="kunjungi" class="relative bg-cover bg-center text-white" style="background-image: url('{{ asset('asset/img/kunjungi.png') }}')">
+        <div class="absolute inset-0 bg-black/70"></div>
+        <div class="relative max-w-screen-xl mx-auto px-8 py-20 flex flex-col md:flex-row gap-12 md:gap-8 items-center justify-between">
+          <div class="flex-1 flex flex-col items-center text-justify md:items-start">
+            <img src="{{ asset('asset/logo/logoCompany.svg') }}" alt="Logo Malacca" class="w-24 mb-4" />
+            <p class="text-sm text-gray-300 leading-relaxed max-w-xs mb-6">Malacca adalah ruang kopi yang tumbuh dari kolaborasi, riset, dan nilai komunitas, untuk menghadirkan ekosistem F&B yang kreatif dan berkelanjutan.</p>
+            <div class="flex items-center gap-4">
+              <a href="https://gofood.link/a/yM8W6YL" class="w-8 h-8 flex items-center justify-center bg-[#6c0c0d] rounded-full hover:opacity-80 transition-opacity"><img src="{{ asset('asset/icon/gofood.png') }}" alt="GoFood" class="w-5 h-5" /></a>
+              <a href="https://linktr.ee/malaccaentreprise" class="w-8 h-8 flex items-center justify-center bg-[#6c0c0d] rounded-full hover:opacity-80 transition-opacity"><img src="{{ asset('asset/icon/linktree.png') }}" alt="Linktree" class="w-5 h-5" /></a>
+              <a href="https://wa.link/1x9qk8" class="w-8 h-8 flex items-center justify-center bg-[#6c0c0d] rounded-full hover:opacity-80 transition-opacity"><img src="{{ asset('asset/icon/whatsapp.png') }}" alt="WhatsApp" class="w-5 h-5" /></a>
+            </div>
+          </div>
+          <div class="flex-1 flex flex-col items-center md:items-start text-justify md:text-left">
+            <h1 class="font-bold text-lg mb-4">Kunjungi Kami</h1>
+            <a href="https://maps.app.goo.gl/RWCwJ44ykzFxhxb96" class="block hover:underline"><p class="text-sm text-gray-300 leading-relaxed max-w-xs">Jalan Jl. Kemuning 7 No.32, RT.1/RW.8, Malaka Sari, Kec. Duren Sawit, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13460</p></a>
+          </div>
+          <div class="flex-1 flex-col items-center md:items-start text-center md:text-left translate-y-0 md:translate-y-7">
+            <h1 class="font-bold text-lg mb-4">Kontak Kami</h1>
+            <div class="text-sm text-gray-300 space-y-2 mb-6">
+              <a href="tel:+6287888814075" class="block hover:underline">+62 878 8881 4075</a>
+              <a href="mailto:malaccancoffee@gmail.com" class="block hover:underline">malaccancoffee@gmail.com</a>
+            </div>
+            <a href="https://wa.link/1x9qk8" class="py-2.5 px-6 text-sm font-medium text-white bg-transparent rounded-full border border-white hover:bg-white/10 transition-colors">
+             mari bekerja sama
+            </a>
+          </div>
+        </div>
+        <div class="relative text-center py-8">
+          <p class="text-xs text-gray-400">© Malacca Entreprise | All Rights Reserved</p>
+        </div>
+      </section>
+    </footer>
 </body>
 </html>

@@ -30,7 +30,7 @@
           <ul class="hidden md:flex items-center space-x-6 text-sm text-white font-medium">
             <li><a href="#tentang" class="nav-link hover:bg-[#6c0c0d] p-2 rounded-lg transition-colors">tentang</a></li>
             <li><a href="#unit" class="nav-link hover:bg-[#6c0c0d] p-2 rounded-lg transition-colors">unit</a></li>
-            <li><a href="#showcase" class="nav-link hover:bg-[#6c0c0d] p-2 rounded-lg transition-colors">tulisan</a></li>
+            <li><a href="#tulisan" class="nav-link hover:bg-[#6c0c0d] p-2 rounded-lg transition-colors">tulisan</a></li>
             <li><a href="#kalibrasi" class="nav-link hover:bg-[#6c0c0d] p-2 rounded-lg transition-colors">kalibrasi*</a></li>
             <li><a href="#kunjungi" class="nav-link hover:bg-[#6c0c0d] p-2 rounded-lg transition-colors">kunjungi</a></li>
           </ul>
@@ -54,9 +54,9 @@
           </div>
         </div>
         <div>
-          <button type="button" class="py-2.5 px-6 text-xl text-sm font-medium text-white bg-transparent rounded-full border md:border-[3px] border-white hover:bg-white/10 transition-colors">
+          <a href="https://wa.link/1x9qk8" class="py-2.5 px-6 text-xl text-sm font-medium text-white bg-transparent rounded-full border md:border-[3px] border-white hover:bg-white/10 transition-colors">
             kolaborasi bareng kita
-          </button>
+          </a>
         </div>
       </section>
 
@@ -93,7 +93,7 @@
         </div>
       </section>
 
-      <section id="showcase" class="min-h-screen flex flex-col bg-black py-16">
+      <section id="tulisan" class="min-h-screen flex flex-col bg-black py-16">
         <div class="max-w-screen-xl mx-auto px-4">
           <div class="text-center text-white w-full max-w-4xl mx-auto mb-12">
             <h2 class="font-thin text-gray-300 tracking-wider">tulisan</h2>
@@ -110,7 +110,7 @@
                      alt="{{ $article->title }}">
               </a>
               <div class="p-5 flex flex-col flex-grow">
-                <h6 class="text-[#6c0c0d] font-bold">{{ $article->category }}</h6>
+                <h6 class="text-[#6c0c0d] font-bold text-xs">{{ $article->category }}</h6>
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-black">
                   <a href="{{ route('articles.show', $article->slug) }}">{{ $article->title }}</a>
                 </h5>
@@ -154,7 +154,7 @@
             <p class="text-sm text-gray-300 leading-relaxed max-w-xs mb-6">Malacca adalah ruang kopi yang tumbuh dari kolaborasi, riset, dan nilai komunitas, untuk menghadirkan ekosistem F&B yang kreatif dan berkelanjutan.</p>
             <div class="flex items-center gap-4">
               <a href="https://gofood.link/a/yM8W6YL" class="w-8 h-8 flex items-center justify-center bg-[#6c0c0d] rounded-full hover:opacity-80 transition-opacity"><img src="{{ asset('asset/icon/gofood.png') }}" alt="GoFood" class="w-5 h-5" /></a>
-              <a href="#" class="w-8 h-8 flex items-center justify-center bg-[#6c0c0d] rounded-full hover:opacity-80 transition-opacity"><img src="{{ asset('asset/icon/linktree.png') }}" alt="Linktree" class="w-5 h-5" /></a>
+              <a href="https://linktr.ee/malaccaentreprise" class="w-8 h-8 flex items-center justify-center bg-[#6c0c0d] rounded-full hover:opacity-80 transition-opacity"><img src="{{ asset('asset/icon/linktree.png') }}" alt="Linktree" class="w-5 h-5" /></a>
               <a href="https://wa.link/1x9qk8" class="w-8 h-8 flex items-center justify-center bg-[#6c0c0d] rounded-full hover:opacity-80 transition-opacity"><img src="{{ asset('asset/icon/whatsapp.png') }}" alt="WhatsApp" class="w-5 h-5" /></a>
             </div>
           </div>
@@ -168,7 +168,9 @@
               <a href="tel:+6287888814075" class="block hover:underline">+62 878 8881 4075</a>
               <a href="mailto:malaccancoffee@gmail.com" class="block hover:underline">malaccancoffee@gmail.com</a>
             </div>
-            <button type="button" class="py-2.5 px-6 text-sm font-medium text-white bg-transparent rounded-full border border-white hover:bg-white/10 transition-colors">mari bekerja sama</button>
+            <a href="https://wa.link/1x9qk8" class="py-2.5 px-6 text-sm font-medium text-white bg-transparent rounded-full border border-white hover:bg-white/10 transition-colors">
+             mari bekerja sama
+            </a>
           </div>
         </div>
         <div class="relative text-center py-8">
