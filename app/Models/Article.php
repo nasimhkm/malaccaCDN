@@ -18,9 +18,7 @@ class Article extends Model
     protected $fillable = [
         'title',
         'slug',
-        // --- PENAMBAHAN DIMULAI ---
         'description',
-        // --- PENAMBAHAN SELESAI ---
         'author',
         'category',
         'content',
@@ -50,4 +48,15 @@ class Article extends Model
     protected $casts = [
         'published_at' => 'datetime',
     ];
+
+    // --- TAMBAHKAN METHOD INI ---
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

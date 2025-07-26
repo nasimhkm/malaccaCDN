@@ -4,13 +4,6 @@
     <meta charset="UTF-8" />
     <title>Malacca</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-585SL7GM');</script>
-<!-- End Google Tag Manager -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-P9RJKKCBGP"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -30,10 +23,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </style>
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-585SL7GM"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
     <header>
       <nav id="main-nav" class="fixed top-0 left-0 w-full z-50 bg-transparent transition-colors duration-300">
         <div class="max-w-screen-xl mx-auto flex justify-between items-center px-4 py-3 relative">
@@ -125,8 +114,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-black">
                   <a href="{{ route('articles.show', $article->slug) }}">{{ $article->title }}</a>
                 </h5>
+                
                 <p class="product-description line-clamp-3 mb-3 font-normal text-justify text-gray-700 flex-grow">
-                  {!! Str::limit(strip_tags($article->content), 120) !!}
+                  {{ $article->description }}
                 </p>
                 <a href="{{ route('articles.show', $article->slug) }}" class="read-more-btn text-blue-600 hover:underline self-start">
                   Read More

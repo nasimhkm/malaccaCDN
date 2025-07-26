@@ -6,8 +6,8 @@ use App\Http\Controllers\ArticleController; // Hanya butuh ini
 // Rute Halaman Utama (Publik) - Panggil fungsi dari controller
 Route::get('/', [ArticleController::class, 'showPublicIndex'])->name('home');
 
-// Rute untuk menampilkan satu artikel
-Route::get('/articles/{article:slug}', [ArticleController::class, 'show'])->name('articles.show');
+// Rute untuk menampilkan satu artikel LAMA DIHAPUS DARI SINI
+// Route::get('/articles/{article:slug}', [ArticleController::class, 'show'])->name('articles.show');
 
 
 // Grup untuk semua halaman admin
@@ -19,3 +19,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
 // Rute untuk otentikasi
 require __DIR__.'/auth.php';
+
+// PENYESUAIAN: Rute artikel berdasarkan slug diletakkan di paling bawah
+// Ini akan menangani URL seperti website.com/judul-artikel-anda
+Route::get('/{article}', [ArticleController::class, 'show'])->name('articles.show');
