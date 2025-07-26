@@ -40,8 +40,8 @@ class User extends Authenticatable
      */
     protected function casts(): array
     {
+        // PENYESUAIAN: Menghapus cast untuk email_verified_at yang tidak terpakai
         return [
-            'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
     }
