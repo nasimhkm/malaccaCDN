@@ -6,20 +6,22 @@ use App\Http\Controllers\ArticleController; // Hanya butuh ini
 // Rute Halaman Utama (Publik) - Panggil fungsi dari controller
 Route::get('/', [ArticleController::class, 'showPublicIndex'])->name('home');
 
-// Rute untuk menampilkan satu artikel LAMA DIHAPUS DARI SINI
-// Route::get('/articles/{article:slug}', [ArticleController::class, 'show'])->name('articles.show');
-
-
 // Grup untuk semua halaman admin
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [ArticleController::class, 'index'])->name('dashboard');
-    Route::resource('articles', ArticleController::class);
+    
+    // PENYESUAIAN: Kita akan mendefinisikan rute 'edit' dan 'update' secara manual
+    // agar bisa menentukan binding key secara eksplisit.
+    Route::resource('articles', ArticleController::class)->except(['show', 'edit', 'update']);
+
+    // Definisikan rute edit dan update secara manual menggunakan 'id'
+    Route::get('articles/{article:id}/edit', [ArticleController::class, 'edit'])->name('articles.edit');
+    Route::put('articles/{article:id}', [ArticleController::class, 'update'])->name('articles.update');
 });
 
 
 // Rute untuk otentikasi
 require __DIR__.'/auth.php';
 
-// PENYESUAIAN: Rute artikel berdasarkan slug diletakkan di paling bawah
-// Ini akan menangani URL seperti website.com/judul-artikel-anda
-Route::get('/{article}', [ArticleController::class, 'show'])->name('articles.show');
+// Rute artikel publik berdasarkan slug (di paling bawah)
+Route::get('/{article:slug}', [ArticleController::class, 'show'])->name('articles.show');
