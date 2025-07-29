@@ -25,18 +25,6 @@
       .line-clamp-3 { overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
     </style>
 
-    <style>
-          @keyframes draw {
-        to { stroke-dashoffset: 0; }
-    }
-    .animate-draw {
-        /* Durasi animasi logo, misal 6 detik */
-        animation: draw 6s ease-in-out forwards;
-    }
-    </style>
-
-
-
     <script>
       const pathLength = 14300;
       tailwind.config = {
@@ -44,7 +32,7 @@
           extend: {
             animation: {
               // Nama animasi: draw, durasi: 3 detik
-              'draw': 'draw 6s ease-in-out forwards',
+              'draw': 'draw 8s ease-in-out forwards',
             },
             keyframes: {
               'draw': {
@@ -97,11 +85,11 @@
                       </svg>
                   </div>
               </div>
-              <div class="md:w-[350px] min-h-[144px] flex items-center justify-center md:justify-start">
+              <div class="md:w-[350px] min-h-[144px] flex items-center justify-center md:justify-start -mt-6">
                    <h1 id="typed-title" class="text-4xl md:text-5xl font-bold"></h1>
               </div>
           </div>
-          <div>
+          <div class="-mt-9">
               <a id="typed-button" href="https://wa.link/1x9qk8" class="opacity-0 translate-y-4 transition-all duration-500 py-2.5 px-6 md:text-xl text-sm font-medium text-white bg-transparent rounded-full border md:border-[3px] border-white hover:bg-white/10">
               </a>
           </div>
@@ -232,8 +220,9 @@
         // Opsi untuk animasi judul
         var optionsTitle = {
             strings: ["once brew <br> we bro"],
-            typeSpeed: 100,  // Kecepatan ketik
-            showCursor: false, // Tidak menampilkan kursor
+            typeSpeed: 120,  // Kecepatan ketik
+            showCursor: false,
+            startDelay: 1200, // Tidak menampilkan kursor
             onComplete: function(self) {
                 // Fungsi ini berjalan setelah judul selesai diketik
                 // Membuat tombol terlihat
