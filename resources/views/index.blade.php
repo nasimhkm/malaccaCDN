@@ -25,6 +25,16 @@
       .line-clamp-3 { overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
     </style>
 
+    <style>
+          @keyframes draw {
+        to { stroke-dashoffset: 0; }
+    }
+    .animate-draw {
+        /* Durasi animasi logo, misal 6 detik */
+        animation: draw 6s ease-in-out forwards;
+    }
+    </style>
+
 
 
     <script>
