@@ -394,7 +394,7 @@
                 </div>
             </section>
 
-            <!-- <section
+            <section
                 id="kalibrasi"
                 class="relative min-h-screen bg-cover bg-center flex items-center justify-center text-white"
                 style="background-image: url('{{ asset('asset/img/kalibrasi.png') }}')"
@@ -420,7 +420,7 @@
                         class="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
                     />
                 </a>
-            </section> -->
+            </section>
         </main>
 
         <footer class="bg-black">
