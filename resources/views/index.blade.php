@@ -189,12 +189,12 @@
         </header>
 
         <main>
-          <!--hero section-->
+            <!--hero section-->
             <section
                 id="hero"
                 class="min-h-screen bg-cover bg-center flex flex-col items-center justify-center text-white p-4"
                 style="background-image: url('{{ asset('asset/img/hero.png') }}')"
-             >
+            >
                 <div
                     class="flex flex-col md:flex-row items-center justify-center text-center md:text-left mb-8"
                 >
@@ -243,7 +243,7 @@
             <section
                 id="tentang"
                 class="min-h-screen flex flex-col md:flex-row bg-black"
-             >
+            >
                 <div
                     class="relative flex flex-col justify-center text-justify text-white w-full md:ml-[2.5rem] md:w-1/2 bg-black px-8 py-16 md:px-16 overflow-hidden"
                 >
@@ -277,7 +277,7 @@
             <section
                 id="unit"
                 class="min-h-screen flex flex-col justify-center bg-black text-white py-16 px-4"
-             >
+            >
                 <div class="w-full max-w-4xl mx-auto text-left mb-8">
                     <p class="font-thin text-gray-300">unit</p>
                     <h2 class="text-3xl font-bold">unit bisnis & jasa</h2>
@@ -336,7 +336,7 @@
             <section
                 id="tulisan"
                 class="min-h-screen flex flex-col bg-black py-16"
-             >
+            >
                 <div class="max-w-screen-xl mx-auto px-4">
                     <div
                         class="text-center text-white w-full max-w-4xl mx-auto mb-12"
@@ -349,44 +349,48 @@
                         </h1>
                     </div>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-    @forelse ($articles as $article)
-        <a
-            href="{{ route('articles.show', $article->slug) }}"
-            class="relative block rounded-3xl shadow-lg h-[400px] bg-cover bg-center overflow-hidden group"
-            style="background-image: url('{{ $article->featured_image ? asset('storage/' . $article->featured_image) : asset('asset/img/default-article.jpg') }}');"
-        >
-            <div
-                class="absolute inset-0 bg-black/60 group-hover:bg-white/10 transition-colors duration-300"
-            ></div>
+                    <div
+                        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+                    >
+                        @forelse ($articles as $article)
+                        <a
+                            href="{{ route('articles.show', $article->slug) }}"
+                            class="relative block rounded-3xl shadow-lg h-[400px] bg-cover bg-center overflow-hidden group"
+                            style="background-image: url('{{ $article->featured_image ? asset('storage/' . $article->featured_image) : asset('asset/img/default-article.jpg') }}');"
+                        >
+                            <div
+                                class="absolute inset-0 bg-black/60 group-hover:bg-transparent transition-colors duration-300"
+                            ></div>
 
-            <div class="relative z-10 p-5 flex flex-col h-full justify-end">
-                <h6 class="text-gray-300 font-bold text-xs">
-                    {{ $article->category }}
-                </h6>
-                <h5
-                    class="mb-2 text-2xl font-bold tracking-tight text-white"
-                >
-                    {{ $article->title }}
-                </h5>
-                <p
-                    class="product-description line-clamp-3 mb-3 font-normal text-gray-200"
-                >
-                    {{ $article->description }}
-                </p>
-                <span
-                    class="read-more-btn text-white font-semibold hover:underline self-start"
-                >
-                    Read More
-                </span>
-            </div>
-        </a>
-    @empty
-        <div class="col-span-4 text-center text-white">
-            <p>belum ada tulisan saat ini</p>
-        </div>
-    @endforelse
-</div>
+                            <div
+                                class="relative z-10 p-5 flex flex-col h-full justify-end"
+                            >
+                                <h6 class="text-gray-300 font-bold text-xs">
+                                    {{ $article->category }}
+                                </h6>
+                                <h5
+                                    class="mb-2 text-2xl font-bold tracking-tight text-white"
+                                >
+                                    {{ $article->title }}
+                                </h5>
+                                <p
+                                    class="product-description line-clamp-3 mb-3 font-normal text-gray-200"
+                                >
+                                    {{ $article->description }}
+                                </p>
+                                <span
+                                    class="read-more-btn text-white font-semibold hover:underline self-start"
+                                >
+                                    Read More
+                                </span>
+                            </div>
+                        </a>
+                        @empty
+                        <div class="col-span-4 text-center text-white">
+                            <p>belum ada tulisan saat ini</p>
+                        </div>
+                        @endforelse
+                    </div>
                 </div>
             </section>
             <!--kalibrasi section-->
@@ -394,7 +398,7 @@
                 id="kalibrasi"
                 class="relative min-h-screen bg-cover bg-center flex items-center justify-center text-white"
                 style="background-image: url('{{ asset('asset/img/kalibrasi.png') }}')"
-             >
+            >
                 <div class="absolute inset-0 bg-black/30 z-10"></div>
                 <div class="relative text-center z-30 p-4">
                     <h1 class="font-bold text-6xl md:text-8xl">kalibrasi</h1>
@@ -526,8 +530,8 @@
                 var optionsTitle = {
                     strings: ["once brew <br> we bro"],
                     typeSpeed: 50, // Kecepatan ketik
-                    showCursor: false,// Tidak menampilkan kursor
-                    startDelay: 100, 
+                    showCursor: false, // Tidak menampilkan kursor
+                    startDelay: 100,
                     onComplete: function (self) {
                         // Fungsi ini berjalan setelah judul selesai diketik
                         // Membuat tombol terlihat
