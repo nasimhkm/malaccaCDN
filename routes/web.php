@@ -16,7 +16,7 @@ Route::get('/', [ArticleController::class, 'showPublicIndex'])->name('home');
 Route::get('/kalibrasi', function () {
     // Mengambil data artikel yang relevan dan mengirimkannya ke view
     $articles = \App\Models\Article::where('published_at', '<=', now())
-                       ->latest('published_date')
+                       ->latest('published_at')
                        ->get();
     return view('kalibrasi', compact('articles'));
 })->name('kalibrasi');

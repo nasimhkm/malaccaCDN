@@ -408,7 +408,7 @@
                     </p>
                 </div>
                 <a
-                    href="{{ route('kalibrasi.index') }}"
+                    href="{{ route('kalibrasi') }}"
                     class="absolute bottom-8 right-8 flex items-center gap-3 text-white z-30 group"
                 >
                     <p class="font-light group-hover:underline">
