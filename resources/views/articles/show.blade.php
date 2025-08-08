@@ -80,35 +80,32 @@
                             &lt; kembali
                         </a>
                         <div class="text-right">
-                            {{-- You can replace this with an actual SVG/image
-                            logo if you have one --}}
+                            {{-- Komentar Anda tetap dipertahankan --}}
                             <!--nanti diisi sama svg dari public/asset/kalibrasi buat kategori selain blog, yang blog dikosongin aja-->
-                            @php 
-                            // Use a match statement to map the category to the correct filename. 
-                            // This is safer and more explicit than string replacement.
-                            $categoryFilename = match($article->category) { 
-                                'jurnal seduh' => 'jurnalseduh', 
-                                'catatan pinggir kali' => 'catatan',
-                                'temu rasa' => 'temurasa', 
-                                'kultum' => 'kultum',
-                                'kerja kelompok' => 'kerjaklmpk', 
-                                'pang!' => 'pang',
-                                default => '' // Default case if category doesn't match 
-                            }; // Construct the full path only if a filename was found. 
-                            $svgPath = $categoryFilename ? 'asset/kalibrasi/' . $categoryFilename . '.svg' : ''; 
-                            @endphp 
-                            {{-- Only display the image if a valid path was created --}} 
-                            @if($svgPath)
-                            <img
-                                src="{{ asset($svgPath) }}"
-                                alt="{{ $article->category }}"
-                                class="w-auto h-12"
-                            />
-                            @else {{-- Fallback to text if no matching SVG is
-                            found --}}
-                            <h3 class="text-2xl font-bold text-white">
-                                {{ $article->category }}
-                            </h3>
+                                
+                            @php
+                                // Menggunakan match statement untuk memetakan kategori ke nama file SVG.
+                                $categoryFilename = match(strtolower($article->category)) {
+                                    'jurnal seduh' => 'jurnalseduh',
+                                    'catatan pinggir kali' => 'catatan',
+                                    'temu rasa' => 'temurasa',
+                                    'kultum' => 'kultum',
+                                    'kerja kelompok' => 'kerjaklmpk',
+                                    'pang!' => 'pang',
+                                    default => '', // Default jika kategori tidak cocok (misal: 'Blog')
+                                };
+                            
+                                // Membuat path lengkap ke file SVG hanya jika nama file ditemukan.
+                                $svgPath = $categoryFilename ? 'asset/kalibrasi/' . $categoryFilename . '.svg' : '';
+                            @endphp
+                            
+                            {{-- Hanya tampilkan gambar jika path SVG valid dan file-nya benar-benar ada --}}
+                            @if($svgPath && file_exists(public_path($svgPath)))
+                                <img
+                                    src="{{ asset($svgPath) }}"
+                                    alt="{{ $article->category }}"
+                                    class="w-auto h-12"
+                                />
                             @endif
                         </div>
                     </div>
