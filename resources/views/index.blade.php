@@ -194,7 +194,7 @@
                 id="hero"
                 class="min-h-screen bg-cover bg-center flex flex-col items-center justify-center text-white p-4"
                 style="background-image: url('{{ asset('asset/img/hero.png') }}')"
-            >
+             >
                 <div
                     class="flex flex-col md:flex-row items-center justify-center text-center md:text-left mb-8"
                 >
@@ -243,7 +243,7 @@
             <section
                 id="tentang"
                 class="min-h-screen flex flex-col md:flex-row bg-black"
-            >
+             >
                 <div
                     class="relative flex flex-col justify-center text-justify text-white w-full md:ml-[2.5rem] md:w-1/2 bg-black px-8 py-16 md:px-16 overflow-hidden"
                 >
@@ -277,7 +277,7 @@
             <section
                 id="unit"
                 class="min-h-screen flex flex-col justify-center bg-black text-white py-16 px-4"
-            >
+             >
                 <div class="w-full max-w-4xl mx-auto text-left mb-8">
                     <p class="font-thin text-gray-300">unit</p>
                     <h2 class="text-3xl font-bold">unit bisnis & jasa</h2>
@@ -336,7 +336,7 @@
             <section
                 id="tulisan"
                 class="min-h-screen flex flex-col bg-black py-16"
-            >
+             >
                 <div class="max-w-screen-xl mx-auto px-4">
                     <div
                         class="text-center text-white w-full max-w-4xl mx-auto mb-12"
@@ -351,7 +351,7 @@
 
                     <div
                         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-                    >
+                     >
                         @forelse ($articles as $article)
                         <a
                             href="{{ route('articles.show', $article->slug) }}"
@@ -398,7 +398,7 @@
                 id="kalibrasi"
                 class="relative min-h-screen bg-cover bg-center flex items-center justify-center text-white"
                 style="background-image: url('{{ asset('asset/img/kalibrasi.png') }}')"
-            >
+             >
                 <div class="absolute inset-0 bg-black/30 z-10"></div>
                 <div class="relative text-center z-30 p-4">
                     <h1 class="font-bold text-6xl md:text-8xl">kalibrasi</h1>
@@ -408,7 +408,7 @@
                     </p>
                 </div>
                 <a
-                    href="{{ url('/kalibrasi.blade.php') }}"
+                    href="{{ route('kalibrasi.index') }}"
                     class="absolute bottom-8 right-8 flex items-center gap-3 text-white z-30 group"
                 >
                     <p class="font-light group-hover:underline">

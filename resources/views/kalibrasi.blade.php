@@ -172,7 +172,7 @@
             <section
                 id="tentang"
                 class="min-h-screen flex flex-col md:flex-row bg-[#6c0c0d] overflow-hidden"
-            >
+             >
                 <div
                     class="flex flex-col justify-center text-justify text-white w-full md:w-1/2 px-8 py-16 md:pl-10 lg:pl-20"
                 >
@@ -264,13 +264,13 @@
             <section
                 id="jurnal"
                 class="bg-[url(/public/asset/img/jurnalseduh.png)] min-h-screen bg-cover bg-center"
-            >
+             >
                 <!--left side-->
                 <div class="flex flex-col md:flex-row">
                     <!--paragraph-->
                     <div
                         class="flex flex-col justify-center w-full md:w-1/2 px-8 py-32 md:pl-10 lg:pl-20"
-                    >
+                     >
                         <p
                             class="text-justify text-white font-light text-large"
                         >
@@ -286,7 +286,48 @@
                     </div>
                     <!--article-->
                     <div>
-                        <div></div>
+                        <div
+                        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                         >
+                        @forelse ($articles as $article)
+                        <a
+                            href="{{ route('articles.show', $article->slug) }}"
+                            class="relative block rounded-3xl shadow-lg h-[400px] bg-cover bg-center overflow-hidden group"
+                            style="background-image: url('{{ $article->featured_image ? asset('storage/' . $article->featured_image) : asset('asset/img/default-article.jpg') }}');"
+                        >
+                            <div
+                                class="absolute inset-0 bg-black/60 group-hover:bg-transparent transition-colors duration-300"
+                            ></div>
+
+                            <div
+                                class="relative z-10 p-5 flex flex-col h-full justify-end"
+                            >
+                                <h6 class="text-gray-300 font-bold text-xs">
+                                    {{ $article->category }}
+                                </h6>
+                                <h5
+                                    class="mb-2 text-2xl font-bold tracking-tight text-white"
+                                >
+                                    {{ $article->title }}
+                                </h5>
+                                <p
+                                    class="product-description line-clamp-3 mb-3 font-normal text-gray-200"
+                                >
+                                    {{ $article->description }}
+                                </p>
+                                <span
+                                    class="read-more-btn text-white font-semibold hover:underline self-start"
+                                >
+                                    Read More
+                                </span>
+                            </div>
+                        </a>
+                        @empty
+                        <div class="col-span-4 text-center text-white">
+                            <p>belum ada tulisan saat ini</p>
+                        </div>
+                        @endforelse
+                    </div>
                     </div>
                 </div>
                 <!--right side-->

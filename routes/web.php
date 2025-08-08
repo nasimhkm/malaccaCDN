@@ -6,6 +6,10 @@ use App\Http\Controllers\ArticleController; // Hanya butuh ini
 // Rute Halaman Utama (Publik) - Panggil fungsi dari controller
 Route::get('/', [ArticleController::class, 'showPublicIndex'])->name('home');
 
+Route::get('/kalibrasi', function () {
+    return view('kalibrasi'); // This will load resources/views/kalibrasi.blade.php
+})->name('kalibrasi.index'); // We give it a name for easy linking
+
 // Grup untuk semua halaman admin
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [ArticleController::class, 'index'])->name('dashboard');
