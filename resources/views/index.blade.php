@@ -189,6 +189,7 @@
         </header>
 
         <main>
+          <!--hero section-->
             <section
                 id="hero"
                 class="min-h-screen bg-cover bg-center flex flex-col items-center justify-center text-white p-4"
@@ -238,7 +239,7 @@
                     </a>
                 </div>
             </section>
-
+            <!--tentang section-->
             <section
                 id="tentang"
                 class="min-h-screen flex flex-col md:flex-row bg-black"
@@ -272,7 +273,7 @@
                     />
                 </div>
             </section>
-
+            <!--unit section-->
             <section
                 id="unit"
                 class="min-h-screen flex flex-col justify-center bg-black text-white py-16 px-4"
@@ -331,7 +332,7 @@
                     </div>
                 </div>
             </section>
-
+            <!--tulisan section-->
             <section
                 id="tulisan"
                 class="min-h-screen flex flex-col bg-black py-16"
@@ -348,57 +349,47 @@
                         </h1>
                     </div>
 
-                    <div
-                        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-                    >
-                        @forelse ($articles as $article)
-                        <div
-                            class="bg-white rounded-3xl shadow-lg flex flex-col"
-                        >
-                            <a
-                                href="{{ route('articles.show', $article->slug) }}"
-                            >
-                                <img
-                                    class="rounded-t-lg w-full h-[250px] object-cover"
-                                    src="{{ $article->featured_image ? asset('storage/' . $article->featured_image) : asset('asset/img/default-article.jpg') }}"
-                                    alt="{{ $article->title }}"
-                                />
-                            </a>
-                            <div class="p-5 flex flex-col flex-grow">
-                                <h6 class="text-[#6c0c0d] font-bold text-xs">
-                                    {{ $article->category }}
-                                </h6>
-                                <h5
-                                    class="mb-2 text-2xl font-bold tracking-tight text-black"
-                                >
-                                    <a
-                                        href="{{ route('articles.show', $article->slug) }}"
-                                        >{{ $article->title }}</a
-                                    >
-                                </h5>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    @forelse ($articles as $article)
+        <a
+            href="{{ route('articles.show', $article->slug) }}"
+            class="relative block rounded-3xl shadow-lg h-[400px] bg-cover bg-center overflow-hidden group"
+            style="background-image: url('{{ $article->featured_image ? asset('storage/' . $article->featured_image) : asset('asset/img/default-article.jpg') }}');"
+        >
+            <div
+                class="absolute inset-0 bg-black/60 group-hover:bg-white/10 transition-colors duration-300"
+            ></div>
 
-                                <p
-                                    class="product-description line-clamp-3 mb-3 font-normal text-justify text-gray-700 flex-grow"
-                                >
-                                    {{ $article->description }}
-                                </p>
-                                <a
-                                    href="{{ route('articles.show', $article->slug) }}"
-                                    class="read-more-btn text-blue-600 hover:underline self-start"
-                                >
-                                    Read More
-                                </a>
-                            </div>
-                        </div>
-                        @empty
-                        <div class="col-span-4 text-center text-white">
-                            <p>No articles available at the moment.</p>
-                        </div>
-                        @endforelse
-                    </div>
+            <div class="relative z-10 p-5 flex flex-col h-full justify-end">
+                <h6 class="text-gray-300 font-bold text-xs">
+                    {{ $article->category }}
+                </h6>
+                <h5
+                    class="mb-2 text-2xl font-bold tracking-tight text-white"
+                >
+                    {{ $article->title }}
+                </h5>
+                <p
+                    class="product-description line-clamp-3 mb-3 font-normal text-gray-200"
+                >
+                    {{ $article->description }}
+                </p>
+                <span
+                    class="read-more-btn text-white font-semibold hover:underline self-start"
+                >
+                    Read More
+                </span>
+            </div>
+        </a>
+    @empty
+        <div class="col-span-4 text-center text-white">
+            <p>belum ada tulisan saat ini</p>
+        </div>
+    @endforelse
+</div>
                 </div>
             </section>
-
+            <!--kalibrasi section-->
             <section
                 id="kalibrasi"
                 class="relative min-h-screen bg-cover bg-center flex items-center justify-center text-white"

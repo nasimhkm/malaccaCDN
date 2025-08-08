@@ -40,41 +40,77 @@
 <body class="text-black">
     <div class="container max-w-4xl mx-auto p-4 md:p-10 bg-white shadow-lg my-10">
         
-        {{-- Bagian Atas: Gambar di kiri, Judul & Deskripsi di kanan --}}
-        <div class="flex flex-col md:flex-row gap-8 mb-8 border-b pb-8">
-            {{-- Kolom Gambar --}}
-            @if($article->featured_image)
-            <div class="md:w-1/3 flex-shrink-0">
-                {{-- KODE INI SUDAH BENAR, pastikan 'storage:link' sudah dijalankan --}}
-                <img src="{{ asset('storage/' . $article->featured_image) }}" alt="{{ $article->title }}" class="w-full h-auto md:h-[450px] object-cover bg-red-800 rounded-lg">
-            </div>
-            @endif
+        {{-- Hero Section with Background Image --}}
+<div
+    class="relative w-full h-[50vh] md:h-[60vh] bg-cover bg-center"
+    style="background-image: url('{{ $article->featured_image ? asset('storage/' . $article->featured_image) : asset('asset/img/default-article.jpg') }}');"
+>
+    <!-- Dark Overlay for Text Readability -->
+    <div class="absolute inset-0 bg-black/50"></div>
 
-            {{-- Kolom Judul, Meta, dan Deskripsi --}}
-            <div class="flex-grow flex flex-col justify-start">
-                <h1 class="text-3xl lg:text-4xl font-bold mb-3">{{ $article->title }}</h1>
-                <p class="text-sm text-gray-600 mb-4">{{ $article->published_at->format('d F Y') }} • {{ $article->author }}</p>
-                
-                {{-- Kita bungkus deskripsi dengan div yang memiliki style max-height dan overflow --}}
-                <div class="description-box text-justify">
-                    <p>{{ $article->description }}</p>
-                </div>
+    <!-- Container for Content on Top of Image -->
+    <div class="relative z-10 h-full flex flex-col justify-between p-8 md:p-12">
+        {{-- Top Bar: Back Button & Category Logo --}}
+        <div class="flex justify-between items-start text-white">
+            <a href="{{ url()->previous() }}" class="text-sm  rounded-full px-4 py-1 hover:bg-white/10 transition-colors">
+                &lt; kembali
+            </a>
+            <div class="text-right">
+                {{-- You can replace this with an actual SVG/image logo if you have one --}}
+                <!--nanti diisi sama svg dari public/asset/kalibrasi buat kategori selain blog, yang blog dikosongin aja-->
+                @php
+    // Use a match statement to map the category to the correct filename.
+    // This is safer and more explicit than string replacement.
+    $categoryFilename = match($article->category) {
+        'jurnal seduh' => 'jurnalseduh',
+        'catatan pinggir kali' => 'catatan',
+        'temu rasa' => 'temurasa',
+        'kultum' => 'kultum',
+        'kerja kelompok' => 'kerjaklmpk',
+        'pang!' => 'pang',
+        default => '' // Default case if category doesn't match
+    };
+
+    // Construct the full path only if a filename was found.
+    $svgPath = $categoryFilename ? 'asset/kalibrasi/' . $categoryFilename . '.svg' : '';
+@endphp
+
+{{-- Only display the image if a valid path was created --}}
+@if($svgPath)
+    <img src="{{ asset($svgPath) }}" alt="{{ $article->category }}" class="w-auto h-12">
+@else
+    {{-- Fallback to text if no matching SVG is found --}}
+    <h3 class="text-2xl font-bold text-white">{{ $article->category }}</h3>
+@endif
             </div>
         </div>
+
+        {{-- Bottom Content: Title & Author --}}
+        <div class="text-white">
+            <h1 class="text-4xl lg:text-5xl font-bold mb-2 text-wrap">{{ $article->title }}</h1>
+            <p class="text-base text-gray-300">{{ $article->author }} | {{ $article->published_at->format('d-m-Y') }}</p>
+        </div>
+    </div>
+</div>
+
+{{-- Main Article Content Section --}}
+<div class="max-w-4xl mx-auto p-8">
+    <div class="prose lg:prose-xl text-justify text-black">
+        {{-- The 'prose' classes from Tailwind Typography provide nice default styling for article content --}}
+        <p>{{ $article->description }}</p>
+        
+        {{-- If you have a separate 'body' field for the full content, render it here --}}
+        {{-- {!! $article->body !!} --}}
+    </div>
+</div>
 
         {{-- Bagian Bawah: Isi Konten Lanjutan --}}
         <div class="article-content text-justify">
            {!! $article->content !!}
         </div>
 
-        <div class="mt-10 pt-6 border-t ">
+        <div class="mt-10 pt-6">
          <div class="flex justify-between items-center">
-            <div>
-                <a href="{{ url('/#tulisan') }}" class="text-black hover:underline">← Back to Home</a>
-                @auth
-                <a href="{{ url('/admin/dashboard#article') }}" class="text-blue-600 hover:underline ml-4">← Back to Admin</a>
-                @endauth
-            </div>
             <div class="flex items-center gap-4">
                 <a href="https://wa.link/a2j9ib" class="flex items-center justify-center py-2.5 px-6 text-sm font-medium rounded-full border bg-green-400  text-white border-green-400 w-[10rem] h-[3rem]">
                     Hubungi Kami

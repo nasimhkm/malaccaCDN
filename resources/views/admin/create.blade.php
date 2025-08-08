@@ -46,7 +46,15 @@
                 </div>
                 <div>
                     <label for="category" class="block mb-2 text-sm font-medium text-gray-300">Category</label>
-                    <input type="text" name="category" id="category" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg block w-full p-2.5" placeholder="e.g., Blog, News" value="{{ old('category', 'Uncategorized') }}" required>
+                    <select name="category" id="category" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg block w-full p-2.5" required>
+                        <option value="blog" {{ old('category') == 'blog' ? 'selected' : '' }}>blog</option>
+                        <option value="jurnal seduh" {{ old('category') == 'jurnal-seduh' ? 'selected' : '' }}>jurnal seduh</option>
+                        <option value="catatan pinggir kali" {{ old('category') == 'catatan-pinggir-kali' ? 'selected' : '' }}>catatan pinggir kali</option>
+                        <option value="temu rasa" {{ old('category') == 'temu-rasa' ? 'selected' : '' }}>temu rasa</option>
+                        <option value="kultum" {{ old('category') == 'kultum' ? 'selected' : '' }}>kultum</option>
+                        <option value="kerja kelompok" {{ old('category') == 'kerja-kelompok' ? 'selected' : '' }}>kerja kelompok</option>
+                        <option value="pang!" {{ old('category') == 'pang!' ? 'selected' : '' }}>pang!</option>
+                    </select>
                 </div>
                 <div>
                     <label for="published_date" class="block mb-2 text-sm font-medium text-gray-300">Publish Date</label>
