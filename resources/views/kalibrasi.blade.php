@@ -4,9 +4,10 @@
         <meta charset="UTF-8" />
         <title>Kalibrasi</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {{-- Path diubah menggunakan helper asset() --}}
         <link
             rel="icon"
-            href="/asset/logo/logoCompanyFavicon.svg"
+            href="{{ asset('asset/logo/logoCompanyFavicon.svg') }}"
             type="image/svg+xml"
         />
 
@@ -36,9 +37,10 @@
                 <div
                     class="max-w-screen-xl mx-auto flex justify-between items-center px-4 py-3 relative"
                 >
-                    <a href="#hero"
+                    {{-- Path diubah menggunakan helper asset() --}}
+                    <a href="{{ route('home') }}"
                         ><img
-                            src="/public/asset/logo/logoCompany.svg"
+                            src="{{ asset('asset/logo/logoCompany.svg') }}"
                             class="h-12 hover:bg-[#6c0c0d] rounded-lg transition-colors md:-translate-x-6 md:translate-y-2"
                             alt="Malacca Logo"
                     /></a>
@@ -141,8 +143,9 @@
                                 >
                             </li>
                             <li>
+                                {{-- Link diubah ke route yang benar --}}
                                 <a
-                                    href="/resources/views/kalibrasi.html"
+                                    href="{{ route('kalibrasi') }}"
                                     class="block py-2 px-3 text-black rounded-b-lg hover:bg-[#6c0c0d] hover:text-white transition-colors"
                                     >kalibrasi</a
                                 >
@@ -157,7 +160,7 @@
             <section
                 id="hero"
                 class="relative min-h-screen bg-cover bg-center flex items-center justify-center text-white"
-                style="background-image: url('/public/asset/img/kalibrasi.png')"
+                style="background-image: url('{{ asset('asset/img/kalibrasi.png') }}')"
             >
                 <div class="absolute inset-0 bg-black/30 z-10"></div>
                 <div class="relative text-center z-30 p-4">
@@ -203,8 +206,9 @@
                         href="#jurnal"
                         class="w-full h-auto md:transform md:translate-y-32 md:translate-x-2 md:scale-110"
                     >
+                        {{-- Path diubah menggunakan helper asset() --}}
                         <img
-                            src="/public/asset/kalibrasi/jurnalseduh.svg"
+                            src="{{ asset('asset/kalibrasi/jurnalseduh.svg') }}"
                             alt="Jurnal Seduh"
                         />
                     </a>
@@ -214,7 +218,7 @@
                         class="w-full h-auto md:transform md:translate-y-32 md:translate-x-2 md:scale-110"
                     >
                         <img
-                            src="/public/asset/kalibrasi/temurasa.svg"
+                            src="{{ asset('asset/kalibrasi/temurasa.svg') }}"
                             alt="Temurasa"
                         />
                     </a>
@@ -224,7 +228,7 @@
                         class="w-full h-auto md:transform md:translate-y-32 md:translate-x-2 md:scale-110"
                     >
                         <img
-                            src="/public/asset/kalibrasi/catatan.svg"
+                            src="{{ asset('asset/kalibrasi/catatan.svg') }}"
                             alt="Catatan Pinggir Kali"
                         />
                     </a>
@@ -234,7 +238,7 @@
                         class="w-full h-auto md:transform md:-translate-y-20 md:translate-x-2 md:scale-110"
                     >
                         <img
-                            src="/public/asset/kalibrasi/kultum.svg"
+                            src="{{ asset('asset/kalibrasi/kultum.svg') }}"
                             alt="Kultum"
                         />
                     </a>
@@ -244,7 +248,7 @@
                         class="w-full h-auto md:transform md:-translate-y-20 md:translate-x-2 md:scale-110"
                     >
                         <img
-                            src="/public/asset/kalibrasi/kerjaklmpk.svg"
+                            src="{{ asset('asset/kalibrasi/kerjaklmpk.svg') }}"
                             alt="Kerja Klmpk"
                         />
                     </a>
@@ -254,7 +258,7 @@
                         class="w-full h-auto md:transform md:-translate-y-20 md:translate-x-2 md:scale-110"
                     >
                         <img
-                            src="/public/asset/kalibrasi/pang.svg"
+                            src="{{ asset('asset/kalibrasi/pang.svg') }}"
                             alt="Pang"
                         />
                     </a>
@@ -263,7 +267,7 @@
             <!--jurnal section-->
             <section
                 id="jurnal"
-                class="bg-[url(/public/asset/img/jurnalseduh.png)] min-h-screen bg-cover bg-center"
+                class="bg-[url('{{ asset('asset/img/jurnalseduh.png') }}')] min-h-screen bg-cover bg-center"
              >
                 <!--left side-->
                 <div class="flex flex-col md:flex-row">
@@ -332,8 +336,9 @@
                 </div>
                 <!--right side-->
                 <div>
+                    {{-- Path diubah menggunakan helper asset() --}}
                     <img
-                        src="/public/asset/kalibrasi/jurnalseduh.svg"
+                        src="{{ asset('asset/kalibrasi/jurnalseduh.svg') }}"
                         alt="Jurnal Seduh"
                     />
                 </div>
@@ -342,12 +347,13 @@
             <section id="temurasa">
                 <div class="relative h-screen">
                     <div
-                        class="absolute h-screen bg-cover bg-center inset-0 bg-[url(/public/asset/img/temurasa.png)] [mask-image:linear-gradient(to_left,transparent,gray_60%)]"
+                        class="absolute h-screen bg-cover bg-center inset-0 bg-[url('{{ asset('asset/img/temurasa.png') }}')] [mask-image:linear-gradient(to_left,transparent,gray_60%)]"
                     ></div>
                     <!--left side-->
                     <div class="relative z-10">
+                        {{-- Path diubah menggunakan helper asset() --}}
                         <img
-                            src="/public/asset/kalibrasi/jurnalseduh.svg"
+                            src="{{ asset('asset/kalibrasi/jurnalseduh.svg') }}"
                             alt=""
                         />
                     </div>
@@ -381,7 +387,7 @@
             <section id="catatan">
                 <div class="relative h-screen">
                     <div
-                        class="absolute h-screen bg-cover bg-center inset-0 bg-[url(/public/asset/img/catatan.png)] [mask-image:linear-gradient(to_right,transparent,gray_60%)]"
+                        class="absolute h-screen bg-cover bg-center inset-0 bg-[url('{{ asset('asset/img/catatan.png') }}')] [mask-image:linear-gradient(to_right,transparent,gray_60%)]"
                     ></div>
                     <!--left side-->
                     <div class="relative z-10 w-[80%] h-full text-white">
@@ -414,19 +420,19 @@
             <section id="ruang">
                 <div class="relative h-screen">
                     <div
-                        class="absolute bg-[url(/public/asset/img/kultum.png)] bg-cover bg-left"
+                        class="absolute bg-[url('{{ asset('asset/img/kultum.png') }}')] bg-cover bg-left"
                     >
                         <div></div>
                         <div></div>
                     </div>
                     <div
-                        class="bg-[url(/public/asset/img/pang.png)] bg-cover bg-center"
+                        class="bg-[url('{{ asset('asset/img/pang.png') }}')] bg-cover bg-center"
                     >
                         <div></div>
                         <div></div>
                     </div>
                     <div
-                        class="bg-[url(/public/asset/img/krjklmp.png)] bg-cover bg"
+                        class="bg-[url('{{ asset('asset/img/krjklmp.png') }}')] bg-cover bg"
                     >
                         <div></div>
                         <div></div>
@@ -438,7 +444,7 @@
             <section
                 id="kunjungi"
                 class="relative bg-cover bg-center text-white"
-                style="background-image: url('/public/asset/img/kunjungi.png')"
+                style="background-image: url('{{ asset('asset/img/kunjungi.png') }}')"
             >
                 <div class="absolute inset-0 bg-black/70"></div>
                 <div
@@ -448,7 +454,7 @@
                         class="flex-1 flex flex-col items-center text-justify md:items-start"
                     >
                         <img
-                            src="/public/asset/logo/logoCompany.svg"
+                            src="{{ asset('asset/logo/logoCompany.svg') }}"
                             alt="Logo Malacca"
                             class="w-24 mb-4"
                         />
@@ -465,7 +471,7 @@
                                 href="https://gofood.link/a/yM8W6YL"
                                 class="w-8 h-8 flex items-center justify-center bg-[#6c0c0d] rounded-full hover:opacity-80 transition-opacity"
                                 ><img
-                                    src="/public/asset/icon/gofood.png"
+                                    src="{{ asset('asset/icon/gofood.png') }}"
                                     alt="GoFood"
                                     class="w-5 h-5"
                             /></a>
@@ -473,7 +479,7 @@
                                 href="https://linktr.ee/malaccaentreprise"
                                 class="w-8 h-8 flex items-center justify-center bg-[#6c0c0d] rounded-full hover:opacity-80 transition-opacity"
                                 ><img
-                                    src="/public/asset/icon/linktree.png"
+                                    src="{{ asset('asset/icon/linktree.png') }}"
                                     alt="Linktree"
                                     class="w-5 h-5"
                             /></a>
@@ -481,7 +487,7 @@
                                 href="https://wa.link/1x9qk8"
                                 class="w-8 h-8 flex items-center justify-center bg-[#6c0c0d] rounded-full hover:opacity-80 transition-opacity"
                                 ><img
-                                    src="/public/asset/icon/whatsapp.png"
+                                    src="{{ asset('asset/icon/whatsapp.png') }}"
                                     alt="WhatsApp"
                                     class="w-5 h-5"
                             /></a>
@@ -537,7 +543,8 @@
 
         <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
-        <script src="/public/scripts/global.js" defer></script>
-        <script src="/public/scripts/main-page.js" defer></script>
+        {{-- Path diubah menggunakan helper asset() --}}
+        <script src="{{ asset('scripts/global.js') }}" defer></script>
+        <script src="{{ asset('scripts/main-page.js') }}" defer></script>
     </body>
 </html>
