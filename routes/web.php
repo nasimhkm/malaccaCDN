@@ -21,6 +21,9 @@ Route::get('/kalibrasi', function () {
     return view('kalibrasi', compact('articles'));
 })->name('kalibrasi');
 
+// Grup untuk semua halaman admin yang memerlukan login
+// PERHATIAN: Tanpa halaman login, middleware 'auth' akan menyebabkan error
+// karena tidak tahu harus mengarahkan pengguna ke mana jika belum login.
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [ArticleController::class, 'index'])->name('dashboard');
     
