@@ -278,7 +278,7 @@
                         <div class="mb-12 md:pt-10">
                             <p
                                 class="text-justify text-white font-light text-large"
-                             >
+                            >
                                 Malacca Coffee Konten micro-blog atau reels
                                 berisi cerita dari individu dengan pengalaman
                                 atau pemikiran yang inspiratif. Format narasi
@@ -292,8 +292,9 @@
                         <!--article card-->
                         <div
                             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-                         >
-                            {{-- We use ->take(3) to only loop through the first 3 articles --}} 
+                        >
+                            {{-- We use ->take(3) to only loop through the first
+                            3 articles --}} 
                             @forelse ($articles->take(3) as $article)
                             <a
                                 href="{{ route('articles.show', $article->slug) }}"
@@ -315,15 +316,15 @@
                                         {{ $article->title }}
                                     </h5>
                                     <p
-                                    class="product-description line-clamp-3 mb-3 font-normal text-gray-200"
-                                >
-                                    {{ $article->description }}
-                                </p>
-                                <span
-                                    class="read-more-btn text-white font-semibold hover:underline self-start"
-                                >
-                                    Read More
-                                </span>
+                                        class="product-description line-clamp-3 mb-3 font-normal text-gray-200"
+                                    >
+                                        {{ $article->description }}
+                                    </p>
+                                    <span
+                                        class="read-more-btn text-white font-semibold hover:underline self-start"
+                                    >
+                                        Read More
+                                    </span>
                                 </div>
                             </a>
                             @empty
@@ -336,7 +337,7 @@
                     <!--section logo-->
                     <div
                         class="w-full md:w-1/2 flex items-center justify-center p-8"
-                     >
+                    >
                         <img
                             src="{{ asset('asset/kalibrasi/jurnalseduh.svg') }}"
                             alt="Jurnal Seduh"
@@ -354,7 +355,7 @@
                     <!--left side-->
                     <div
                         class="w-full md:w-1/2 flex items-center justify-center p-8"
-                     >
+                    >
                         <img
                             src="{{ asset('asset/kalibrasi/temurasa.svg') }}"
                             alt="Jurnal Seduh"
@@ -364,27 +365,27 @@
                     <!--section logo-->
                     <div
                         class="w-full md:w-1/2 flex flex-col justify-center px-8 py-16 md:pl-10 lg:pl-20"
-                     >
+                    >
                         <!--paragraph-->
                         <div class="mb-12 md:pt-10">
                             <p
                                 class="text-justify text-white font-light text-large"
-                             >
-                                Rubrik micro-blog yang menyuarakan
-                                opini, refleksi, dan pandangan kritis
-                                terhadap isu-isu sosial, budaya,
-                                maupun keseharian—ditulis dari sudut
-                                pandang “orang biasa”. Menawarkan
-                                cara pandang yang jujur, luwes, dan
-                                membumi, sebagai bentuk dokumentasi
-                                gagasan dari tepian wacana arus utama.
+                            >
+                                Rubrik micro-blog yang menyuarakan opini,
+                                refleksi, dan pandangan kritis terhadap isu-isu
+                                sosial, budaya, maupun keseharian—ditulis dari
+                                sudut pandang “orang biasa”. Menawarkan cara
+                                pandang yang jujur, luwes, dan membumi, sebagai
+                                bentuk dokumentasi gagasan dari tepian wacana
+                                arus utama.
                             </p>
                         </div>
                         <!--article card-->
                         <div
                             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-                         >
-                            {{-- We use ->take(3) to only loop through the first 3 articles --}} 
+                        >
+                            {{-- We use ->take(3) to only loop through the first
+                            3 articles --}} 
                             @forelse ($articles->take(3) as $article)
                             <a
                                 href="{{ route('articles.show', $article->slug) }}"
@@ -406,15 +407,15 @@
                                         {{ $article->title }}
                                     </h5>
                                     <p
-                                    class="product-description line-clamp-3 mb-3 font-normal text-gray-200"
-                                >
-                                    {{ $article->description }}
-                                </p>
-                                <span
-                                    class="read-more-btn text-white font-semibold hover:underline self-start"
-                                >
-                                    Read More
-                                </span>
+                                        class="product-description line-clamp-3 mb-3 font-normal text-gray-200"
+                                    >
+                                        {{ $article->description }}
+                                    </p>
+                                    <span
+                                        class="read-more-btn text-white font-semibold hover:underline self-start"
+                                    >
+                                        Read More
+                                    </span>
                                 </div>
                             </a>
                             @empty
@@ -427,32 +428,35 @@
                 </div>
             </section>
             <!--catatan section-->
-            <section id="catatan" class="bg-[url('{{ asset('asset/img/catatan.png') }}')] min-h-screen bg-cover bg-center">
+            <section
+                id="catatan"
+                class="bg-[url('{{ asset('asset/img/catatan.png') }}')] min-h-screen bg-cover bg-center"
+             >
                 <div class="flex flex-col md:flex-row">
                     <!--left side-->
                     <div
                         class="w-full md:w-1/2 flex flex-col justify-center px-8 py-16 md:pl-10 lg:pl-20"
-                     >
+                    >
                         <!--paragraph-->
                         <div class="mb-12 md:pt-10">
                             <p
                                 class="text-justify text-white font-light text-large"
-                             >
-                                Rubrik micro-blog yang menyuarakan
-                                opini, refleksi, dan pandangan kritis
-                                terhadap isu-isu sosial, budaya,
-                                maupun keseharian—ditulis dari sudut
-                                pandang “orang biasa”. Menawarkan
-                                cara pandang yang jujur, luwes, dan
-                                membumi, sebagai bentuk dokumentasi
-                                gagasan dari tepian wacana arus utama.
+                            >
+                                Rubrik micro-blog yang menyuarakan opini,
+                                refleksi, dan pandangan kritis terhadap isu-isu
+                                sosial, budaya, maupun keseharian—ditulis dari
+                                sudut pandang “orang biasa”. Menawarkan cara
+                                pandang yang jujur, luwes, dan membumi, sebagai
+                                bentuk dokumentasi gagasan dari tepian wacana
+                                arus utama.
                             </p>
                         </div>
                         <!--article card-->
                         <div
                             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-                         >
-                            {{-- We use ->take(3) to only loop through the first 3 articles --}} 
+                        >
+                            {{-- We use ->take(3) to only loop through the first
+                            3 articles --}} 
                             @forelse ($articles->take(3) as $article)
                             <a
                                 href="{{ route('articles.show', $article->slug) }}"
@@ -474,15 +478,15 @@
                                         {{ $article->title }}
                                     </h5>
                                     <p
-                                    class="product-description line-clamp-3 mb-3 font-normal text-gray-200"
-                                >
-                                    {{ $article->description }}
-                                </p>
-                                <span
-                                    class="read-more-btn text-white font-semibold hover:underline self-start"
-                                >
-                                    Read More
-                                </span>
+                                        class="product-description line-clamp-3 mb-3 font-normal text-gray-200"
+                                    >
+                                        {{ $article->description }}
+                                    </p>
+                                    <span
+                                        class="read-more-btn text-white font-semibold hover:underline self-start"
+                                    >
+                                        Read More
+                                    </span>
                                 </div>
                             </a>
                             @empty
@@ -495,7 +499,7 @@
                     <!--section logo-->
                     <div
                         class="w-full md:w-1/2 flex items-center justify-center p-8"
-                     >
+                    >
                         <img
                             src="{{ asset('asset/kalibrasi/catatan.svg') }}"
                             alt="Jurnal Seduh"
@@ -506,25 +510,22 @@
             </section>
             <!--ruang section-->
             <section id="ruang">
-                <div class="relative h-screen">
+                <div class="flex flex-col md:flex-row h-screen">
+                    <!--kultum section-->
                     <div
-                        class="absolute bg-[url('{{ asset('asset/img/kultum.png') }}')] bg-cover bg-left"
-                    >
-                        <div></div>
-                        <div></div>
-                    </div>
+                      class="w-full md:w-1/3 bg-cover bg-start h-screen"
+                      style="background-image: url('{{ asset('asset/img/kultum.png') }}');"
+                    ></div>
+                    <!--pang section-->
                     <div
-                        class="bg-[url('{{ asset('asset/img/pang.png') }}')] bg-cover bg-center"
-                    >
-                        <div></div>
-                        <div></div>
-                    </div>
+                      class="w-full md:w-1/3 bg-cover bg-center h-screen"
+                      style="background-image: url('{{ asset('asset/img/pang.png') }}');"
+                    ></div>
+                    <!--kerjakelompok section-->
                     <div
-                        class="bg-[url('{{ asset('asset/img/krjklmp.png') }}')] bg-cover bg"
-                    >
-                        <div></div>
-                        <div></div>
-                    </div>
+                      class="w-full md:w-1/3 bg-cover bg-center h-screen"
+                      style="background-image: url('{{ asset('asset/img/krjklmp.png') }}');"
+                    ></div>
                 </div>
             </section>
         </main>
