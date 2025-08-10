@@ -36,5 +36,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::put('articles/{article:id}', [ArticleController::class, 'update'])->name('articles.update');
 });
 
+require __DIR__.'/auth.php';
+
 // Rute artikel publik berdasarkan slug (ditempatkan di paling bawah agar tidak bentrok)
 Route::get('/{article:slug}', [ArticleController::class, 'show'])->name('articles.show');
