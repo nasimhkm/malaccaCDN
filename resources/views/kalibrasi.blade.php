@@ -439,7 +439,7 @@
                         <!--article card-->
                         <div
                             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-                        >
+                         >
                             {{-- We use ->take(3) to only loop through the first
                             3 articles --}} 
                             @forelse ($articles->take(3) as $article)
@@ -487,12 +487,11 @@
             </section>
             <!--ruang section-->
             <section id="ruang">
-                <div class="flex flex-col md:flex-row h-screen">
+                <div class="flex flex-col md:flex-row">
                     <!--kultum section-->
                     <div
-                      class="w-full md:w-1/3 bg-cover bg-start h-screen"
-                      style="background-image: url('{{ asset('asset/img/kultum.png') }}');"
-                    >
+                      class="w-full md:w-1/3 bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-8 gap-6"
+                     >
                                 <!-- logo and text-->
                                 <img src="{{ asset('asset/kalibrasi/kultum.svg') }}" alt="Kultum Logo">
                                 <p class="text-justify text-white font-light text-base">
@@ -506,32 +505,97 @@
                                    temu wacana yang cair, terbuka,
                                    dan menumbuhkan.
                                 </p>
-                            <!--article card-->
+                                <!--article card-->
+                                <div
+                                 class="grid grid-cols-1 gap-6"
+                                 >
+                                   {{-- We use ->take(3) to only loop through the first 1 articles --}} 
+                                    @forelse ($articles->take(1) as $article)
+                                    <a
+                                        href="{{ route('articles.show', $article->slug) }}"
+                                        class="relative block rounded-2xl shadow-lg md:w-[25vw] h-[350px] bg-cover bg-center overflow-hidden group"
+                                        style="background-image: url('{{ $article->featured_image ? asset('storage/' . $article->featured_image) : asset('asset/img/default-article.jpg') }}');"
+                                    >
+                                        <div
+                                            class="absolute inset-0 bg-black/60 group-hover:bg-transparent transition-colors duration-300"
+                                        ></div>
+                                        <div
+                                            class="relative z-10 p-4 flex flex-col h-full justify-end"
+                                        >
+                                            <h5
+                                                class="mb-2 text-2xl md:text-base font-bold tracking-tight text-white pb-3"
+                                            >
+                                                {{ $article->title }}
+                                            </h5>
+                                            <span
+                                                class="read-more-btn text-white text-sm md:text-xs font-semibold hover:underline self-start"
+                                            >
+                                                Read More
+                                            </span>
+                                        </div>
+                                     </a>
+                                    @empty
+                                    <div class="col-span-full text-center text-white">
+                                        <p>belum ada tulisan saat ini</p>
+                                    </div>
+                                    @endforelse
+                                </div>
                     </div>
                     <!--pang section-->
                     <div
-                      class="w-full md:w-1/3 bg-cover bg-center h-screen"
-                      style="background-image: url('{{ asset('asset/img/pang.png') }}');"
-                    >
+                      class="w-full md:w-1/3 bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-8 gap-6"
+                     >
                                 <!--article card-->
-
+                                <div
+                                 class="grid grid-cols-1 gap-6 order-3 md:order-none"
+                                 >
+                                   {{-- We use ->take(3) to only loop through the first 1 articles --}} 
+                                    @forelse ($articles->take(1) as $article)
+                                    <a
+                                        href="{{ route('articles.show', $article->slug) }}"
+                                        class="relative block rounded-2xl shadow-lg md:w-[25vw] h-[350px] bg-cover bg-center overflow-hidden group"
+                                        style="background-image: url('{{ $article->featured_image ? asset('storage/' . $article->featured_image) : asset('asset/img/default-article.jpg') }}');"
+                                    >
+                                        <div
+                                            class="absolute inset-0 bg-black/60 group-hover:bg-transparent transition-colors duration-300"
+                                        ></div>
+                                        <div
+                                            class="relative z-10 p-4 flex flex-col h-full justify-end"
+                                        >
+                                            <h5
+                                                class="mb-2 text-2xl md:text-base font-bold tracking-tight text-white pb-3"
+                                            >
+                                                {{ $article->title }}
+                                            </h5>
+                                            <span
+                                                class="read-more-btn text-white text-sm md:text-xs font-semibold hover:underline self-start"
+                                            >
+                                                Read More
+                                            </span>
+                                        </div>
+                                     </a>
+                                    @empty
+                                    <div class="col-span-full text-center text-white">
+                                        <p>belum ada tulisan saat ini</p>
+                                    </div>
+                                    @endforelse
+                                </div>
                                 <!--Logo and Text-->
-                                <p class="text-justify text-white font-light text-base">
+                                <p class="text-justify text-white font-light text-base order-2 md:order-none">
                                    “Pang!” hadir sebagai program rutin pagi hari yang 
                                    menghidupkan ruang produktif dengan obrolan
                                    ringan dan rutinitas harian. Mendorong produktivitas
                                    tanpa tekanan — cukup memulai pagi dengan hadir.
                                 </p>
-                                <img src="{{ asset('asset/kalibrasi/pang.svg') }}" alt="Pang Logo">
+                                <img src="{{ asset('asset/kalibrasi/pang.svg') }}" alt="Pang Logo" class="order-1 md:order-none">
                     </div>
                     <!--kerjakelompok section-->
                     <div
-                      class="w-full md:w-1/3 bg-cover bg-center h-screen"
-                      style="background-image: url('{{ asset('asset/img/krjklmp.png') }}');"
-                    >
+                      class="w-full md:w-1/3 bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-8 gap-6"
+                     >
                                 <!--Logo and Text-->
                                 <img src="{{ asset('asset/kalibrasi/kerjaklmpk.svg') }}" alt="Kerja Kelompok Logo">
-                                <p class="text-justify text-white font-light text-base">
+                                <p class="text-justify text-white font-light text-base bg-gray/60">
                                    Program lokakarya kolaboratif dengan
                                    tema besar yang cair dan terbuka. 
                                    “Kerja Kelompok” memberi ruang bagi
@@ -541,7 +605,40 @@
                                    aktif, bukan hasil akhir.
                                 </p>
                                 <!--article card-->
-                                
+                                <div
+                                 class="grid grid-cols-1 gap-6"
+                                 >
+                                   {{-- We use ->take(3) to only loop through the first 1 articles --}} 
+                                    @forelse ($articles->take(1) as $article)
+                                    <a
+                                        href="{{ route('articles.show', $article->slug) }}"
+                                        class="relative block rounded-2xl shadow-lg md:w-[25vw] h-[350px] bg-cover bg-center overflow-hidden group"
+                                        style="background-image: url('{{ $article->featured_image ? asset('storage/' . $article->featured_image) : asset('asset/img/default-article.jpg') }}');"
+                                    >
+                                        <div
+                                            class="absolute inset-0 bg-black/60 group-hover:bg-transparent transition-colors duration-300"
+                                        ></div>
+                                        <div
+                                            class="relative z-10 p-4 flex flex-col h-full justify-end"
+                                        >
+                                            <h5
+                                                class="mb-2 text-2xl md:text-base font-bold tracking-tight text-white pb-3"
+                                            >
+                                                {{ $article->title }}
+                                            </h5>
+                                            <span
+                                                class="read-more-btn text-white text-sm md:text-xs font-semibold hover:underline self-start"
+                                            >
+                                                Read More
+                                            </span>
+                                        </div>
+                                     </a>
+                                    @empty
+                                    <div class="col-span-full text-center text-white">
+                                        <p>belum ada tulisan saat ini</p>
+                                    </div>
+                                    @endforelse
+                                </div>
                     </div>
                 </div>
             </section>
