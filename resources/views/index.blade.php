@@ -162,7 +162,7 @@
                         >
                             <li>
                                 <a
-                                    href="#"
+                                    href="{{ route('home') }}"
                                     class="block py-2 px-3 text-[#6c0c0d] rounded-t-lg"
                                     aria-current="page"
                                     >malacca entreprise</a
@@ -177,7 +177,7 @@
                             </li>
                             <li>
                                 <a
-                                    href="/resources/views/kalibrasi.html"
+                                    href="{{ route('kalibrasi') }}"
                                     class="block py-2 px-3 text-black rounded-b-lg hover:bg-[#6c0c0d] hover:text-white transition-colors"
                                     >kalibrasi</a
                                 >

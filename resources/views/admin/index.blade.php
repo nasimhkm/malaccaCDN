@@ -30,7 +30,7 @@
         <header>
             <nav
                 id="main-nav"
-                class="fixed top-0 left-0 w-full z-50 bg-transparent backdrop-blur-sm transition-colors duration-300"
+                class="fixed top-0 left-0 w-full z-50 bg-transparent transition-colors duration-300"
             >
                 <div
                     class="max-w-screen-xl mx-auto flex justify-between items-center px-4 py-3 relative"

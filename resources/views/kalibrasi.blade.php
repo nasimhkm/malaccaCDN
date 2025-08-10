@@ -33,7 +33,7 @@
             <nav
                 id="main-nav"
                 class="fixed top-0 left-0 w-full z-50 bg-transparent transition-colors duration-300"
-            >
+             >
                 <div
                     class="max-w-screen-xl mx-auto flex justify-between items-center px-4 py-3 relative"
                 >
@@ -129,7 +129,7 @@
                         >
                             <li>
                                 <a
-                                    href="#"
+                                    href="{{ route('home') }}"
                                     class="block py-2 px-3 text-[#6c0c0d] rounded-t-lg"
                                     aria-current="page"
                                     >malacca entreprise</a
