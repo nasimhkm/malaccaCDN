@@ -292,9 +292,8 @@
                         <div
                             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
                          >
-                            {{-- We use ->take(3) to only loop through the first
-                            3 articles --}} 
-                            @forelse ($articles->take(3) as $article)
+                            {{-- We use ->take(3) to only loop through the first 3 articles --}} 
+                            @forelse ($articles->where('category', 'jurnal seduh')->take(3) as $article)
                             <a
                                 href="{{ route('articles.show', $article->slug) }}"
                                 class="relative block rounded-2xl shadow-lg h-[350px] bg-cover bg-center overflow-hidden group"
@@ -379,7 +378,7 @@
                         >
                             {{-- We use ->take(3) to only loop through the first
                             3 articles --}} 
-                            @forelse ($articles->take(3) as $article)
+                            @forelse ($articles->where('category', 'temu rasa')->take(3) as $article)
                             <a
                                 href="{{ route('articles.show', $article->slug) }}"
                                 class="relative block rounded-2xl shadow-lg h-[350px] bg-cover bg-center overflow-hidden group"
@@ -442,7 +441,7 @@
                          >
                             {{-- We use ->take(3) to only loop through the first
                             3 articles --}} 
-                            @forelse ($articles->take(3) as $article)
+                            @forelse ($articles->where('category', 'catatan pinggir kali')->take(3) as $article)
                             <a
                                 href="{{ route('articles.show', $article->slug) }}"
                                 class="relative block rounded-2xl shadow-lg h-[350px] bg-cover bg-center overflow-hidden group"
@@ -510,7 +509,7 @@
                                  class="grid grid-cols-1 gap-6"
                                  >
                                    {{-- We use ->take(3) to only loop through the first 1 articles --}} 
-                                    @forelse ($articles->take(1) as $article)
+                                    @forelse ($articles->where('category', 'kultum')->take(3) as $article)
                                     <a
                                         href="{{ route('articles.show', $article->slug) }}"
                                         class="relative block rounded-2xl shadow-lg md:w-[25vw] h-[350px] bg-cover bg-center overflow-hidden group"
@@ -550,7 +549,7 @@
                                  class="grid grid-cols-1 gap-6 order-3 md:order-none"
                                  >
                                    {{-- We use ->take(3) to only loop through the first 1 articles --}} 
-                                    @forelse ($articles->take(1) as $article)
+                                    @forelse ($articles->where('category', 'pang!')->take(3) as $article)
                                     <a
                                         href="{{ route('articles.show', $article->slug) }}"
                                         class="relative block rounded-2xl shadow-lg md:w-[25vw] h-[350px] bg-cover bg-center overflow-hidden group"
@@ -609,7 +608,7 @@
                                  class="grid grid-cols-1 gap-6"
                                  >
                                    {{-- We use ->take(3) to only loop through the first 1 articles --}} 
-                                    @forelse ($articles->take(1) as $article)
+                                    @forelse ($articles->where('category', 'kerja kelompok')->take(3) as $article)
                                     <a
                                         href="{{ route('articles.show', $article->slug) }}"
                                         class="relative block rounded-2xl shadow-lg md:w-[25vw] h-[350px] bg-cover bg-center overflow-hidden group"
