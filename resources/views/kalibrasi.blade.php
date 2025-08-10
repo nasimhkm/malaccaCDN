@@ -346,76 +346,162 @@
                 </div>
             </section>
             <!--temurasa section-->
-            <section id="temurasa">
-                <div class="relative h-screen">
-                    <div
-                        class="absolute h-screen bg-cover bg-center inset-0 bg-[url('{{ asset('asset/img/temurasa.png') }}')] [mask-image:linear-gradient(to_left,transparent,gray_60%)]"
-                    ></div>
+            <section
+                id="temurasa"
+                class="bg-[url('{{ asset('asset/img/temurasa.png') }}')] min-h-screen bg-cover bg-center"
+             >
+                <div class="flex flex-col md:flex-row">
                     <!--left side-->
-                    <div class="relative z-10">
-                        {{-- Path diubah menggunakan helper asset() --}}
+                    <div
+                        class="w-full md:w-1/2 flex items-center justify-center p-8"
+                     >
                         <img
-                            src="{{ asset('asset/kalibrasi/jurnalseduh.svg') }}"
-                            alt=""
+                            src="{{ asset('asset/kalibrasi/temurasa.svg') }}"
+                            alt="Jurnal Seduh"
+                            class="hidden md:flex md:w-2/4"
                         />
                     </div>
-                    <!--right side-->
-                    <div class="relative z-10 w-[80%] h-full text-white">
-                        <div class="flex flex-col">
-                            <div class="pt-[10rem] pl-[10rem]">
-                                <p class="text-xl/8 text-justify">
-                                    Malacca Coffee Konten micro-blog atau reels
-                                    berisi cerita dari individu dengan
-                                    pengalaman atau pemikiran yang inspiratif.
-                                    Format narasi personal ini membangun
-                                    kedekatan emosional antara cerita, ruang,
-                                    dan pembaca. Konten kurasi unggahan dari
-                                    website resmi Malacca yang menghimpun
-                                    tulisan-tulisan panjang: mulai dari esai
-                                    ringan, ulasan, hingga refleksi tematik.
+                    <!--section logo-->
+                    <div
+                        class="w-full md:w-1/2 flex flex-col justify-center px-8 py-16 md:pl-10 lg:pl-20"
+                     >
+                        <!--paragraph-->
+                        <div class="mb-12 md:pt-10">
+                            <p
+                                class="text-justify text-white font-light text-large"
+                             >
+                                Rubrik micro-blog yang menyuarakan
+                                opini, refleksi, dan pandangan kritis
+                                terhadap isu-isu sosial, budaya,
+                                maupun keseharian—ditulis dari sudut
+                                pandang “orang biasa”. Menawarkan
+                                cara pandang yang jujur, luwes, dan
+                                membumi, sebagai bentuk dokumentasi
+                                gagasan dari tepian wacana arus utama.
+                            </p>
+                        </div>
+                        <!--article card-->
+                        <div
+                            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                         >
+                            {{-- We use ->take(3) to only loop through the first 3 articles --}} 
+                            @forelse ($articles->take(3) as $article)
+                            <a
+                                href="{{ route('articles.show', $article->slug) }}"
+                                class="relative block rounded-2xl shadow-lg h-[350px] bg-cover bg-center overflow-hidden group"
+                                style="background-image: url('{{ $article->featured_image ? asset('storage/' . $article->featured_image) : asset('asset/img/default-article.jpg') }}');"
+                            >
+                                <div
+                                    class="absolute inset-0 bg-black/60 group-hover:bg-transparent transition-colors duration-300"
+                                ></div>
+                                <div
+                                    class="relative z-10 p-4 flex flex-col h-full justify-end"
+                                >
+                                    <h6 class="text-gray-300 font-bold text-xs">
+                                        {{ $article->category }}
+                                    </h6>
+                                    <h5
+                                        class="mb-2 text-xl font-bold tracking-tight text-white"
+                                    >
+                                        {{ $article->title }}
+                                    </h5>
+                                    <p
+                                    class="product-description line-clamp-3 mb-3 font-normal text-gray-200"
+                                >
+                                    {{ $article->description }}
                                 </p>
+                                <span
+                                    class="read-more-btn text-white font-semibold hover:underline self-start"
+                                >
+                                    Read More
+                                </span>
+                                </div>
+                            </a>
+                            @empty
+                            <div class="col-span-full text-center text-white">
+                                <p>belum ada tulisan saat ini</p>
                             </div>
-                            <!--article card-->
-                            <div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                            </div>
+                            @endforelse
                         </div>
                     </div>
                 </div>
             </section>
             <!--catatan section-->
-            <section id="catatan">
-                <div class="relative h-screen">
-                    <div
-                        class="absolute h-screen bg-cover bg-center inset-0 bg-[url('{{ asset('asset/img/catatan.png') }}')] [mask-image:linear-gradient(to_right,transparent,gray_60%)]"
-                    ></div>
+            <section id="catatan" class="bg-[url('{{ asset('asset/img/catatan.png') }}')] min-h-screen bg-cover bg-center">
+                <div class="flex flex-col md:flex-row">
                     <!--left side-->
-                    <div class="relative z-10 w-[80%] h-full text-white">
-                        <div class="flex flex-col">
-                            <div class="pt-[10rem] pl-[10rem]">
-                                <p class="text-xl/8 text-justify">
-                                    Rubrik micro-blog yang menyuarakan opini,
-                                    refleksi, dan pandangan kritis terhadap
-                                    isu-isu sosial, budaya, maupun
-                                    keseharian—ditulis dari sudut pandang “orang
-                                    biasa”. Menawarkan cara pandang yang jujur,
-                                    luwes, dan membumi, sebagai bentuk
-                                    dokumentasi gagasan dari tepian wacana arus
-                                    utama.
+                    <div
+                        class="w-full md:w-1/2 flex flex-col justify-center px-8 py-16 md:pl-10 lg:pl-20"
+                     >
+                        <!--paragraph-->
+                        <div class="mb-12 md:pt-10">
+                            <p
+                                class="text-justify text-white font-light text-large"
+                             >
+                                Rubrik micro-blog yang menyuarakan
+                                opini, refleksi, dan pandangan kritis
+                                terhadap isu-isu sosial, budaya,
+                                maupun keseharian—ditulis dari sudut
+                                pandang “orang biasa”. Menawarkan
+                                cara pandang yang jujur, luwes, dan
+                                membumi, sebagai bentuk dokumentasi
+                                gagasan dari tepian wacana arus utama.
+                            </p>
+                        </div>
+                        <!--article card-->
+                        <div
+                            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                         >
+                            {{-- We use ->take(3) to only loop through the first 3 articles --}} 
+                            @forelse ($articles->take(3) as $article)
+                            <a
+                                href="{{ route('articles.show', $article->slug) }}"
+                                class="relative block rounded-2xl shadow-lg h-[350px] bg-cover bg-center overflow-hidden group"
+                                style="background-image: url('{{ $article->featured_image ? asset('storage/' . $article->featured_image) : asset('asset/img/default-article.jpg') }}');"
+                            >
+                                <div
+                                    class="absolute inset-0 bg-black/60 group-hover:bg-transparent transition-colors duration-300"
+                                ></div>
+                                <div
+                                    class="relative z-10 p-4 flex flex-col h-full justify-end"
+                                >
+                                    <h6 class="text-gray-300 font-bold text-xs">
+                                        {{ $article->category }}
+                                    </h6>
+                                    <h5
+                                        class="mb-2 text-xl font-bold tracking-tight text-white"
+                                    >
+                                        {{ $article->title }}
+                                    </h5>
+                                    <p
+                                    class="product-description line-clamp-3 mb-3 font-normal text-gray-200"
+                                >
+                                    {{ $article->description }}
                                 </p>
+                                <span
+                                    class="read-more-btn text-white font-semibold hover:underline self-start"
+                                >
+                                    Read More
+                                </span>
+                                </div>
+                            </a>
+                            @empty
+                            <div class="col-span-full text-center text-white">
+                                <p>belum ada tulisan saat ini</p>
                             </div>
-                            <!--article card-->
-                            <div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                            </div>
+                            @endforelse
                         </div>
                     </div>
-                    <!--right side-->
-                    <div class="relative z-10"></div>
+                    <!--section logo-->
+                    <div
+                        class="w-full md:w-1/2 flex items-center justify-center p-8"
+                     >
+                        <img
+                            src="{{ asset('asset/kalibrasi/catatan.svg') }}"
+                            alt="Jurnal Seduh"
+                            class="hidden md:flex md:w-2/4"
+                        />
+                    </div>
                 </div>
             </section>
             <!--ruang section-->
