@@ -200,13 +200,12 @@
                 </div>
 
                 <div
-                    class="w-full md:w-1/2 grid grid-cols-2 md:grid-cols-3 grid-rows-3 md:grid-rows-2 gap-2 p-4 place-items-center"
+                    class="w-full md:w-1/2 grid grid-cols-2 md:grid-cols-3 grid-rows-3 md:grid-rows-2 gap-2 p-4 pb-10 md:pb-0 md:pr-8 place-items-center"
                 >
                     <a
                         href="#jurnal"
-                        class="w-full h-auto md:transform md:translate-y-32 md:translate-x-2 md:scale-110"
+                        class="w-[75%] h-auto md:transform md:translate-y-32 md:translate-x-2 md:scale-110"
                     >
-                        {{-- Path diubah menggunakan helper asset() --}}
                         <img
                             src="{{ asset('asset/kalibrasi/jurnalseduh.svg') }}"
                             alt="Jurnal Seduh"
@@ -215,7 +214,7 @@
 
                     <a
                         href="#temurasa"
-                        class="w-full h-auto md:transform md:translate-y-32 md:translate-x-2 md:scale-110"
+                        class="w-[75%] h-auto md:transform md:translate-y-32 md:translate-x-2 md:scale-110"
                     >
                         <img
                             src="{{ asset('asset/kalibrasi/temurasa.svg') }}"
@@ -225,7 +224,7 @@
 
                     <a
                         href="#catatan"
-                        class="w-full h-auto md:transform md:translate-y-32 md:translate-x-2 md:scale-110"
+                        class="w-[75%] h-auto md:transform md:translate-y-32 md:translate-x-2 md:scale-110"
                     >
                         <img
                             src="{{ asset('asset/kalibrasi/catatan.svg') }}"
@@ -235,7 +234,7 @@
 
                     <a
                         href="#ruang"
-                        class="w-full h-auto md:transform md:-translate-y-20 md:translate-x-2 md:scale-110"
+                        class="w-[75%] h-auto md:transform md:-translate-y-20 md:translate-x-2 md:scale-110"
                     >
                         <img
                             src="{{ asset('asset/kalibrasi/kultum.svg') }}"
@@ -245,7 +244,7 @@
 
                     <a
                         href="#ruang"
-                        class="w-full h-auto md:transform md:-translate-y-20 md:translate-x-2 md:scale-110"
+                        class="w-[75%] h-auto md:transform md:-translate-y-20 md:translate-x-2 md:scale-110"
                     >
                         <img
                             src="{{ asset('asset/kalibrasi/kerjaklmpk.svg') }}"
@@ -255,7 +254,7 @@
 
                     <a
                         href="#ruang"
-                        class="w-full h-auto md:transform md:-translate-y-20 md:translate-x-2 md:scale-110"
+                        class="w-[75%] h-auto md:transform md:-translate-y-20 md:translate-x-2 md:scale-110"
                     >
                         <img
                             src="{{ asset('asset/kalibrasi/pang.svg') }}"
@@ -277,7 +276,7 @@
                         <!--paragraph-->
                         <div class="mb-12 md:pt-10">
                             <p
-                                class="text-justify text-white font-light text-large"
+                                class="text-justify text-white font-light text-base"
                             >
                                 Malacca Coffee Konten micro-blog atau reels
                                 berisi cerita dari individu dengan pengalaman
@@ -292,7 +291,7 @@
                         <!--article card-->
                         <div
                             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-                        >
+                         >
                             {{-- We use ->take(3) to only loop through the first
                             3 articles --}} 
                             @forelse ($articles->take(3) as $article)
@@ -307,21 +306,15 @@
                                 <div
                                     class="relative z-10 p-4 flex flex-col h-full justify-end"
                                 >
-                                    <h6 class="text-gray-300 font-bold text-xs">
-                                        {{ $article->category }}
-                                    </h6>
+                                    
                                     <h5
-                                        class="mb-2 text-xl font-bold tracking-tight text-white"
+                                        class="mb-2 text-2xl md:text-base font-bold tracking-tight text-white pb-3"
                                     >
                                         {{ $article->title }}
                                     </h5>
-                                    <p
-                                        class="product-description line-clamp-3 mb-3 font-normal text-gray-200"
-                                    >
-                                        {{ $article->description }}
-                                    </p>
+                                    
                                     <span
-                                        class="read-more-btn text-white font-semibold hover:underline self-start"
+                                        class="read-more-btn text-white text-sm md:text-xs font-semibold hover:underline self-start"
                                     >
                                         Read More
                                     </span>
@@ -352,7 +345,7 @@
                 class="bg-[url('{{ asset('asset/img/temurasa.png') }}')] min-h-screen bg-cover bg-center"
              >
                 <div class="flex flex-col md:flex-row">
-                    <!--left side-->
+                    <!--section logo-->
                     <div
                         class="w-full md:w-1/2 flex items-center justify-center p-8"
                     >
@@ -362,10 +355,10 @@
                             class="hidden md:flex md:w-2/4"
                         />
                     </div>
-                    <!--section logo-->
+                    <!--right side-->
                     <div
                         class="w-full md:w-1/2 flex flex-col justify-center px-8 py-16 md:pl-10 lg:pl-20"
-                    >
+                     >
                         <!--paragraph-->
                         <div class="mb-12 md:pt-10">
                             <p
@@ -398,21 +391,13 @@
                                 <div
                                     class="relative z-10 p-4 flex flex-col h-full justify-end"
                                 >
-                                    <h6 class="text-gray-300 font-bold text-xs">
-                                        {{ $article->category }}
-                                    </h6>
                                     <h5
-                                        class="mb-2 text-xl font-bold tracking-tight text-white"
+                                        class="mb-2 text-2xl md:text-base font-bold tracking-tight text-white pb-3"
                                     >
                                         {{ $article->title }}
                                     </h5>
-                                    <p
-                                        class="product-description line-clamp-3 mb-3 font-normal text-gray-200"
-                                    >
-                                        {{ $article->description }}
-                                    </p>
                                     <span
-                                        class="read-more-btn text-white font-semibold hover:underline self-start"
+                                        class="read-more-btn text-white text-sm md:text-xs font-semibold hover:underline self-start"
                                     >
                                         Read More
                                     </span>
@@ -469,21 +454,13 @@
                                 <div
                                     class="relative z-10 p-4 flex flex-col h-full justify-end"
                                 >
-                                    <h6 class="text-gray-300 font-bold text-xs">
-                                        {{ $article->category }}
-                                    </h6>
                                     <h5
-                                        class="mb-2 text-xl font-bold tracking-tight text-white"
+                                        class="mb-2 text-2xl md:text-base font-bold tracking-tight text-white pb-3"
                                     >
                                         {{ $article->title }}
                                     </h5>
-                                    <p
-                                        class="product-description line-clamp-3 mb-3 font-normal text-gray-200"
-                                    >
-                                        {{ $article->description }}
-                                    </p>
                                     <span
-                                        class="read-more-btn text-white font-semibold hover:underline self-start"
+                                        class="read-more-btn text-white text-sm md:text-xs font-semibold hover:underline self-start"
                                     >
                                         Read More
                                     </span>
@@ -515,17 +492,57 @@
                     <div
                       class="w-full md:w-1/3 bg-cover bg-start h-screen"
                       style="background-image: url('{{ asset('asset/img/kultum.png') }}');"
-                    ></div>
+                    >
+                                <!-- logo and text-->
+                                <img src="{{ asset('asset/kalibrasi/kultum.svg') }}" alt="Kultum Logo">
+                                <p class="text-justify text-white font-light text-base">
+                                   Sesi belajar santai lintas disiplin
+                                   yang menghadirkan pemateri
+                                   dari berbagai bidang. Tanpa
+                                   beban akademik, tanpa tekanan
+                                   formal, namun tetap menawarkan
+                                   kedalaman gagasan.
+                                   “Kultum” dirancang sebagai ruang
+                                   temu wacana yang cair, terbuka,
+                                   dan menumbuhkan.
+                                </p>
+                            <!--article card-->
+                    </div>
                     <!--pang section-->
                     <div
                       class="w-full md:w-1/3 bg-cover bg-center h-screen"
                       style="background-image: url('{{ asset('asset/img/pang.png') }}');"
-                    ></div>
+                    >
+                                <!--article card-->
+
+                                <!--Logo and Text-->
+                                <p class="text-justify text-white font-light text-base">
+                                   “Pang!” hadir sebagai program rutin pagi hari yang 
+                                   menghidupkan ruang produktif dengan obrolan
+                                   ringan dan rutinitas harian. Mendorong produktivitas
+                                   tanpa tekanan — cukup memulai pagi dengan hadir.
+                                </p>
+                                <img src="{{ asset('asset/kalibrasi/pang.svg') }}" alt="Pang Logo">
+                    </div>
                     <!--kerjakelompok section-->
                     <div
                       class="w-full md:w-1/3 bg-cover bg-center h-screen"
                       style="background-image: url('{{ asset('asset/img/krjklmp.png') }}');"
-                    ></div>
+                    >
+                                <!--Logo and Text-->
+                                <img src="{{ asset('asset/kalibrasi/kerjaklmpk.svg') }}" alt="Kerja Kelompok Logo">
+                                <p class="text-justify text-white font-light text-base">
+                                   Program lokakarya kolaboratif dengan
+                                   tema besar yang cair dan terbuka. 
+                                   “Kerja Kelompok” memberi ruang bagi
+                                   pertukaran ide, kerja kreatif bersama,
+                                   dan partisipasi lintas latar belakang.
+                                   Fokus utamanya adalah keterlibatan
+                                   aktif, bukan hasil akhir.
+                                </p>
+                                <!--article card-->
+                                
+                    </div>
                 </div>
             </section>
         </main>
