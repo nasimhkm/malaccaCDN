@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>Kalibrasi</title>
+        <title>Kalibrasi - Malacca Entreprise Indonesia</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         {{-- Path diubah menggunakan helper asset() --}}
         <link

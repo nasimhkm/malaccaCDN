@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
     <head>
         <meta charset="UTF-8" />
-        <title>Malacca</title>
+        <title>Malacca Entreprise Indonesia</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script
             async
