@@ -29,6 +29,7 @@ class ArticleController extends Controller
     public function showPublicIndex()
     {
         $articles = Article::where('published_at', '<=', now())
+                       ->where('category', '!=', 'blog')
                        ->orderBy('published_at', 'desc') // Menggunakan orderBy desc lebih eksplisit
                        ->take(4)
                        ->get();

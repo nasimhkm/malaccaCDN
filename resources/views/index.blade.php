@@ -352,7 +352,7 @@
                     <div
                         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
                      >
-                        @forelse ($articles as $article)
+                        @forelse ($articles->where('category', '!=', 'blog')->take(4) as $article)
                         <a
                             href="{{ route('articles.show', $article->slug) }}"
                             class="relative block rounded-3xl shadow-lg h-[400px] bg-cover bg-center overflow-hidden group"

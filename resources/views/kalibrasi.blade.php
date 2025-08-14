@@ -96,6 +96,13 @@
                                 >kerja klmpk</a
                             >
                         </li>
+                        <li>
+                            <a
+                                href="#blog"
+                                class="nav-link hover:bg-[#6c0c0d] p-2 rounded-lg transition-colors"
+                                >blog</a
+                            >
+                        </li>
                     </ul>
                     <button
                         data-collapse-toggle="navbar-hamburger"
@@ -638,6 +645,55 @@
                                     </div>
                                     @endforelse
                                 </div>
+                    </div>
+                </div>
+            </section>
+            <!--blog section-->
+            <section
+                id="blog"
+                class="bg-[url('{{ asset('asset/img/blog.jpg') }}')] min-h-screen bg-cover bg-center"
+             >
+                <div class="space-y-8 px-8 py-16 md:px-10 lg:px-20">
+                    <div>
+                        <h1 class="text-white font-bold text-5xl pt-16 pl-32">blog</h1>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                        @forelse ($articles->where('category', 'blog')->take(4) as $article)
+                            <a href="{{ route('articles.show', $article->slug) }}"
+                                class="flex flex-col bg-[#0F0E0B] pt-5 pl-6 rounded-[2rem] shadow-lg overflow-hidden group @if(!$loop->first) hidden sm:flex @endif">
+
+                                {{-- Bagian Gambar --}}
+                                <div class="h-48 w-full">
+                                    <img class="h-full w-[90%] object-cover border-transparent rounded-[2rem] transition-transform duration-300 group-hover:scale-105"
+                                        src="{{ $article->featured_image ? asset('storage/' . $article->featured_image) : asset('asset/img/default-article.jpg') }}"
+                                        alt="Gambar unggulan untuk {{ $article->title }}" />
+                                 </div>
+
+                                {{-- Bagian Konten Teks --}}
+                                <div class="p-4 flex flex-col flex-grow">
+                                    {{-- Judul --}}
+                                    <h5 class="mb-2 text-xl font-bold tracking-tight text-white">
+                                        {{ $article->title }}
+                                    </h5>
+
+                                    {{-- Deskripsi --}}
+                                    <p class="mb-3 font-normal text-gray-300 line-clamp-2">
+                                        {{ $article->description }}
+                                    </p>
+
+                                    {{-- Tombol Read More --}}
+                                    <span class="relative justify-end text-sm font-semibold text-white group-hover:underline">
+                                        Read More
+                                    </span>
+                                </div>
+                            </a>
+                        @empty
+                            <div class="col-span-full text-center text-white">
+                                <p>belum ada tulisan saat ini</p>
+                            </div>
+                        @endforelse
                     </div>
                 </div>
             </section>

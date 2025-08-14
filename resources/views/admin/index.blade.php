@@ -187,8 +187,7 @@
                         class="relative overflow-x-auto shadow-md sm:rounded-lg"
                     >
                         <table class="w-full text-sm text-left text-gray-400">
-                            {{-- Header Tabel dikembalikan sesuai template asli
-                            --}}
+                            {{-- Header Tabel dikembalikan sesuai template asli --}}
                             <thead
                                 class="text-xs uppercase bg-gray-700 text-gray-400"
                             >
@@ -218,8 +217,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($articles as $article) {{--
-                                Menambahkan class 'group' untuk efek hover --}}
+                                @forelse ($articles as $article) {{-- Menambahkan class 'group' untuk efek hover --}}
                                 <tr
                                     class="border-b bg-gray-800 border-gray-700 hover:bg-gray-600 group"
                                 >
@@ -237,8 +235,7 @@
                                             >
                                         </div>
                                     </td>
-                                    {{-- Kolom judul dengan tombol aksi hover
-                                    --}}
+                                    {{-- Kolom judul dengan tombol aksi hover --}}
                                     <th
                                         scope="row"
                                         class="px-6 py-4 font-medium whitespace-nowrap text-white"
@@ -267,9 +264,8 @@
                                                     >
                                                         Trash
                                                     </button>
-                                                    {{-- Link View bisa
-                                                    ditambahkan di sini jika ada
-                                                    halaman detail --}} |
+                                                    {{-- Link View bisa ditambahkan di sini jika ada halaman detail --}}
+                                                    |
                                                     <a
                                                         href="{{ route('articles.show', $article->slug) }}"
                                                         target="_blank"
@@ -288,7 +284,7 @@
                                     </td>
                                     <td class="px-6 py-4">
                                         {{
-                                        $article->published_at->format('Y/m/d')
+                                            $article->published_at->format('Y/m/d')
                                         }}
                                     </td>
                                 </tr>
@@ -324,7 +320,7 @@
                                 >{{ $articles->total() }}</span
                             >
                         </span>
-                        {{ $articles->links() }}
+                        {{ $articles->fragment('article')->links() }}
                     </nav>
                 </div>
             </div>
