@@ -1,81 +1,125 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
     <head>
-        <meta charset="UTF-8" />
-        <title>Malacca Entreprise Indonesia</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-P9RJKKCBGP"
-        ></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-            gtag("js", new Date());
-            gtag("config", "G-P9RJKKCBGP");
-        </script>
-        <link
-            rel="icon"
-            href="{{ asset('asset/logo/logoCompanyFavicon.svg') }}"
-            type="image/svg+xml"
-        />
+    <meta charset="UTF-8" />
+    <title>Malacca Entreprise Indonesia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P9RJKKCBGP"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag("js", new Date());
+        gtag("config", "G-P9RJKKCBGP");
+    </script>
+    
+    <link rel="icon" href="{{ asset('asset/logo/logoCompanyFavicon.svg') }}" type="image/svg+xml" />
 
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link
-            href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css"
-            rel="stylesheet"
-        />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script> <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
 
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-            rel="stylesheet"
-        />
+    <style>
+        body {
+            font-family: "Montserrat", sans-serif;
+            background-color: #000;
+        }
+        .line-clamp-3 {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+        }
+    </style>
 
-        <style>
-            body {
-                font-family: "Montserrat", sans-serif;
-                background-color: #000;
-            }
-            .line-clamp-3 {
-                overflow: hidden;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 3;
-            }
-        </style>
+<script>
+    // 1. DEFINISIKAN pathLength DI SINI AGAR BISA DIAKSES OLEH SEMUA
+    const pathLength = 14300;
 
-        <script>
-            const pathLength = 14300;
-            tailwind.config = {
-                theme: {
-                    extend: {
-                        animation: {
-                            // Nama animasi: draw, durasi: 3 detik
-                            draw: "draw 10s ease-in-out forwards",
+    // 2. KONFIGURASI TAILWIND
+    tailwind.config = {
+        theme: {
+            extend: {
+                animation: {
+                    // Durasi animasi CSS harus cocok dengan animationDuration di JS
+                    "draw": "draw-keyframes 5s ease-in-out forwards",
+                },
+                keyframes: {
+                    "draw-keyframes": {
+                        "0%": {
+                            strokeDashoffset: pathLength,
+                            fillOpacity: "0",
                         },
-                        keyframes: {
-                            draw: {
-                                // Awal: offset sama dengan panjang path (garis tersembunyi)
-                                "0%": {
-                                    strokeDashoffset: pathLength,
-                                    fillOpacity: "0",
-                                },
-                                // Akhir: offset 0 (garis terlihat penuh)
-                                "100%": {
-                                    strokeDashoffset: "0",
-                                    fillOpacity: "10",
-                                },
-                            },
+                        "100%": {
+                            strokeDashoffset: "0",
+                            fillOpacity: "1",
                         },
                     },
                 },
-            };
-        </script>
-    </head>
+            },
+        },
+    };
+
+    // 3. SKRIP UTAMA ANIMASI
+    document.addEventListener("DOMContentLoaded", function () {
+        // --- PENGATURAN WAKTU ---
+        const animationDuration = 5000;
+        const pauseDuration = 5000;
+        const totalCycleTime = animationDuration + pauseDuration;
+    
+        // --- AMBIL SEMUA ELEMEN ---
+        const logoPath = document.getElementById("logo-path");
+    
+        // --- OPSI UNTUK TYPED.JS ---
+        const optionsTitle = {
+            strings: ["once brew <br> we bro"],
+            typeSpeed: 50,
+            showCursor: false,
+        };
+    
+        const optionsButton = {
+            strings: ["kolaborasi bareng kita"],
+            typeSpeed: 50,
+            showCursor: false,
+        };
+    
+        let typedTitleInstance;
+        let typedButtonInstance;
+    
+        // --- FUNGSI UTAMA UNTUK MEMULAI/MENGULANG SEMUA ANIMASI ---
+        function startAllAnimations() {
+            console.log("Memulai siklus animasi baru...");
+    
+            // 1. Reset dan mulai animasi logo SVG
+            logoPath.classList.remove("animate-draw");
+            
+            // --- INI PERBAIKANNYA ---
+            // Reset KEDUA properti yang 'terkunci' oleh 'forwards'
+            logoPath.style.strokeDashoffset = pathLength;
+            logoPath.style.fillOpacity = "0"; // <-- TAMBAHKAN BARIS INI
+    
+            // Trik untuk memaksa browser me-render ulang
+            void logoPath.offsetWidth;
+    
+            // Mulai lagi animasi dengan menambahkan class
+            logoPath.classList.add("animate-draw");
+    
+            // 2. Hancurkan dan buat ulang animasi Typed.js
+            if (typedTitleInstance) typedTitleInstance.destroy();
+            if (typedButtonInstance) typedButtonInstance.destroy();
+    
+            typedTitleInstance = new Typed("#typed-title", optionsTitle);
+            typedButtonInstance = new Typed("#typed-button", optionsButton);
+        }
+    
+        // --- LOOP UTAMA ---
+        startAllAnimations();
+        setInterval(startAllAnimations, totalCycleTime);
+    });
+</script>
+</head>
     <body>
         <header>
             <nav
@@ -234,8 +278,8 @@
                     <a
                         id="typed-button"
                         href="https://wa.link/1x9qk8"
-                        class="opacity-0 translate-y-4 transition-all duration-500 py-2.5 px-6 md:text-xl text-sm font-medium text-white bg-transparent rounded-full border md:border-[3px] border-white hover:bg-white/10"
-                    >
+                        class="py-2.5 px-6 md:text-xl text-sm font-medium text-white bg-transparent rounded-full border md:border-[3px] border-white hover:bg-white/10"
+                     >
                     </a>
                 </div>
             </section>
@@ -524,37 +568,7 @@
             </section>
         </footer>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                // Opsi untuk animasi judul
-                var optionsTitle = {
-                    strings: ["once brew <br> we bro"],
-                    typeSpeed: 50, // Kecepatan ketik
-                    showCursor: false, // Tidak menampilkan kursor
-                    startDelay: 100,
-                    onComplete: function (self) {
-                        // Fungsi ini berjalan setelah judul selesai diketik
-                        // Membuat tombol terlihat
-                        const button = document.getElementById("typed-button");
-                        button.style.opacity = "1";
-                        button.style.transition = "opacity 0.5s";
-
-                        // Memulai animasi untuk tombol
-                        new Typed("#typed-button", optionsButton);
-                    },
-                };
-
-                // Opsi untuk animasi tombol
-                var optionsButton = {
-                    strings: ["kolaborasi bareng kita"],
-                    typeSpeed: 50,
-                    showCursor: false,
-                };
-
-                // Memulai animasi untuk judul
-                new Typed("#typed-title", optionsTitle);
-            });
-        </script>
+        
 
         <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
