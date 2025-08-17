@@ -285,14 +285,12 @@
                             <p
                                 class="text-justify text-white font-light text-base"
                             >
-                                Malacca Coffee Konten micro-blog atau reels
-                                berisi cerita dari individu dengan pengalaman
-                                atau pemikiran yang inspiratif. Format narasi
-                                personal ini membangun kedekatan emosional
-                                antara cerita, ruang, dan pembaca. Konten kurasi
-                                unggahan dari website resmi Malacca yang
-                                menghimpun tulisan-tulisan panjang: mulai dari
-                                esai ringan, ulasan, hingga refleksi tematik.
+                                Konten kurasi unggahan dari website resmi 
+                                Malacca yang menghimpun tulisan-tulisan 
+                                panjang: mulai dari esai ringan, ulasan, hingga 
+                                refleksi tematik.
+                                Unggahan ini berfungsi sebagai publikasi yang 
+                                mengarahkan akeses tulisan menuju website.
                             </p>
                         </div>
                         <!--article card-->
@@ -370,13 +368,15 @@
                             <p
                                 class="text-justify text-white font-light text-large"
                             >
-                                Rubrik micro-blog yang menyuarakan opini,
-                                refleksi, dan pandangan kritis terhadap isu-isu
-                                sosial, budaya, maupun keseharian—ditulis dari
-                                sudut pandang “orang biasa”. Menawarkan cara
-                                pandang yang jujur, luwes, dan membumi, sebagai
-                                bentuk dokumentasi gagasan dari tepian wacana
-                                arus utama.
+                                Konten micro-blog 
+                                atau reels berisi cerita 
+                                dari individu dengan 
+                                pengalaman atau 
+                                pemikiran yang inspiratif.
+                                Format narasi personal ini 
+                                membangun kedekatan 
+                                emosional antara cerita, 
+                                ruang, dan pembaca.
                             </p>
                         </div>
                         <!--article card-->
