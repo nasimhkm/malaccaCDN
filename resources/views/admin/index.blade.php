@@ -252,7 +252,7 @@
                                                 >
                                                 |
                                                 <form
-                                                    action="{{ route('admin.articles.destroy', $article->id) }}"
+                                                    action="{{ route('admin.articles.destroy', $article) }}"
                                                     method="POST"
                                                     class="inline"
                                                     onsubmit="return confirm('Are you sure?');"
