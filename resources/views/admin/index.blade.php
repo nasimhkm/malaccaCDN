@@ -284,8 +284,36 @@
                 </div>
 
                 <!--Task-->
-                <div id="task">
+                <div id="task" class="content-section hidden">
+                    <div class="mb-10 mt-6">
+                        <h1 class="text-4xl font-bold tracking-tight">Task Board</h1>
+                        <p class="text-gray-400 mt-2">The task board to keep track of your tasks.</p>
+                        <hr class="border-gray-800 my-6">
+                    </div>
 
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                        @php
+                            // Define the columns to ensure they are always displayed in order
+                            $columns = ['backlog', 'ongoing', 'done'];
+                        @endphp
+
+                        @foreach ($columns as $status)
+                            <div class="bg-gray-900/50 rounded-lg p-4">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h2 class="font-bold capitalize">{{ $status }}</h2>
+                                    <button class="text-gray-400 hover:text-white">+</button>
+                                </div>
+
+                                <div id="{{ $status }}-col" class="space-y-4 min-h-[200px]">
+                                    @foreach ($tasks[$status] ?? [] as $task)
+                                        @include('admin.partials.task-card', ['task' => $task])
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endforeach
+
+                    </div>
                 </div>
             </div>
         </main>
