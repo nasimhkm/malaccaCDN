@@ -31,6 +31,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     // agar bisa menentukan binding key secara eksplisit.
     Route::resource('articles', ArticleController::class)->except(['show', 'edit', 'update', 'index']);
 
+    // Membuat rute untuk task board
+    Route::resource('tasks', \App\Http\Controllers\TaskController::class);
+
     // Definisikan rute edit dan update secara manual menggunakan 'id'
     Route::get('articles/{article:id}/edit', [ArticleController::class, 'edit'])->name('articles.edit');
     Route::put('articles/{article:id}', [ArticleController::class, 'update'])->name('articles.update');

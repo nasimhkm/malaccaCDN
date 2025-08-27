@@ -302,7 +302,12 @@
                             <div class="bg-gray-900/50 rounded-lg p-4">
                                 <div class="flex justify-between items-center mb-4">
                                     <h2 class="font-bold capitalize">{{ $status }}</h2>
-                                    <button class="text-gray-400 hover:text-white">+</button>
+                                     {{-- PENYESUAIAN: Tombol diubah untuk membuka modal --}}
+                                    <button 
+                                        data-modal-target="create-task-modal" 
+                                        data-modal-toggle="create-task-modal"
+                                        data-status="{{ $status }}"
+                                        class="add-task-btn text-gray-400 hover:text-white">+</button>
                                 </div>
 
                                 <div id="{{ $status }}-col" class="space-y-4 min-h-[200px]">
@@ -315,9 +320,77 @@
 
                     </div>
                 </div>
+                {{-- PENAMBAHAN: Sertakan file modal di sini --}}
+                @include('admin.partials.create-task-modal')
+                @include('admin.partials.edit-task-modal')
             </div>
         </main>
-
+        {{-- PENAMBAHAN: Script untuk mengirim status ke modal --}}
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const addTaskButtons = document.querySelectorAll('.add-task-btn');
+            const taskStatusInput = document.getElementById('task-status-input');
+        
+            addTaskButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const status = this.getAttribute('data-status');
+                    if (taskStatusInput) {
+                        taskStatusInput.value = status;
+                    }
+                });
+            });
+        });
+        </script>
+        {{-- Tambahkan script untuk create dan edit modal --}}
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- Script untuk Create Modal ---
+            const addTaskButtons = document.querySelectorAll('.add-task-btn');
+            const taskStatusInput = document.getElementById('task-status-input');
+        
+            addTaskButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const status = this.getAttribute('data-status');
+                    if (taskStatusInput) {
+                        taskStatusInput.value = status;
+                    }
+                });
+            });
+        
+            // --- Script untuk Edit Modal ---
+            const editTaskButtons = document.querySelectorAll('.edit-task-btn');
+            const editTaskForm = document.getElementById('edit-task-form');
+            const editTaskTitle = document.getElementById('edit-task-title');
+            const editTaskDescription = document.getElementById('edit-task-description');
+            const editTaskStatus = document.getElementById('edit-task-status');
+        
+            editTaskButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const taskUrl = this.getAttribute('data-task-url');
+                    const taskId = this.getAttribute('data-task-id');
+                    
+                    // Fetch data task dari server
+                    fetch(taskUrl)
+                        .then(response => response.json())
+                        .then(data => {
+                            // Isi form dengan data yang didapat
+                            if(editTaskForm) {
+                                editTaskForm.action = `/admin/tasks/${taskId}`;
+                            }
+                            if(editTaskTitle) {
+                                editTaskTitle.value = data.title;
+                            }
+                            if(editTaskDescription) {
+                                editTaskDescription.value = data.description;
+                            }
+                            if(editTaskStatus) {
+                                editTaskStatus.value = data.status;
+                            }
+                        });
+                });
+            });
+        });
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
         <script src="{{ asset('scripts/global.js') }}" defer></script>
         <script src="{{ asset('scripts/admin-script.js') }}" defer></script>

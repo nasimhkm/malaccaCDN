@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str; // Pastikan use statement Str tetap ada
@@ -16,7 +17,9 @@ class ArticleController extends Controller
     {
         $perPage = request('per_page', 10);
         $articles = Article::latest('published_at')->paginate($perPage);
-        return view('admin.index', compact('articles'));
+        // Ambil semua task dan kelompokkan berdasarkan statusnya
+        $tasks = Task::all()->groupBy('status');
+        return view('admin.index', compact('articles', 'tasks'));
     }
 
     /**
