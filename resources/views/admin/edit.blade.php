@@ -47,13 +47,15 @@
                 <div>
                     <label for="category" class="block mb-2 text-sm font-medium text-gray-300">Category</label>
                     <select name="category" id="category" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg block w-full p-2.5" required>
-                        <option value="blog" {{ old('category') == 'blog' ? 'selected' : '' }}>blog</option>
-                        <option value="jurnal seduh" {{ old('category') == 'jurnal-seduh' ? 'selected' : '' }}>jurnal seduh</option>
-                        <option value="catatan pinggir kali" {{ old('category') == 'catatan-pinggir-kali' ? 'selected' : '' }}>catatan pinggir kali</option>
-                        <option value="temu rasa" {{ old('category') == 'temu-rasa' ? 'selected' : '' }}>temu rasa</option>
-                        <option value="kultum" {{ old('category') == 'kultum' ? 'selected' : '' }}>kultum</option>
-                        <option value="kerja kelompok" {{ old('category') == 'kerja-kelompok' ? 'selected' : '' }}>kerja kelompok</option>
-                        <option value="pang!" {{ old('category') == 'pang!' ? 'selected' : '' }}>pang!</option>
+                        {{-- Kunci perbaikan: old('category', $article->category) --}}
+                        {{-- Ini akan menggunakan $article->category sebagai nilai jika old('category') tidak ada --}}
+                        <option value="blog" {{ old('category', $article->category) == 'blog' ? 'selected' : '' }}>blog</option>
+                        <option value="jurnal seduh" {{ old('category', $article->category) == 'jurnal seduh' ? 'selected' : '' }}>jurnal seduh</option>
+                        <option value="catatan pinggir kali" {{ old('category', $article->category) == 'catatan pinggir kali' ? 'selected' : '' }}>catatan pinggir kali</option>
+                        <option value="temu rasa" {{ old('category', $article->category) == 'temu rasa' ? 'selected' : '' }}>temu rasa</option>
+                        <option value="kultum" {{ old('category', $article->category) == 'kultum' ? 'selected' : '' }}>kultum</option>
+                        <option value="kerja kelompok" {{ old('category', $article->category) == 'kerja kelompok' ? 'selected' : '' }}>kerja kelompok</option>
+                        <option value="pang!" {{ old('category', $article->category) == 'pang!' ? 'selected' : '' }}>pang!</option>
                     </select>
                 </div>
                 <div>
