@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Tag; // Pastikan Tag di-import
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -55,6 +56,7 @@ class ArticleController extends Controller
             'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
             'published_date' => 'required|date',
             'category' => 'nullable|string',
+            'tags' => 'nullable|string', // <-- PENAMBAHAN: Validasi untuk tags
         ]);
 
         $imagePath = null;
@@ -71,7 +73,8 @@ class ArticleController extends Controller
 
         // --- LOGIKA DESKRIPSI OTOMATIS DIHAPUS ---
 
-        Article::create([
+        // PENYESUAIAN: Simpan artikel yang baru dibuat ke dalam variabel $article
+        $article = Article::create([
             'title' => $validated['title'],
             'slug' => $slug,
             'description' => $validated['description'], // PENYESUAIAN: Mengambil deskripsi langsung dari form
@@ -81,6 +84,20 @@ class ArticleController extends Controller
             'featured_image' => $imagePath,
             'published_at' => $validated['published_date'],
         ]);
+
+        // PENYESUAIAN: Logika Tags yang sudah ada, sekarang menggunakan variabel $article yang benar
+        if (!empty($validated['tags'])) {
+            $tagNames = explode(',', $validated['tags']);
+            $tagIds = [];
+            foreach ($tagNames as $tagName) {
+                $tagName = trim($tagName);
+                if ($tagName) {
+                    $tag = Tag::firstOrCreate(['name' => $tagName]);
+                    $tagIds[] = $tag->id;
+                }
+            }
+            $article->tags()->sync($tagIds); // Menghubungkan artikel dengan tags
+        }
 
         return redirect(route('admin.dashboard') . '#article')->with('success', 'Article created successfully!');
     }
@@ -115,6 +132,7 @@ class ArticleController extends Controller
             'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
             'published_date' => 'required|date',
             'category' => 'nullable|string',
+            'tags' => 'nullable|string', // <-- PENAMBAHAN: Validasi untuk tags
         ]);
 
         $imagePath = $article->featured_image;
@@ -147,6 +165,23 @@ class ArticleController extends Controller
             'featured_image' => $imagePath,
             'published_at' => $validated['published_date'],
         ]);
+
+        // PENYESUAIAN: Logika Tags yang sebelumnya belum ada di fungsi update
+        if (!empty($validated['tags'])) {
+            $tagNames = explode(',', $validated['tags']);
+            $tagIds = [];
+            foreach ($tagNames as $tagName) {
+                $tagName = trim($tagName);
+                if ($tagName) {
+                    $tag = Tag::firstOrCreate(['name' => $tagName]);
+                    $tagIds[] = $tag->id;
+                }
+            }
+            $article->tags()->sync($tagIds); // Menghubungkan artikel dengan tags
+        } else {
+            // Jika input tags kosong, hapus semua relasi tag yang ada
+            $article->tags()->sync([]);
+        }
         
         return redirect(route('admin.dashboard') . '#article')->with('success', 'Article updated successfully!');
     }

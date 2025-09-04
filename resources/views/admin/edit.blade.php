@@ -19,7 +19,7 @@
         <h1 class="text-3xl font-bold mb-6">Edit Article</h1>
 
         {{-- KUNCI 2: Form Action mengarah ke rute UPDATE dan menggunakan method PUT --}}
-        <form action="{{ route('admin.articles.update', $article->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.articles.update', $article) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -80,19 +80,14 @@
                 <p id="char-count-feedback" class="mt-1 text-xs text-gray-500">Max 600 characters.</p>
             </div>
 
-            <!-- === PENAMBAHAN BAGIAN SEO TAGS === -->
             <div class="mb-6">
                 <label for="tags-input" class="block mb-2 text-sm font-medium text-gray-300">SEO Tags</label>
                 <div id="tags-container" class="flex flex-wrap items-center gap-2 p-2.5 bg-gray-700 border border-gray-600 rounded-lg min-h-[42px]">
-                    <!-- Tags will be dynamically added here -->
                     <input type="text" id="tags-input" class="bg-transparent text-white text-sm focus:outline-none flex-grow" placeholder="Add a tag and press Enter...">
                 </div>
-                <!-- Input tersembunyi ini yang akan dikirim ke server -->
-                <input type="hidden" name="tags" id="tags-hidden-input">
+                <input type="hidden" name="tags" id="tags-hidden-input" value="{{ old('tags', $article->tags->pluck('name')->implode(',')) }}">
                 <p class="mt-1 text-xs text-gray-500">Pisahkan tag dengan koma atau tekan Enter. Contoh: Kopi, Manual Brew, V60.</p>
             </div>
-            <!-- === AKHIR PENAMBAHAN === -->
-
             <div class="mb-6">
                  <label for="content-editor" class="block mb-2 text-sm font-medium text-gray-300">Full Content</label>
                 <textarea id="content-editor" name="content">{{ old('content', $article->content) }}</textarea>
@@ -159,7 +154,7 @@
                 
                 const closeBtn = document.createElement('span');
                 closeBtn.setAttribute('class', 'cursor-pointer text-blue-200 hover:text-white text-lg leading-none');
-                closeBtn.innerHTML = '&times;';
+                closeBtn.innerHTML = '×';
                 closeBtn.onclick = () => {
                     const index = tags.indexOf(label);
                     if (index > -1) {
@@ -186,11 +181,10 @@
             
             // --- KUNCI PERUBAHAN UNTUK HALAMAN EDIT ---
             function initializeTags() {
-                // Di aplikasi Laravel, Anda akan menggunakan:
-                // const existingTags = "{{ old('tags', $article->tags ?? '') }}";
-                // Untuk preview, kita gunakan nilai dari hidden input.
                 const existingTags = hiddenInput.value;
                 if (existingTags) {
+                    tags = []; 
+                    tagsContainer.querySelectorAll('.flex.items-center.gap-2').forEach(tagEl => tagEl.remove());
                     existingTags.split(',').forEach(tag => {
                         if (tag.trim() !== '') {
                             addTag(tag.trim());

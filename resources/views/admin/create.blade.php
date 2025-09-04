@@ -21,33 +21,34 @@
     <div class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
         <h1 class="text-3xl font-bold mb-6">Create New Article</h1>
 
-        <!-- PERBAIKAN: Form dibuat statis untuk preview -->
-        <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Form submitted!');">
+        {{-- PENYESUAIAN: Form dihubungkan ke route Laravel --}}
+        <form action="{{ route('admin.articles.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
                     <label for="title" class="block mb-2 text-sm font-medium text-gray-300">Title</label>
-                    <input type="text" name="title" id="title" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg block w-full p-2.5" placeholder="Your article title" required>
+                    <input type="text" name="title" id="title" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg block w-full p-2.5" placeholder="Your article title" value="{{ old('title') }}" required>
                 </div>
                 <div>
                     <label for="author" class="block mb-2 text-sm font-medium text-gray-300">Author</label>
-                    <input type="text" name="author" id="author" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg block w-full p-2.5" placeholder="Author's name" value="Admin" required>
+                    <input type="text" name="author" id="author" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg block w-full p-2.5" placeholder="Author's name" value="{{ old('author', 'Admin') }}" required>
                 </div>
                 <div>
                     <label for="category" class="block mb-2 text-sm font-medium text-gray-300">Category</label>
                     <select name="category" id="category" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg block w-full p-2.5" required>
-                        <option value="blog">blog</option>
-                        <option value="jurnal seduh">jurnal seduh</option>
-                        <option value="catatan pinggir kali">catatan pinggir kali</option>
-                        <option value="temu rasa">temu rasa</option>
-                        <option value="kultum">kultum</option>
-                        <option value="kerja kelompok">kerja kelompok</option>
-                        <option value="pang!">pang!</option>
+                        <option value="blog" {{ old('category') == 'blog' ? 'selected' : '' }}>blog</option>
+                        <option value="jurnal seduh" {{ old('category') == 'jurnal seduh' ? 'selected' : '' }}>jurnal seduh</option>
+                        <option value="catatan pinggir kali" {{ old('category') == 'catatan pinggir kali' ? 'selected' : '' }}>catatan pinggir kali</option>
+                        <option value="temu rasa" {{ old('category') == 'temu rasa' ? 'selected' : '' }}>temu rasa</option>
+                        <option value="kultum" {{ old('category') == 'kultum' ? 'selected' : '' }}>kultum</option>
+                        <option value="kerja kelompok" {{ old('category') == 'kerja kelompok' ? 'selected' : '' }}>kerja kelompok</option>
+                        <option value="pang!" {{ old('category') == 'pang!' ? 'selected' : '' }}>pang!</option>
                     </select>
                 </div>
                 <div>
                     <label for="published_date" class="block mb-2 text-sm font-medium text-gray-300">Publish Date</label>
-                    <input type="datetime-local" name="published_date" id="published_date" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg block w-full p-2.5" required>
+                    <input type="datetime-local" name="published_date" id="published_date" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg block w-full p-2.5" value="{{ old('published_date') }}" required>
                 </div>
             </div>
             
@@ -59,33 +60,28 @@
 
             <div class="mb-6">
                 <label for="description" class="block mb-2 text-sm font-medium text-gray-300">Description / Summary</label>
-                <textarea name="description" id="description" rows="3" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg block w-full p-2.5" placeholder="Write a short and engaging summary for the article..." maxlength="600"></textarea>
+                <textarea name="description" id="description" rows="3" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg block w-full p-2.5" placeholder="Write a short and engaging summary for the article..." maxlength="600">{{ old('description') }}</textarea>
                 <p id="char-count-feedback" class="mt-1 text-xs text-gray-500">Max 600 characters.</p>
             </div>
 
-            <!-- === PENAMBAHAN BAGIAN SEO TAGS === -->
             <div class="mb-6">
                 <label for="tags-input" class="block mb-2 text-sm font-medium text-gray-300">SEO Tags</label>
                 <div id="tags-container" class="flex flex-wrap items-center gap-2 p-2.5 bg-gray-700 border border-gray-600 rounded-lg min-h-[42px]">
-                    <!-- Tags will be dynamically added here -->
                     <input type="text" id="tags-input" class="bg-transparent text-white text-sm focus:outline-none flex-grow" placeholder="Add a tag and press Enter...">
                 </div>
-                <!-- Input tersembunyi ini yang akan dikirim ke server -->
-                <input type="hidden" name="tags" id="tags-hidden-input">
+                <input type="hidden" name="tags" id="tags-hidden-input" value="{{ old('tags') }}">
                 <p class="mt-1 text-xs text-gray-500">Pisahkan tag dengan koma atau tekan Enter. Contoh: Kopi, Manual Brew, V60.</p>
             </div>
-            <!-- === AKHIR PENAMBAHAN === -->
-
             <div class="mb-6">
                 <label for="content-editor" class="block mb-2 text-sm font-medium text-gray-300">Full Content</label>
-                <textarea id="content-editor" name="content"><h2>Start writing your amazing article here!</h2></textarea>
+                <textarea id="content-editor" name="content">{{ old('content', '<h2>Start writing your amazing article here!</h2>') }}</textarea>
             </div>
 
             <div class="flex items-center gap-4">
                 <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5">
                     Save Article
                 </button>
-                <a href="#" class="text-gray-400 hover:text-white">Cancel</a>
+                <a href="{{ route('admin.dashboard') . '#article' }}" class="text-gray-400 hover:text-white">Cancel</a>
             </div>
         </form>
     </div>
@@ -145,7 +141,7 @@
                 
                 const closeBtn = document.createElement('span');
                 closeBtn.setAttribute('class', 'cursor-pointer text-blue-200 hover:text-white text-lg leading-none');
-                closeBtn.innerHTML = '&times;'; // HTML entity for 'x'
+                closeBtn.innerHTML = '×'; // HTML entity for 'x'
                 closeBtn.onclick = () => {
                     const index = tags.indexOf(label);
                     if (index > -1) {
@@ -170,6 +166,17 @@
                     updateHiddenInput();
                 }
             }
+            
+            function initializeTags() {
+                const existingTags = hiddenInput.value;
+                if (existingTags) {
+                    existingTags.split(',').forEach(tag => {
+                        if (tag.trim() !== '') {
+                            addTag(tag.trim());
+                        }
+                    });
+                }
+            }
 
             textInput.addEventListener('keydown', function(event) {
                 if (event.key === 'Enter' || event.key === ',') {
@@ -184,6 +191,7 @@
                 textInput.focus();
             });
 
+            initializeTags(); // Panggil ini untuk menangani `old('tags')`
         });
     </script>
 </body>

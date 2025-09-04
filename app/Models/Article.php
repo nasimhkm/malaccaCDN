@@ -59,4 +59,10 @@ class Article extends Model
     {
         return 'slug';
     }
+
+    // buat tags
+    public function tags()
+    {
+    return $this->belongsToMany(Tag::class);
+    }
 }
