@@ -5,11 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{{ $article->title }} - Malacca Entreprise Indonesia</title>
         <script src="https://cdn.tailwindcss.com"></script>
-        <link
-            rel="icon"
-            href="{{ asset('asset/logo/logoCompanyFavicon.svg') }}"
-            type="image/svg+xml"
-        />
+        <link rel="icon" type="image/png" href="{{ asset('asset/favicon/favicon-96x96.png') }}" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="{{ asset('asset/favicon/favicon.svg') }}" />
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('asset/favicon/apple-touch-icon.png') }}" />
+        <meta name="apple-mobile-web-app-title" content="Malacca" />
+        <link rel="manifest" href="{{ asset('asset/favicon/site.webmanifest') }}" />
         <link
             href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
             rel="stylesheet"
