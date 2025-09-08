@@ -4,10 +4,13 @@
         <meta charset="UTF-8" />
         <title>Malacca Entreprise Indonesia</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-P9RJKKCBGP"
-        ></script>
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-585SL7GM');</script>
+        <!-- End Google Tag Manager -->
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag() {
@@ -16,13 +19,14 @@
             gtag('js', new Date());
             gtag('config', 'G-P9RJKKCBGP');
         </script>
-
-        <link
-            rel="icon"
-            href="{{ asset("asset/logo/logoCompanyFavicon.svg") }}"
-            type="image/svg+xml"
-        />
-
+        
+       <link rel="icon" type="image/png" href="{{ asset('asset/favicon/favicon-96x96.png') }}" sizes="96x96" />
+       <link rel="icon" type="image/svg+xml" href="{{ asset('asset/favicon/favicon.svg') }}" />
+       <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+       <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('asset/favicon/apple-touch-icon.png') }}" />
+       <meta name="apple-mobile-web-app-title" content="Malacca" />
+       <link rel="manifest" href="{{ asset('asset/favicon/site.webmanifest') }}" />
+        
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -143,6 +147,12 @@
         </script>
     </head>
     <body>
+
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-585SL7GM"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+         
         <header>
             <nav
                 id="main-nav"
@@ -153,7 +163,7 @@
                 >
                     <a href="#hero">
                         <img
-                            src="{{ asset("asset/logo/logoCompany.svg") }}"
+                            src="{{ asset('asset/logo/logoCompany.svg') }}"
                             class="h-12 hover:bg-[#6c0c0d] rounded-lg transition-colors md:-translate-x-6 md:translate-y-2"
                             alt="Malacca Logo"
                         />
@@ -269,12 +279,12 @@
                 id="hero"
                 class="min-h-screen bg-cover bg-center flex flex-col items-center justify-center text-white p-4"
                 style="
-                    background-image: url('{{ asset("asset/img/hero.png") }}');
+                    background-image: url('{{ asset('asset/img/hero.png') }}');
                 "
-            >
+             >
                 <div
                     class="flex flex-col md:flex-row items-center justify-center text-center md:text-left mb-8"
-                >
+                 >
                     <div class="pt-16 md:pt-0">
                         <div class="w-24 md:w-36 mx-auto md:mr-10">
                             <svg
@@ -319,7 +329,7 @@
             <section
                 id="tentang"
                 class="min-h-screen flex flex-col md:flex-row bg-black"
-            >
+             >
                 <div
                     class="relative flex flex-col justify-center text-justify text-white w-full md:ml-[2.5rem] md:w-1/2 bg-black px-8 py-16 md:px-16 overflow-hidden"
                 >
@@ -332,7 +342,7 @@
                     <p class="text-gray-200 leading-relaxed mb-4">
                         Kami adalah entitas yang berakar dari semangat untuk
                         menghadirkan pengalaman kopi yang autentik di tengah
-                        dinamika Jakarta Timur. Kami lahir dari semangat
+                        dinamika Indonesia. Kami lahir dari semangat
                         kolaboratif untuk membangun ekosistem F&B yang lebih
                         inovatif dan berkelanjutan.
                     </p>
@@ -345,7 +355,7 @@
                 </div>
                 <div class="relative w-full md:w-1/2 h-96 md:h-screen">
                     <img
-                        src="{{ asset("asset/img/tentang.png") }}"
+                        src="{{ asset('asset/img/tentang.png') }}"
                         class="w-full h-full object-cover"
                         alt="Owner of Malacca"
                     />
@@ -360,104 +370,105 @@
                     <p class="font-thin text-gray-300">unit</p>
                     <h2 class="text-3xl font-bold">unit bisnis & jasa</h2>
                 </div>
+
                 <div
-        class="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8"
-    >
-        <!-- Card 1: Coffeehouse -->
-        <div
-            class="border border-dashed border-white p-6 rounded-3xl flex flex-col justify-between"
-        >
-            <!-- Top Content -->
-            <div>
-                <img
-                    src="{{ asset("asset/icon/coffeehouse.png") }}"
-                    alt="Coffeehouse icon"
-                    class="h-12 mb-4"
-                />
-                <h3 class="text-2xl font-bold mb-2">
-                    malacca coffeehouse
-                </h3>
-                <p class="text-sm text-gray-300 leading-relaxed">
-                    <span class="font-bold">Malacca Coffeehouse</span>
-                    membangun nilai pembeda melalui sajian berkualitas
-                    berbahan eksklusif yang dikemas secara sederhana.
-                    Hal ini menciptakan pengalaman yang autentik untuk
-                    konsumen. Kami menghadirkan ruang dengan nuansa
-                    homie dan pelayanan yang menjunjung kesetaraan,
-                    menjadikan setiap kunjungan terasa akrab dan nyaman.
-                </p>
-            </div>
-            <!-- Bottom Line -->
-            <div class="border-b w-20 border-2 mt-4"></div>
-        </div>
+                 class="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8"
+                 >
+                    <!-- Card 1: Coffeehouse -->
+                    <div
+                            class="border border-dashed border-white p-6 rounded-3xl flex flex-col justify-between"
+                         >
+                        <!-- Top Content -->
+                         <div>
+                            <img
+                                src="{{ asset('asset/icon/coffeehouse.png') }}"
+                                alt="Coffeehouse icon"
+                                class="h-12 mb-4"
+                            />
+                            <h3 class="text-2xl font-bold mb-2">
+                                malacca coffeehouse
+                            </h3>
+                            <p class="text-sm text-gray-300 leading-relaxed">
+                                <span class="font-bold">Malacca Coffeehouse</span>
+                                membangun nilai pembeda melalui sajian berkualitas
+                                berbahan eksklusif yang dikemas secara sederhana.
+                                Hal ini menciptakan pengalaman yang autentik untuk
+                                konsumen. Kami menghadirkan ruang dengan nuansa
+                                homie dan pelayanan yang menjunjung kesetaraan,
+                                menjadikan setiap kunjungan terasa akrab dan nyaman.
+                            </p>
+                        </div>
+                        <!-- Bottom Line -->
+                        <div class="border-b w-20 border-2 mt-4"></div>
+                    </div>
 
-        <!-- Card 2: Advisory -->
-        <div
-            class="border border-dashed border-white p-6 rounded-3xl flex flex-col justify-between"
-        >
-            <!-- Top Content -->
-            <div>
-                <img
-                    src="{{ asset("asset/icon/advisory.png") }}"
-                    alt="Advisory icon"
-                    class="h-12 mb-4"
-                />
-                <h3 class="text-2xl font-bold mb-2">
-                    malacca advisory
-                </h3>
-                <p class="text-sm text-gray-300 leading-relaxed">
-                    <span class="font-bold">Malacca Advisory</span>
-                    merupakan unit konsultasi yang berfokus pada
-                    pemberdayaan wirausahawan di sektor makanan dan
-                    minuman (F&B). Unit ini menyediakan layanan yang
-                    mencakup riset dan pengembangan (R&D), perumusan
-                    strategi bisnis, serta optimalisasi operasional,
-                    guna mendorong pertumbuhan usaha yang berkelanjutan
-                    dan kompetitif.
-                </p>
-            </div>
-            <!-- Bottom Line -->
-            <div class="border-b w-20 border-2 mt-4"></div>
-        </div>
+                    <!-- Card 2: Advisory -->
+                    <div
+                        class="border border-dashed border-white p-6 rounded-3xl flex flex-col justify-between"
+                     >
+                        <!-- Top Content -->
+                        <div>
+                            <img
+                                src="{{ asset('asset/icon/advisory.png') }}"
+                                alt="Advisory icon"
+                                class="h-12 mb-4"
+                            />
+                            <h3 class="text-2xl font-bold mb-2">
+                                malacca advisory
+                            </h3>
+                            <p class="text-sm text-gray-300 leading-relaxed">
+                                <span class="font-bold">Malacca Advisory</span>
+                                merupakan unit konsultasi yang berfokus pada
+                                pemberdayaan wirausahawan di sektor makanan dan
+                                minuman (F&B). Unit ini menyediakan layanan yang
+                                mencakup riset dan pengembangan (R&D), perumusan
+                                strategi bisnis, serta optimalisasi operasional,
+                                guna mendorong pertumbuhan usaha yang berkelanjutan
+                                dan kompetitif.
+                            </p>
+                        </div>
+                        <!-- Bottom Line -->
+                        <div class="border-b w-20 border-2 mt-4"></div>
+                    </div>
 
-        <!-- Card 3: Foundation -->
-        <div
-            class="border border-dashed border-white p-6 rounded-3xl flex flex-col justify-between"
-        >
-            <!-- Top Content -->
-            <div>
-                <img
-                    src="{{ asset("asset/icon/foundation.png") }}"
-                    alt="Foundation icon"
-                    class="h-12 mb-4"
-                />
-                <h3 class="text-2xl font-bold mb-2">
-                    malacca foundation
-                </h3>
-                <p class="text-sm text-gray-300 leading-relaxed">
-                    <span class="font-bold">Malacca Foundation</span>
-                    merupakan wujud komitmen kami untuk memberi kembali
-                    kepada masyarakat, dengan fokus pada pemberdayaan
-                    wirausaha lokal di sektor kreatif dan F&B. Kami
-                    menyediakan program pelatihan keterampilan,
-                    pendampingan bisnis, serta membuka akses terhadap
-                    sumber daya bagi mereka yang memiliki potensi namun
-                    terbatas oleh keadaan. Melalui fondasi ini, kami
-                    bertujuan menumbuhkan ekosistem usaha yang mandiri
-                    dan menciptakan dampak sosial-ekonomi
-                    yang berkelanjutan.
-                </p>
-            </div>
-            <!-- Bottom Line -->
-            <div class="border-b w-20 border-2 mt-4"></div>
-        </div>
-    </div>
+                    <!-- Card 3: Foundation -->
+                    <div
+                        class="border border-dashed border-white p-6 rounded-3xl flex flex-col justify-between"
+                     >
+                        <!-- Top Content -->
+                        <div>
+                            <img
+                                src="{{ asset('asset/icon/foundation.png') }}"
+                                alt="Foundation icon"
+                                class="h-12 mb-4"
+                            />
+                            <h3 class="text-2xl font-bold mb-2">
+                                malacca foundation
+                            </h3>
+                            <p class="text-sm text-gray-300 leading-relaxed">
+                                <span class="font-bold">Malacca Foundation</span>
+                                merupakan wujud komitmen kami untuk memberi kembali
+                                kepada masyarakat, dengan fokus pada pemberdayaan
+                                wirausaha lokal di sektor kreatif dan F&B. Kami
+                                menyediakan program pelatihan keterampilan,
+                                pendampingan bisnis, serta membuka akses terhadap
+                                sumber daya bagi mereka yang memiliki potensi namun
+                                terbatas oleh keadaan. Melalui fondasi ini, kami
+                                bertujuan menumbuhkan ekosistem usaha yang mandiri
+                                dan menciptakan dampak sosial-ekonomi
+                                yang berkelanjutan.
+                            </p>
+                        </div>
+                        <!-- Bottom Line -->
+                        <div class="border-b w-20 border-2 mt-4"></div>
+                    </div>
+                </div>
             </section>
             <!--tulisan section-->
             <section
                 id="tulisan"
                 class="min-h-screen flex flex-col bg-black py-16"
-            >
+             >
                 <div class="max-w-screen-xl mx-auto px-4">
                     <div
                         class="text-center text-white w-full max-w-4xl mx-auto mb-12"
@@ -475,7 +486,7 @@
                     >
                         @forelse ($articles->where("category", "!=", "blog")->take(4) as $article)
                             <a
-                                href="{{ route("articles.show", $article->slug) }}"
+                                href="{{ route('articles.show', $article->slug) }}"
                                 class="relative block rounded-3xl shadow-lg h-[400px] bg-cover bg-center overflow-hidden group"
                                 style="
                                     background-image: url('{{ $article->featured_image ? asset("storage/" . $article->featured_image) : asset("asset/img/default-article.jpg") }}');
@@ -521,9 +532,9 @@
                 id="kalibrasi"
                 class="relative min-h-screen bg-cover bg-center flex items-center justify-center text-white"
                 style="
-                    background-image: url('{{ asset("asset/img/kalibrasi.png") }}');
+                    background-image: url('{{ asset('asset/img/kalibrasi.png') }}');
                 "
-            >
+             >
                 <div class="absolute inset-0 bg-black/30 z-10"></div>
                 <div class="relative text-center z-30 p-4">
                     <h1 class="font-bold text-6xl md:text-8xl">kalibrasi</h1>
@@ -533,7 +544,7 @@
                     </p>
                 </div>
                 <a
-                    href="{{ route("kalibrasi") }}"
+                    href="{{ route('kalibrasi') }}"
                     class="absolute bottom-8 right-8 flex items-center gap-3 text-white z-30 group"
                 >
                     <p class="font-light group-hover:underline">
@@ -541,7 +552,7 @@
                         lebih lanjut
                     </p>
                     <img
-                        src="{{ asset("asset/icon/arrow-right.svg") }}"
+                        src="{{ asset('asset/icon/arrow-right.svg') }}"
                         alt="arrow icon"
                         class="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
                     />
@@ -554,7 +565,7 @@
                 id="kunjungi"
                 class="relative bg-cover bg-center text-white"
                 style="
-                    background-image: url('{{ asset("asset/img/kunjungi.png") }}');
+                    background-image: url('{{ asset('asset/img/kunjungi.png') }}');
                 "
             >
                 <div class="absolute inset-0 bg-black/70"></div>
@@ -565,7 +576,7 @@
                         class="flex-1 flex flex-col items-center text-justify md:items-start"
                     >
                         <img
-                            src="{{ asset("asset/logo/logoCompany.svg") }}"
+                            src="{{ asset('asset/logo/logoCompany.svg') }}"
                             alt="Logo Malacca"
                             class="w-24 mb-4"
                         />
@@ -583,7 +594,7 @@
                                 class="w-8 h-8 flex items-center justify-center bg-[#6c0c0d] rounded-full hover:opacity-80 transition-opacity"
                             >
                                 <img
-                                    src="{{ asset("asset/icon/gofood.png") }}"
+                                    src="{{ asset('asset/icon/gofood.png') }}"
                                     alt="GoFood"
                                     class="w-5 h-5"
                                 />
@@ -593,7 +604,7 @@
                                 class="w-8 h-8 flex items-center justify-center bg-[#6c0c0d] rounded-full hover:opacity-80 transition-opacity"
                             >
                                 <img
-                                    src="{{ asset("asset/icon/linktree.png") }}"
+                                    src="{{ asset('asset/icon/linktree.png') }}"
                                     alt="Linktree"
                                     class="w-5 h-5"
                                 />
@@ -603,7 +614,7 @@
                                 class="w-8 h-8 flex items-center justify-center bg-[#6c0c0d] rounded-full hover:opacity-80 transition-opacity"
                             >
                                 <img
-                                    src="{{ asset("asset/icon/whatsapp.png") }}"
+                                    src="{{ asset('asset/icon/whatsapp.png') }}"
                                     alt="WhatsApp"
                                     class="w-5 h-5"
                                 />
@@ -621,7 +632,7 @@
                             <p
                                 class="text-sm text-gray-300 leading-relaxed max-w-xs"
                             >
-                                Jalan Jl. Kemuning 7 No.32, RT.1/RW.8, Malaka
+                                Jl. Kemuning 7 No.32, RT.1/RW.8, Malaka
                                 Sari, Kec. Duren Sawit, Kota Jakarta Timur,
                                 Daerah Khusus Ibukota Jakarta 13460
                             </p>
@@ -663,7 +674,7 @@
 
         <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
-        <script src="{{ asset("scripts/global.js") }}" defer></script>
-        <script src="{{ asset("scripts/main-page.js") }}" defer></script>
+        <script src="{{ asset('scripts/global.js') }}" defer></script>
+        <script src="{{ asset('scripts/main-page.js') }}" defer></script>
     </body>
 </html>

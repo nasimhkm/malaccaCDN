@@ -4,7 +4,9 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{{ $article->title }} - Malacca Entreprise Indonesia</title>
+        
         <script src="https://cdn.tailwindcss.com"></script>
+
         <link rel="icon" type="image/png" href="{{ asset('asset/favicon/favicon-96x96.png') }}" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="{{ asset('asset/favicon/favicon.svg') }}" />
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
@@ -32,6 +34,14 @@
             .article-content p {
                 margin-bottom: 1em;
                 line-height: 1.6;
+            }
+            .article-content ol {
+                list-style-type: decimal;
+                margin-left: 1.5rem;
+            }
+            .article-content ul {
+                list-style-type: disc;
+                margin-left: 1.5rem;
             }
 
             /* PENAMBAHAN STYLE UNTUK DESKRIPSI */
@@ -157,7 +167,9 @@
             <section
                 id="kunjungi"
                 class="relative bg-cover bg-center text-white"
-                style="background-image: url('{{ asset('asset/img/kunjungi.png') }}')"
+                style="
+                    background-image: url('{{ asset('asset/img/kunjungi.png') }}');
+                "
             >
                 <div class="absolute inset-0 bg-black/70"></div>
                 <div
@@ -183,27 +195,33 @@
                             <a
                                 href="https://gofood.link/a/yM8W6YL"
                                 class="w-8 h-8 flex items-center justify-center bg-[#6c0c0d] rounded-full hover:opacity-80 transition-opacity"
-                                ><img
+                            >
+                                <img
                                     src="{{ asset('asset/icon/gofood.png') }}"
                                     alt="GoFood"
                                     class="w-5 h-5"
-                            /></a>
+                                />
+                            </a>
                             <a
                                 href="https://linktr.ee/malaccaentreprise"
                                 class="w-8 h-8 flex items-center justify-center bg-[#6c0c0d] rounded-full hover:opacity-80 transition-opacity"
-                                ><img
+                            >
+                                <img
                                     src="{{ asset('asset/icon/linktree.png') }}"
                                     alt="Linktree"
                                     class="w-5 h-5"
-                            /></a>
+                                />
+                            </a>
                             <a
                                 href="https://wa.link/1x9qk8"
                                 class="w-8 h-8 flex items-center justify-center bg-[#6c0c0d] rounded-full hover:opacity-80 transition-opacity"
-                                ><img
+                            >
+                                <img
                                     src="{{ asset('asset/icon/whatsapp.png') }}"
                                     alt="WhatsApp"
                                     class="w-5 h-5"
-                            /></a>
+                                />
+                            </a>
                         </div>
                     </div>
                     <div
@@ -213,14 +231,15 @@
                         <a
                             href="https://maps.app.goo.gl/RWCwJ44ykzFxhxb96"
                             class="block hover:underline"
-                            ><p
+                        >
+                            <p
                                 class="text-sm text-gray-300 leading-relaxed max-w-xs"
                             >
-                                Jalan Jl. Kemuning 7 No.32, RT.1/RW.8, Malaka
+                                Jl. Kemuning 7 No.32, RT.1/RW.8, Malaka
                                 Sari, Kec. Duren Sawit, Kota Jakarta Timur,
                                 Daerah Khusus Ibukota Jakarta 13460
-                            </p></a
-                        >
+                            </p>
+                        </a>
                     </div>
                     <div
                         class="flex-1 flex-col items-center md:items-start text-center md:text-left translate-y-0 md:translate-y-7"
@@ -230,13 +249,15 @@
                             <a
                                 href="tel:+6287888814075"
                                 class="block hover:underline"
-                                >+62 878 8881 4075</a
                             >
+                                +62 878 8881 4075
+                            </a>
                             <a
                                 href="mailto:malaccancoffee@gmail.com"
                                 class="block hover:underline"
-                                >malaccancoffee@gmail.com</a
                             >
+                                malaccancoffee@gmail.com
+                            </a>
                         </div>
                         <a
                             href="https://wa.link/1x9qk8"
