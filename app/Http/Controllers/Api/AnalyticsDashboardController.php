@@ -23,31 +23,37 @@ class AnalyticsDashboardController extends Controller
             // -----------------------------------------------------------------
             // 1) SUMMARY KPIs
             // -----------------------------------------------------------------
-            $summaryResult = Analytics::get(
-                $period,
-                ['sessions', 'activeUsers', 'newUsers', 'engagementRate', 'averageSessionDuration']
-            );
+            // 1) SUMMARY KPIs
+$summaryResult = Analytics::get(
+    $period,
+    // TAMBAHKAN 'screenPageViews' DI SINI
+    ['sessions', 'activeUsers', 'newUsers', 'engagementRate', 'averageSessionDuration', 'screenPageViews']
+);
 
-            $summary = [
-                'sessions' => 0,
-                'totalUsers' => 0,
-                'newUsers' => 0,
-                'engagementRate' => 0,
-                'averageSessionDuration' => 0,
-                'bounceRate' => 0,
-            ];
+$summary = [
+    'sessions' => 0,
+    'totalUsers' => 0,
+    'newUsers' => 0,
+    'engagementRate' => 0,
+    'averageSessionDuration' => 0,
+    'bounceRate' => 0,
+    'pageViews' => 0, // Tambahkan key baru
+];
 
-            if ($row = $summaryResult->first()) {
-                $summary['sessions'] = (int) ($row['sessions'] ?? 0);
-                $summary['totalUsers'] = (int) ($row['activeUsers'] ?? 0);
-                $summary['newUsers'] = (int) ($row['newUsers'] ?? 0);
+if ($row = $summaryResult->first()) {
+    $summary['sessions'] = (int) ($row['sessions'] ?? 0);
+    $summary['totalUsers'] = (int) ($row['activeUsers'] ?? 0);
+    $summary['newUsers'] = (int) ($row['newUsers'] ?? 0);
+    $summary['pageViews'] = (int) ($row['screenPageViews'] ?? 0); // Ambil data page views
 
-                $engagementRate = (float) ($row['engagementRate'] ?? 0);
-                $summary['engagementRate'] = round($engagementRate * 100, 2);
-                $summary['bounceRate'] = round((1 - $engagementRate) * 100, 2);
+    $engagementRate = (float) ($row['engagementRate'] ?? 0);
+    $summary['engagementRate'] = round($engagementRate * 100, 2);
+    $summary['bounceRate'] = round((1 - $engagementRate) * 100, 2);
 
-                $summary['averageSessionDuration'] = round((float) ($row['averageSessionDuration'] ?? 0), 2);
-            }
+    $avgDuration = (float) ($row['averageSessionDuration'] ?? 0);
+    // Format durasi menjadi HH:MM:SS
+    $summary['averageSessionDuration'] = gmdate('H:i:s', (int)$avgDuration);
+}
 
             // -----------------------------------------------------------------
             // Cek apakah nested OrderBy tersedia

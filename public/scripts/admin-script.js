@@ -152,128 +152,154 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// Buat variabel global untuk chart agar bisa di-destroy sebelum render ulang
-let visitorsChartInstance = null;
+// Variabel global untuk menyimpan instance chart
+let chartInstances = {};
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Cek jika kita berada di section dashboard saat pertama kali load
+    if (window.location.hash === "#dashboard" || window.location.hash === "") {
+        fetchAnalyticsData();
+    }
+
+    // Listener untuk link sidebar
+    document.querySelectorAll(".sidebar-link").forEach((link) => {
+        link.addEventListener("click", function (e) {
+            if (this.getAttribute("href") === "#dashboard") {
+                // Hanya fetch jika chart belum ter-render
+                if (!chartInstances['sessions-chart']) {
+                    fetchAnalyticsData();
+                }
+            }
+        });
+    });
+});
 
 function fetchAnalyticsData() {
-    // Tampilkan loading state sebelum fetch
-    document.getElementById("total-users").innerText = "...";
-    document.getElementById("total-sessions").innerText = "...";
-    document.querySelector("#popular-pages-tbody").innerHTML =
-        `<tr><td colspan="2" class="py-4 text-center">Loading...</td></tr>`;
-
+    console.log("Fetching Google Analytics data...");
+    
     fetch("/api/analytics-dashboard")
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             return response.json();
         })
-        .then((result) => {
+        .then(result => {
             if (result.success) {
                 const data = result.data;
-
-                // 1. Isi data ringkasan
-                document.getElementById("total-users").innerText =
-                    data.summary[0]?.totalUsers || "0";
-                document.getElementById("total-sessions").innerText =
-                    data.summary[0]?.sessions || "0";
-
-                // 2. Isi tabel halaman terpopuler
-                const pagesTableBody = document.querySelector(
-                    "#popular-pages-tbody",
-                );
-                pagesTableBody.innerHTML = ""; // Kosongkan loading
-                if (
-                    data.most_visited_pages &&
-                    data.most_visited_pages.length > 0
-                ) {
-                    data.most_visited_pages.forEach((page) => {
-                        const row = `
-                                        <tr class="border-b border-gray-700/50">
-                                            <td class="py-2 pr-2 truncate" title="${page.url}">${page.url}</td>
-                                            <td class="py-2 text-right font-medium">${page.pageViews}</td>
-                                        </tr>
-                                    `;
-                        pagesTableBody.innerHTML += row;
-                    });
-                } else {
-                    pagesTableBody.innerHTML = `<tr><td colspan="2" class="py-4 text-center">No data available.</td></tr>`;
-                }
-
-                // 3. Render Grafik
-                renderVisitorsChart(data.daily_stats);
+                updateUI(data);
             } else {
                 console.error("API Error:", result.message);
-                displayErrorOnUI("Failed to load data from API.");
+                displayErrorOnUI(result.message);
             }
         })
-        .catch((error) => {
+        .catch(error => {
             console.error("Fetch Error:", error);
             displayErrorOnUI("Failed to connect to the server.");
         });
 }
 
-function renderVisitorsChart(dailyData) {
-    const ctx = document.getElementById("visitors-chart").getContext("2d");
+function updateUI(data) {
+    // 1. Update KPI Cards
+    document.getElementById('kpi-sessions').innerText = data.summary.sessions.toLocaleString('id-ID');
+    document.getElementById('kpi-bounce-rate').innerText = `${data.summary.bounceRate}%`;
+    document.getElementById('kpi-page-views').innerText = data.summary.pageViews.toLocaleString('id-ID');
+    document.getElementById('kpi-avg-duration').innerText = data.summary.averageSessionDuration;
 
-    // Hancurkan instance chart yang lama jika ada
-    if (visitorsChartInstance) {
-        visitorsChartInstance.destroy();
+    // 2. Update Tabel Halaman Terpopuler
+    const pagesTableBody = document.querySelector("#popular-pages-tbody");
+    pagesTableBody.innerHTML = ""; // Kosongkan
+    if (data.most_visited_pages && data.most_visited_pages.length > 0) {
+        data.most_visited_pages.forEach(page => {
+            const row = `
+                <tr class="border-b border-gray-700/50">
+                    <td class="py-2 pr-2 truncate" title="${page.path}">${page.path}</td>
+                    <td class="py-2 text-right font-medium">${page.pageViews.toLocaleString('id-ID')}</td>
+                </tr>
+            `;
+            pagesTableBody.innerHTML += row;
+        });
+    } else {
+        pagesTableBody.innerHTML = `<tr><td colspan="2" class="py-4 text-center">No data available.</td></tr>`;
     }
 
-    // Format data untuk Chart.js
-    const labels = dailyData.map((item) =>
-        new Date(item.date).toLocaleDateString("id-ID", {
-            day: "numeric",
-            month: "short",
-        }),
-    );
-    const visitors = dailyData.map((item) => item.visitors);
+    // 3. Render semua grafik
+    const dailyLabels = data.daily_stats.map(item => new Date(item.date).toLocaleDateString("id-ID", { day: "numeric", month: "short" }));
+    
+    renderLineChart('sessions-chart', dailyLabels, data.daily_stats.map(item => item.sessions), 'Sessions');
+    renderLineChart('users-chart', dailyLabels, data.daily_stats.map(item => item.users), 'Total Users');
+    
+    renderBarChart('sessions-by-channel-chart', data.sessions_by_channel.map(item => item.channel), data.sessions_by_channel.map(item => item.sessions), 'Sessions');
+    renderBarChart('users-by-channel-chart', data.users_by_channel.map(item => item.channel), data.users_by_channel.map(item => item.users), 'Users');
+}
 
-    visitorsChartInstance = new Chart(ctx, {
-        type: "line",
+function renderLineChart(canvasId, labels, data, label) {
+    const ctx = document.getElementById(canvasId)?.getContext("2d");
+    if (!ctx) return;
+
+    if (chartInstances[canvasId]) chartInstances[canvasId].destroy();
+
+    chartInstances[canvasId] = new Chart(ctx, {
+        type: 'line',
         data: {
             labels: labels,
-            datasets: [
-                {
-                    label: "Pengunjung",
-                    data: visitors,
-                    borderColor: "rgba(108, 12, 13, 1)", // Warna #6c0c0d
-                    backgroundColor: "rgba(108, 12, 13, 0.2)",
-                    tension: 0.2,
-                    fill: true,
-                },
-            ],
+            datasets: [{
+                label: label,
+                data: data,
+                borderColor: "rgba(239, 68, 68, 1)", // Tailwind red-500
+                backgroundColor: "rgba(239, 68, 68, 0.2)",
+                tension: 0.3,
+                fill: true,
+            }]
         },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: { color: "rgba(255, 255, 255, 0.7)" },
-                    grid: { color: "rgba(255, 255, 255, 0.1)" },
-                },
-                x: {
-                    ticks: { color: "rgba(255, 255, 255, 0.7)" },
-                    grid: { color: "rgba(255, 255, 255, 0.1)" },
-                },
-            },
-            plugins: {
-                legend: {
-                    labels: {
-                        color: "rgba(255, 255, 255, 0.9)",
-                    },
-                },
-            },
-        },
+        options: getChartOptions()
     });
 }
 
+function renderBarChart(canvasId, labels, data, label) {
+    const ctx = document.getElementById(canvasId)?.getContext("2d");
+    if (!ctx) return;
+    
+    if (chartInstances[canvasId]) chartInstances[canvasId].destroy();
+    
+    chartInstances[canvasId] = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: label,
+                data: data,
+                backgroundColor: "rgba(239, 68, 68, 0.6)",
+                borderColor: "rgba(239, 68, 68, 1)",
+                borderWidth: 1
+            }]
+        },
+        options: getChartOptions(true) // isBarChart = true
+    });
+}
+
+function getChartOptions(isBarChart = false) {
+    return {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: { color: "rgba(255, 255, 255, 0.7)" },
+            },
+            x: {
+                ticks: { color: "rgba(255, 255, 255, 0.7)" },
+            }
+        },
+        plugins: {
+            legend: {
+                display: isBarChart, // Sembunyikan legenda untuk grafik garis agar lebih bersih
+                labels: { color: "rgba(255, 255, 255, 0.9)" },
+            }
+        }
+    };
+}
+
 function displayErrorOnUI(message) {
-    document.getElementById("total-users").innerText = "Error";
-    document.getElementById("total-sessions").innerText = "Error";
-    document.querySelector("#popular-pages-tbody").innerHTML =
-        `<tr><td colspan="2" class="py-4 text-center text-red-500">${message}</td></tr>`;
+    document.getElementById('kpi-sessions').innerText = 'Error';
+    // ... isi elemen lain dengan pesan error
+    document.querySelector("#popular-pages-tbody").innerHTML = `<tr><td colspan="2" class="py-4 text-center text-red-500">${message}</td></tr>`;
 }

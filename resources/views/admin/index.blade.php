@@ -194,53 +194,66 @@
 
                 <!--Analytics Dashboard-->
                 <section id="dashboard" class="content-section">
-                    <div class="mt-8">
-                        <h2 class="flex text-xl font-semibold mb-4 justify-center">Google Analytics 4</h2>
-    
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            <div class="bg-gray-900/50 rounded-lg p-6">
-                                <h3 class="text-gray-400 text-sm font-medium">Total Users</h3>
-                                <p id="total-users" class="text-3xl font-bold mt-2">Loading...</p>
-                            </div>
-                            <div class="bg-gray-900/50 rounded-lg p-6">
-                                <h3 class="text-gray-400 text-sm font-medium">Total Sessions</h3>
-                                <p id="total-sessions" class="text-3xl font-bold mt-2">Loading...</p>
-                            </div>
-                            <div class="bg-gray-900/50 rounded-lg p-6">
-                                <h3 class="text-gray-400 text-sm font-medium">Coming Soon</h3>
-                                <p class="text-3xl font-bold mt-2">-</p>
-                            </div>
-                            <div class="bg-gray-900/50 rounded-lg p-6">
-                                <h3 class="text-gray-400 text-sm font-medium">Coming Soon</h3>
-                                <p class="text-3xl font-bold mt-2">-</p>
-                            </div>
-                        </div>
-    
-                        <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-6">
-                            <div class="lg:col-span-3 bg-gray-900/50 rounded-lg p-6 h-96">
-                                <h3 class="font-semibold mb-4">Daily Visitors</h3>
-                                <canvas id="visitors-chart"></canvas>
-                            </div>
-    
-                            <div class="lg:col-span-2 bg-gray-900/50 rounded-lg p-6">
-                                <h3 class="font-semibold mb-4">Most Visited Pages</h3>
-                                <div class="overflow-y-auto max-h-80">
-                                    <table class="w-full text-sm text-left text-gray-400">
-                                        <thead class="text-xs uppercase text-gray-400 sticky top-0 bg-gray-900/50">
-                                            <tr>
-                                                <th scope="col" class="py-3">Page URL</th>
-                                                <th scope="col" class="py-3 text-right">Views</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="popular-pages-tbody">
-                                            <tr><td colspan="2" class="py-4 text-center">Loading...</td></tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+    <div class="mt-8 space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-gray-900/50 rounded-lg p-5">
+                <h3 class="text-gray-400 text-sm font-medium">Sessions</h3>
+                <p id="kpi-sessions" class="text-3xl font-bold mt-2">...</p>
+            </div>
+            <div class="bg-gray-900/50 rounded-lg p-5">
+                <h3 class="text-gray-400 text-sm font-medium">Bounce Rate</h3>
+                <p id="kpi-bounce-rate" class="text-3xl font-bold mt-2">...</p>
+            </div>
+            <div class="bg-gray-900/50 rounded-lg p-5">
+                <h3 class="text-gray-400 text-sm font-medium">Page Views</h3>
+                <p id="kpi-page-views" class="text-3xl font-bold mt-2">...</p>
+            </div>
+            <div class="bg-gray-900/50 rounded-lg p-5">
+                <h3 class="text-gray-400 text-sm font-medium">Average Session Duration</h3>
+                <p id="kpi-avg-duration" class="text-3xl font-bold mt-2">...</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="bg-gray-900/50 rounded-lg p-6 h-80">
+                <h3 class="font-semibold mb-4">Sessions</h3>
+                <canvas id="sessions-chart"></canvas>
+            </div>
+            <div class="bg-gray-900/50 rounded-lg p-6 h-80">
+                <h3 class="font-semibold mb-4">Total Users</h3>
+                <canvas id="users-chart"></canvas>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+             <div class="bg-gray-900/50 rounded-lg p-6 h-80">
+                <h3 class="font-semibold mb-4">Sessions by Channel</h3>
+                <canvas id="sessions-by-channel-chart"></canvas>
+            </div>
+             <div class="bg-gray-900/50 rounded-lg p-6 h-80">
+                <h3 class="font-semibold mb-4">Users by Channel</h3>
+                <canvas id="users-by-channel-chart"></canvas>
+            </div>
+        </div>
+
+        <div class="bg-gray-900/50 rounded-lg p-6">
+            <h3 class="font-semibold mb-4">Most Visited Pages</h3>
+            <div class="overflow-y-auto max-h-80">
+                <table class="w-full text-sm text-left text-gray-400">
+                    <thead class="text-xs uppercase text-gray-400 sticky top-0 bg-gray-900/50">
+                        <tr>
+                            <th scope="col" class="py-3">Page Path</th>
+                            <th scope="col" class="py-3 text-right">Page Views</th>
+                        </tr>
+                    </thead>
+                    <tbody id="popular-pages-tbody">
+                        <tr><td colspan="2" class="py-4 text-center">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
 
                 <!--Article Management-->
                 <section id="article" class="content-section hidden">
