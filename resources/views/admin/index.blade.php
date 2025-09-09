@@ -130,18 +130,37 @@
                     class="fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-black pt-[50px]"
                     tabindex="-1"
                     aria-labelledby="drawer-navigation-label"
-                >
+                 >
                     <div class="py-4 overflow-y-auto">
                         <ul class="space-y-2 font-medium">
+                            <!-- analytics -->
                             <li>
-                                <a
-                                    href="#dashboard"
-                                    class="flex items-center p-2 rounded-lg text-white hover:bg-[#6c0c0d] sidebar-link"
-                                    ><span class="flex-1 ms-3 whitespace-nowrap"
-                                        >Dashboard</span
-                                    ></a
-                                >
+                                <button type="button" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-[#6c0c0d] " aria-controls="dropdown-dashboard" data-collapse-toggle="dropdown-dashboard">
+                                    <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Analytics Dashboard</span>
+                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                                    </svg>
+                                </button>
+
+                                <ul id="dropdown-dashboard" class="hidden py-2 space-y-2">
+                                    <li>
+                                        <a href="#dashboard" class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg ps-11 group hover:bg-[#6c0c0d] ">Google Analytics</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg ps-11 group hover:bg-[#6c0c0d] ">Google Ads</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg ps-11 group hover:bg-[#6c0c0d] ">Google Search Console</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg ps-11 group hover:bg-[#6c0c0d] ">Instagram - Discovery</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg ps-11 group hover:bg-[#6c0c0d] ">Instagram - Audience</a>
+                                    </li>
+                                </ul>
                             </li>
+                            <!-- article -->
                             <li>
                                 <a
                                     href="#article"
@@ -151,6 +170,7 @@
                                     ></a
                                 >
                             </li>
+                            <!-- task -->
                             <li>
                                 <a
                                     href="#task"
@@ -174,13 +194,8 @@
 
                 <!--Analytics Dashboard-->
                 <section id="dashboard" class="content-section">
-                    <h1 class="text-2xl font-bold">Admin Dashboard</h1>
-                    <p class="mt-2">
-                        Welcome to the control panel, {{ Auth::user()->name }}.
-                    </p>
-
                     <div class="mt-8">
-                        <h2 class="text-xl font-semibold mb-4">Website Analytics (Last 30 Days)</h2>
+                        <h2 class="flex text-xl font-semibold mb-4 justify-center">Google Analytics 4</h2>
     
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                             <div class="bg-gray-900/50 rounded-lg p-6">
@@ -390,208 +405,11 @@
             </section>
         </main>
 
-        {{-- PENAMBAHAN: Script untuk mengirim status ke modal --}}
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const addTaskButtons = document.querySelectorAll('.add-task-btn');
-                const taskStatusInput = document.getElementById('task-status-input');
-            
-                addTaskButtons.forEach(button => {
-                    button.addEventListener('click', function () {
-                        const status = this.getAttribute('data-status');
-                        if (taskStatusInput) {
-                            taskStatusInput.value = status;
-                        }
-                    });
-                });
-            });
-        </script>
-
-        {{-- Tambahkan script untuk create dan edit modal --}}
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                // --- Script untuk Create Modal ---
-                const addTaskButtons = document.querySelectorAll('.add-task-btn');
-                const taskStatusInput = document.getElementById('task-status-input');
-            
-                addTaskButtons.forEach(button => {
-                    button.addEventListener('click', function () {
-                        const status = this.getAttribute('data-status');
-                        if (taskStatusInput) {
-                            taskStatusInput.value = status;
-                        }
-                    });
-                });
         
-            // --- Script untuk Edit Modal ---
-            const editTaskButtons = document.querySelectorAll('.edit-task-btn');
-            const editTaskForm = document.getElementById('edit-task-form');
-            const editTaskTitle = document.getElementById('edit-task-title');
-            const editTaskDescription = document.getElementById('edit-task-description');
-            const editTaskStatus = document.getElementById('edit-task-status');
-        
-            editTaskButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const taskUrl = this.getAttribute('data-task-url');
-                    const taskId = this.getAttribute('data-task-id');
-                    
-                    // Fetch data task dari server
-                    fetch(taskUrl)
-                        .then(response => response.json())
-                        .then(data => {
-                            // Isi form dengan data yang didapat
-                            if(editTaskForm) {
-                                editTaskForm.action = `/admin/tasks/${taskId}`;
-                            }
-                            if(editTaskTitle) {
-                                editTaskTitle.value = data.title;
-                            }
-                            if(editTaskDescription) {
-                                editTaskDescription.value = data.description;
-                            }
-                            if(editTaskStatus) {
-                                editTaskStatus.value = data.status;
-                                }
-                            });
-                    });
-                });
-            });
-        </script>
 
         <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
         <script src="{{ asset('scripts/global.js') }}" defer></script>
         <script src="{{ asset('scripts/admin-script.js') }}" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                // Cek jika kita berada di section dashboard saat pertama kali load
-                if (window.location.hash === '#dashboard' || window.location.hash === '') {
-                    fetchAnalyticsData();
-                }
-        
-                // Tambahkan listener untuk link sidebar agar data dimuat saat section diubah
-                document.querySelectorAll('.sidebar-link').forEach(link => {
-                    link.addEventListener('click', function(e) {
-                        const targetId = this.getAttribute('href');
-                        if (targetId === '#dashboard') {
-                            // Cek agar tidak fetch berulang kali jika data sudah ada
-                            if (document.getElementById('total-users').innerText === 'Loading...') {
-                                fetchAnalyticsData();
-                            }
-                        }
-                    });
-                });
-            });
-
-            // Buat variabel global untuk chart agar bisa di-destroy sebelum render ulang
-            let visitorsChartInstance = null;
-        
-            function fetchAnalyticsData() {
-                // Tampilkan loading state sebelum fetch
-                document.getElementById('total-users').innerText = '...';
-                document.getElementById('total-sessions').innerText = '...';
-                document.querySelector("#popular-pages-tbody").innerHTML = `<tr><td colspan="2" class="py-4 text-center">Loading...</td></tr>`;
-
-                fetch('/api/analytics-dashboard')
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
-                        return response.json();
-                    })
-                    .then(result => {
-                        if (result.success) {
-                            const data = result.data;
-                            
-                            // 1. Isi data ringkasan
-                            document.getElementById('total-users').innerText = data.summary[0]?.totalUsers || '0';
-                            document.getElementById('total-sessions').innerText = data.summary[0]?.sessions || '0';
-        
-                            // 2. Isi tabel halaman terpopuler
-                            const pagesTableBody = document.querySelector("#popular-pages-tbody");
-                            pagesTableBody.innerHTML = ''; // Kosongkan loading
-                            if (data.most_visited_pages && data.most_visited_pages.length > 0) {
-                                data.most_visited_pages.forEach(page => {
-                                    const row = `
-                                        <tr class="border-b border-gray-700/50">
-                                            <td class="py-2 pr-2 truncate" title="${page.url}">${page.url}</td>
-                                            <td class="py-2 text-right font-medium">${page.pageViews}</td>
-                                        </tr>
-                                    `;
-                                    pagesTableBody.innerHTML += row;
-                                });
-                            } else {
-                                pagesTableBody.innerHTML = `<tr><td colspan="2" class="py-4 text-center">No data available.</td></tr>`;
-                            }
-                            
-                            // 3. Render Grafik
-                            renderVisitorsChart(data.daily_stats);
-                        } else {
-                            console.error('API Error:', result.message);
-                            displayErrorOnUI('Failed to load data from API.');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Fetch Error:', error);
-                        displayErrorOnUI('Failed to connect to the server.');
-                    });
-            }
-        
-            function renderVisitorsChart(dailyData) {
-                const ctx = document.getElementById('visitors-chart').getContext('2d');
-                
-                // Hancurkan instance chart yang lama jika ada
-                if (visitorsChartInstance) {
-                    visitorsChartInstance.destroy();
-                }
-
-                // Format data untuk Chart.js
-                const labels = dailyData.map(item => new Date(item.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'short' }));
-                const visitors = dailyData.map(item => item.visitors);
-                
-                visitorsChartInstance = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                            label: 'Pengunjung',
-                            data: visitors,
-                            borderColor: 'rgba(108, 12, 13, 1)', // Warna #6c0c0d
-                            backgroundColor: 'rgba(108, 12, 13, 0.2)',
-                            tension: 0.2,
-                            fill: true
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                ticks: { color: 'rgba(255, 255, 255, 0.7)' },
-                                grid: { color: 'rgba(255, 255, 255, 0.1)' }
-                            },
-                            x: {
-                                ticks: { color: 'rgba(255, 255, 255, 0.7)' },
-                                grid: { color: 'rgba(255, 255, 255, 0.1)' }
-                            }
-                        },
-                        plugins: {
-                            legend: {
-                                labels: {
-                                    color: 'rgba(255, 255, 255, 0.9)'
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-
-            function displayErrorOnUI(message) {
-                document.getElementById('total-users').innerText = 'Error';
-                document.getElementById('total-sessions').innerText = 'Error';
-                document.querySelector("#popular-pages-tbody").innerHTML = `<tr><td colspan="2" class="py-4 text-center text-red-500">${message}</td></tr>`;
-            }
-        </script>
-        </body>
+    </body>
 </html>

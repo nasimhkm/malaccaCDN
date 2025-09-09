@@ -8,42 +8,50 @@ use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str; // Pastikan use statement Str tetap ada
+use Carbon\Carbon;
 
 class ArticleController extends Controller
 {
     /**
      * Menampilkan daftar semua artikel di dashboard admin.
      */
-    /**
- * Menampilkan daftar semua artikel di dashboard admin.
- */
-public function index(Request $request) // 1. Tambahkan Request $request
-{
-    // 2. Ambil input dari URL
-    $perPage = $request->input('per_page', 10);
-    $search = $request->input('search');
+    public function index(Request $request)
+    {
+        $perPage = $request->input('per_page', 10);
+        $search = $request->input('search');
 
-    // 3. Mulai query builder
-    $articlesQuery = Article::query();
+        $articlesQuery = Article::query();
 
-    // 4. Terapkan filter PENCARIAN jika ada
-    if ($search) {
-        $articlesQuery->where(function ($query) use ($search) {
-            $query->where('title', 'like', "%{$search}%")
-                  ->orWhere('author', 'like', "%{$search}%")
-                  ->orWhere('category', 'like', "%{$search}%");
-        });
+        if ($search) {
+            // -- MULAI LOGIKA BARU --
+            $date = null;
+            try {
+                // 2. Coba ubah input pencarian menjadi objek tanggal
+                $date = Carbon::parse($search);
+            } catch (\Exception $e) {
+                // Jika gagal (artinya bukan format tanggal), biarkan $date tetap null
+            }
+
+            if ($date) {
+                // 3. JIKA input adalah tanggal, cari di kolom 'published_at'
+                $articlesQuery->whereDate('published_at', $date);
+            } else {
+                // 4. JIKA BUKAN tanggal, lakukan pencarian teks seperti sebelumnya
+                $articlesQuery->where(function ($query) use ($search) {
+                    $query->where('title', 'like', "%{$search}%")
+                          ->orWhere('author', 'like', "%{$search}%")
+                          ->orWhere('category', 'like', "%{$search}%");
+                });
+            }
+            // -- SELESAI LOGIKA BARU --
+        }
+
+        $articles = $articlesQuery->latest('published_at')->paginate($perPage);
+
+        $tasks = Task::all()->groupBy('status');
+
+        return view('admin.index', compact('articles', 'tasks'));
     }
-
-    // 5. Lanjutkan query dengan paginasi dan sorting
-    $articles = $articlesQuery->latest('published_at')->paginate($perPage);
-
-    // Ambil semua task dan kelompokkan berdasarkan statusnya (logika lama tetap ada)
-    $tasks = Task::all()->groupBy('status');
-
-    // Ganti view 'admin.index' jika nama view Anda adalah 'admin.dashboard'
-    return view('admin.index', compact('articles', 'tasks')); 
-}
 
     /**
      * Menampilkan form untuk membuat artikel baru.
