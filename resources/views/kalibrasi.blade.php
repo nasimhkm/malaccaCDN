@@ -829,7 +829,7 @@
         </footer>
 
         <!--language switcher-->
-        <div id="lang-switcher-container" class="fixed bottom-8 right-8 z-50 h-14 w-48">
+        <!-- <div id="lang-switcher-container" class="fixed bottom-8 right-8 z-50 h-14 w-48">
 
             <button id="lang-switcher-initial" class="absolute top-0 left-0 z-20 flex h-14 w-14 items-center justify-center transition-all duration-500 ease-out translate-x-32 border-4 rounded-full border-white">
                 <img src="https://flagcdn.com/id.svg" alt="USA Flag" class="h-12 w-12 rounded-full object-cover shadow-md">
@@ -855,7 +855,7 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
