@@ -321,7 +321,7 @@
                     <a
                         id="typed-button"
                         href="https://wa.link/1x9qk8"
-                        class="py-2.5 px-6 md:text-xl text-sm font-medium text-white bg-transparent rounded-full border md:border-[3px] border-white hover:bg-white/10"
+                        class="py-2.5 px-6 md:ml-24 md:text-xl text-sm font-medium text-white bg-transparent rounded-full border md:border-[3px] border-white hover:bg-white/10"
                     ></a>
                 </div>
             </section>
