@@ -69,6 +69,7 @@
         </style>
     </head>
     <body class="text-black">
+
         <main>
             <div class="container max-w-4xl mx-auto bg-white shadow-lg my-10">
             <!--featured image-->
@@ -163,6 +164,7 @@
                 </div>
             </div>
         </main>
+
         <footer class="bg-black">
             <section
                 id="kunjungi"
@@ -274,5 +276,36 @@
                 </div>
             </section>
         </footer>
+
+        <!--language switcher-->
+        <div id="lang-switcher-container" class="fixed bottom-8 right-8 z-50 h-14 w-48">
+
+            <button id="lang-switcher-initial" class="absolute top-0 left-0 z-20 flex h-14 w-14 items-center justify-center transition-all duration-500 ease-out translate-x-32 border-4 rounded-full border-white">
+                <img src="https://flagcdn.com/id.svg" alt="USA Flag" class="h-12 w-12 rounded-full object-cover shadow-md">
+            </button>
+
+            <div id="lang-switcher-expanded" class="pointer-events-none absolute top-0 left-0 w-[180px] opacity-0 transition-opacity duration-500 ease-out">
+                <div class="relative">
+                    <div id="lang-options" class="absolute bottom-full mb-2 w-full flex flex-col gap-2 
+                                                  opacity-0 pointer-events-none transform -translate-y-2 
+                                                  transition-all duration-300 ease-out"
+                     >
+                        <a href="/id" class="flex items-center gap-3 rounded-full bg-white p-2 text-gray-800 shadow-md transition-colors hover:bg-gray-200">
+                            <img src="https://flagcdn.com/us.svg" class="h-10 w-10 rounded-full object-cover" alt="Indonesia Flag">
+                            <span class="font-semibold">EN</span>
+                        </a>
+                    </div>
+                    <button id="lang-switcher-toggle" class="flex h-14 w-full items-center justify-between rounded-full bg-white p-2 text-gray-800 shadow-lg">
+                        <div class="flex items-center gap-3">
+                            <img src="https://flagcdn.com/id.svg" class="h-10 w-10 rounded-full object-cover" alt="USA Flag">
+                            <span class="font-semibold">ID</span>
+                        </div>
+                        <img id="arrow-icon" src="{{ asset('asset/icon/arrow-up.svg') }}" alt="">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script src="{{ asset('scripts/global.js') }}" defer></script>
     </body>
 </html>
