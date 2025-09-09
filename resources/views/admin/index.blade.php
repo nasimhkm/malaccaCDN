@@ -27,6 +27,7 @@
         </style>
     </head>
     <body>
+
         <header>
             <nav
                 id="main-nav"
@@ -123,7 +124,7 @@
         </header>
 
         <main>
-            <section id="sidebar" class="flex flex-col">
+            <div id="sidebar" class="flex flex-col">
                 <div
                     id="drawer-navigation"
                     class="fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-black pt-[50px]"
@@ -162,16 +163,16 @@
                         </ul>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <div class="p-4 mt-16 text-white max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
+            <section class="p-4 mt-16 text-white max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 @if (session('success'))
                     <div class="p-4 mb-4 text-sm text-green-400 bg-gray-800 rounded-lg" role="alert">
                         {{ session('success') }}
                     </div>
                 @endif
 
+                <!--Analytics Dashboard-->
                 <section id="dashboard" class="content-section">
                     <h1 class="text-2xl font-bold">Admin Dashboard</h1>
                     <p class="mt-2">
@@ -224,17 +225,33 @@
                             </div>
                         </div>
                     </div>
-                    </section>
+                </section>
 
-                <div id="article" class="content-section hidden">
-                    <div class="flex justify-between items-center mb-6 mt-6">
-                        <h1 class="text-2xl font-bold">Article Management</h1>
-                        <a href="{{ route('admin.articles.create') }}"
-                            class="text-white bg-[#6c0c0d] hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5">
-                            Add New
-                        </a>
+                <!--Article Management-->
+                <section id="article" class="content-section hidden">
+                    <!--Article Management Head-->
+                    <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 pb-4">
+                        <h1 class="text-2xl font-bold self-start md:self-center">Article Management</h1>
+                        <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
+                            <form method="GET" action="{{ url()->current() }}#article" class="w-full md:w-auto">
+                                <label for="table-search" class="sr-only">Search</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                        <svg class="w-4 h-4 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                        </svg>
+                                    </div>
+                                    <input type="text" id="table-search" name="search" class="block w-full p-2.5 pl-10 text-sm rounded-lg bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Search for articles" value="{{ request('search') }}">
+                                </div>
+                            </form>
+
+                            <a href="{{ route('admin.articles.create') }}" class="text-white bg-[#6c0c0d] hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                Add New
+                            </a>
+                        </div>
                     </div>
 
+                    <!--Article Management Table-->
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table class="w-full text-sm text-left text-gray-400">
                             <thead class="text-xs uppercase bg-gray-700 text-gray-400">
@@ -306,6 +323,7 @@
                         </table>
                     </div>
 
+                    <!--Article Management Pagination-->
                     <nav class="flex items-center flex-wrap md:flex-row justify-between pt-4" aria-label="Table navigation">
                         <form method="GET" action="{{ url()->current() }}#article">
                             <label for="per_page" class="text-sm font-normal text-gray-400 mr-2">Show</label>
@@ -326,9 +344,10 @@
 
                         {{ $articles->appends(request()->except('page'))->fragment('article')->links() }}
                     </nav>
-                </div>
+                </section>
 
-                <div id="task" class="content-section hidden">
+                <!--Task Management-->
+                <section id="task" class="content-section hidden">
                     <div class="mb-10 mt-6">
                         <h1 class="text-4xl font-bold tracking-tight">Task Board</h1>
                         <p class="text-gray-400 mt-2">The task board to keep track of your tasks.</p>
@@ -363,43 +382,46 @@
                         @endforeach
 
                     </div>
-                </div>
+                </section>
+
                 {{-- PENAMBAHAN: Sertakan file modal di sini --}}
                 @include('admin.partials.create-task-modal')
                 @include('admin.partials.edit-task-modal')
-            </div>
+            </section>
         </main>
+
         {{-- PENAMBAHAN: Script untuk mengirim status ke modal --}}
         <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const addTaskButtons = document.querySelectorAll('.add-task-btn');
-            const taskStatusInput = document.getElementById('task-status-input');
-        
-            addTaskButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const status = this.getAttribute('data-status');
-                    if (taskStatusInput) {
-                        taskStatusInput.value = status;
-                    }
+            document.addEventListener('DOMContentLoaded', function () {
+                const addTaskButtons = document.querySelectorAll('.add-task-btn');
+                const taskStatusInput = document.getElementById('task-status-input');
+            
+                addTaskButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        const status = this.getAttribute('data-status');
+                        if (taskStatusInput) {
+                            taskStatusInput.value = status;
+                        }
+                    });
                 });
             });
-        });
         </script>
+
         {{-- Tambahkan script untuk create dan edit modal --}}
         <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // --- Script untuk Create Modal ---
-            const addTaskButtons = document.querySelectorAll('.add-task-btn');
-            const taskStatusInput = document.getElementById('task-status-input');
-        
-            addTaskButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const status = this.getAttribute('data-status');
-                    if (taskStatusInput) {
-                        taskStatusInput.value = status;
-                    }
+            document.addEventListener('DOMContentLoaded', function () {
+                // --- Script untuk Create Modal ---
+                const addTaskButtons = document.querySelectorAll('.add-task-btn');
+                const taskStatusInput = document.getElementById('task-status-input');
+            
+                addTaskButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        const status = this.getAttribute('data-status');
+                        if (taskStatusInput) {
+                            taskStatusInput.value = status;
+                        }
+                    });
                 });
-            });
         
             // --- Script untuk Edit Modal ---
             const editTaskButtons = document.querySelectorAll('.edit-task-btn');
@@ -429,16 +451,16 @@
                             }
                             if(editTaskStatus) {
                                 editTaskStatus.value = data.status;
-                            }
-                        });
+                                }
+                            });
+                    });
                 });
             });
-        });
         </script>
+
         <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
         <script src="{{ asset('scripts/global.js') }}" defer></script>
         <script src="{{ asset('scripts/admin-script.js') }}" defer></script>
-        
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function () {

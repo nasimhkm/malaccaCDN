@@ -14,14 +14,36 @@ class ArticleController extends Controller
     /**
      * Menampilkan daftar semua artikel di dashboard admin.
      */
-    public function index()
-    {
-        $perPage = request('per_page', 10);
-        $articles = Article::latest('published_at')->paginate($perPage);
-        // Ambil semua task dan kelompokkan berdasarkan statusnya
-        $tasks = Task::all()->groupBy('status');
-        return view('admin.index', compact('articles', 'tasks'));
+    /**
+ * Menampilkan daftar semua artikel di dashboard admin.
+ */
+public function index(Request $request) // 1. Tambahkan Request $request
+{
+    // 2. Ambil input dari URL
+    $perPage = $request->input('per_page', 10);
+    $search = $request->input('search');
+
+    // 3. Mulai query builder
+    $articlesQuery = Article::query();
+
+    // 4. Terapkan filter PENCARIAN jika ada
+    if ($search) {
+        $articlesQuery->where(function ($query) use ($search) {
+            $query->where('title', 'like', "%{$search}%")
+                  ->orWhere('author', 'like', "%{$search}%")
+                  ->orWhere('category', 'like', "%{$search}%");
+        });
     }
+
+    // 5. Lanjutkan query dengan paginasi dan sorting
+    $articles = $articlesQuery->latest('published_at')->paginate($perPage);
+
+    // Ambil semua task dan kelompokkan berdasarkan statusnya (logika lama tetap ada)
+    $tasks = Task::all()->groupBy('status');
+
+    // Ganti view 'admin.index' jika nama view Anda adalah 'admin.dashboard'
+    return view('admin.index', compact('articles', 'tasks')); 
+}
 
     /**
      * Menampilkan form untuk membuat artikel baru.
